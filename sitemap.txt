@@ -1,0 +1,11 @@
+http://example.com/2023/01/25/hello-world/
+http://example.com/2023/01/26/blog/
+http://example.com/categories/index-1.html
+http://example.com/tags/index-1.html
+http://example.com/tags/index.html
+http://example.com/resources/index.html
+http://example.com/categories/index.html
+http://example.com/about/index.html
+http://example.com/
+http://example.com/tags/git/
+http://example.com/categories/git-bash/

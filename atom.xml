@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Andy&#39;s blog</title>
+  
+  <subtitle>面向小白编程！</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2023-01-27T02:43:03.039Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Andy</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搭建个人网站的教程&amp;踩坑实录</title>
+    <link href="http://example.com/2023/01/26/blog/"/>
+    <id>http://example.com/2023/01/26/blog/</id>
+    <published>2023-01-26T09:31:29.540Z</published>
+    <updated>2023-01-27T02:43:03.039Z</updated>
+    
+    <content type="html"><![CDATA[<p>在开始之前先po一下我用的教程：</p><p><a href="https://zhuanlan.zhihu.com/p/102592286">https://zhuanlan.zhihu.com/p/102592286</a></p><p>里面的内容非常详细！即便是纯计算机小白，对着这份教程至多只需两天就可以搭出来（抄出来）一个完成度还可以的个人博客网站！博主大概用了一天左右（虽然实际上是两个小半天…），完成了如您所见的效果…博主小学期没怎么学好，css啥的美化和github还是不太会用，或许过两天还会进一步美化、丰富这个网站！</p><p>总之，博主总结了一下搭建过程中教程几个没有提到的问题，以及博主是如何解决（绕开）这些bug的。博主是第一次记录自己的debug过程，事后再回忆bug一方面没有截图，另一方面可能记忆不够清晰…看来写这种东西得随de随记录：</p><h3 id="教程中“git-push-origin-master”报错"><a href="#教程中“git-push-origin-master”报错" class="headerlink" title="教程中“git push origin master”报错"></a><a href="#git-push%E6%8A%A5%E9%94%99">教程中“git push origin master”报错</a></h3><h3 id="hexo-d报错”spawn-failed”"><a href="#hexo-d报错”spawn-failed”" class="headerlink" title="hexo d报错”spawn failed”"></a><a href="#hexo-d%E6%8A%A5%E9%94%99">hexo d报错”spawn failed”</a></h3><h3 id="在切换主题时（本文中是从next主题换成butterfly）报错"><a href="#在切换主题时（本文中是从next主题换成butterfly）报错" class="headerlink" title="在切换主题时（本文中是从next主题换成butterfly）报错"></a><a href="#%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98%E6%8A%A5%E9%94%99">在切换主题时（本文中是从next主题换成butterfly）报错</a></h3><h4 id="git-push报错"><a href="#git-push报错" class="headerlink" title="git push报错"></a>git push报错</h4><p>在第三篇教程中”git push origin master“一步会报错如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: src refspec master does not match any error: failed to push some refs to</span><br></pre></td></tr></table></figure><p>简单来说，就是github更新了…把默认分支从master改成了main，把master改成main即可…（感觉带点脑子看教程都不会有这个bug…显然博主没带脑子）。详见：</p><p><a href="https://blog.csdn.net/qq_43142509/article/details/124182138">https://blog.csdn.net/qq_43142509/article/details/124182138</a></p><h4 id="hexo-d报错"><a href="#hexo-d报错" class="headerlink" title="hexo d报错"></a>hexo d报错</h4><p>在hexo d时有类似报错：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\Program Files\blog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (node:events:526:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\Program Files\blog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (node:internal/child_process:291:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure><p>在不断改动配置文件的时候hexo三部曲突然在hexo d时报错了…简单粗暴的解决方案是将hexo根目录（即blog文件夹）中的<code>.deploy_git</code>和<code>public</code>直接删除！之后再重跑一遍hexo clean、hexo g和hexo d即可…</p><p>顺便一说，测试的时候最好直接用hexo s，而不是hexo三部曲…后者太慢了…</p><h4 id="切换主题报错"><a href="#切换主题报错" class="headerlink" title="切换主题报错"></a>切换主题报错</h4><p>进入博客时只出现一句”extends includes&#x2F;layout.pug block content include .&#x2F;includes&#x2F;mixins&#x2F;post-ui.pug #recent-posts.recent-posts +postUI include includes&#x2F;pagination.pug“</p><p>简单来说输入如下命令即可：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-renderer-jade hexo-generator-feed hexo-generator-sitemap hexo-browsersync hexo-generator-archive</span><br></pre></td></tr></table></figure><p>详见知乎：</p><p><a href="https://zhuanlan.zhihu.com/p/137946156">https://zhuanlan.zhihu.com/p/137946156</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;在开始之前先po一下我用的教程：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/102592286&quot;&gt;https://zhuanlan.zhihu.com/p/102592286&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;里面的内容非常详细！即便是纯</summary>
+      
+    
+    
+    
+    <category term="git bash" scheme="http://example.com/categories/git-bash/"/>
+    
+    
+    <category term="git" scheme="http://example.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello world!</title>
+    <link href="http://example.com/2023/01/25/hello-world/"/>
+    <id>http://example.com/2023/01/25/hello-world/</id>
+    <published>2023-01-25T09:26:18.091Z</published>
+    <updated>2023-01-27T02:44:33.537Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里是博主闲的没事搭的一个无脑博客！（说是搭建，其实就是直接用butterfly主题…）为此，博主斥九块巨资买了这个域名的一年使用权…美化和功能还在持续更新！</p><p>搭建博客的过程中意识到这个东西真的是小学生都会…纯敲代码真的能赚到钱吗？博主对此表示大大的怀疑…总之，说不定以后博主会不定期地发一些面向小白编程、数学和概率论问题（虽然博主的概率论学的一坨屎…）的帖子，敬请期待！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;这里是博主闲的没事搭的一个无脑博客！（说是搭建，其实就是直接用butterfly主题…）为此，博主斥九块巨资买了这个域名的一年使用权…美化和功能还在持续更新！&lt;/p&gt;
+&lt;p&gt;搭建博客的过程中意识到这个东西真的是小学生都会…纯敲代码真的能赚到钱吗？博主对此表示大大的怀疑…总之</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
