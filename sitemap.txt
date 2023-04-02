@@ -1,5 +1,14 @@
-http://example.com/2023/01/25/hello-world/
+http://example.com/2023/04/02/DLS8/
+http://example.com/2023/04/02/DLS7/
+http://example.com/2023/04/02/DLS6/
+http://example.com/2023/04/02/DLS5/
+http://example.com/2023/04/02/DLS4/
+http://example.com/2023/04/02/DLS3/
+http://example.com/2023/04/02/DLS2/
+http://example.com/2023/04/02/DLS1/
+http://example.com/2023/04/02/dsa/
 http://example.com/2023/01/26/blog/
+http://example.com/2023/01/25/hello-world/
 http://example.com/categories/index-1.html
 http://example.com/tags/index-1.html
 http://example.com/tags/index.html
@@ -8,4 +17,8 @@ http://example.com/categories/index.html
 http://example.com/about/index.html
 http://example.com/
 http://example.com/tags/git/
-http://example.com/categories/git-bash/
+http://example.com/tags/C/
+http://example.com/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
+http://example.com/categories/git%E6%93%8D%E4%BD%9C/
+http://example.com/categories/C/
+http://example.com/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
