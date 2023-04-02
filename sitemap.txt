@@ -16,9 +16,9 @@ http://example.com/resources/index.html
 http://example.com/categories/index.html
 http://example.com/about/index.html
 http://example.com/
+http://example.com/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
 http://example.com/tags/git/
 http://example.com/tags/C/
-http://example.com/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
+http://example.com/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
 http://example.com/categories/git%E6%93%8D%E4%BD%9C/
 http://example.com/categories/C/
-http://example.com/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
