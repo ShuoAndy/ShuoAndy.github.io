@@ -1,3 +1,15 @@
+http://example.com/2023/04/03/DLS20/
+http://example.com/2023/04/03/DLS19/
+http://example.com/2023/04/03/DLS18/
+http://example.com/2023/04/03/DLS17/
+http://example.com/2023/04/03/DLS16/
+http://example.com/2023/04/03/DLS15/
+http://example.com/2023/04/03/DLS14/
+http://example.com/2023/04/03/DLS13/
+http://example.com/2023/04/03/DLS12/
+http://example.com/2023/04/03/DLS11/
+http://example.com/2023/04/03/DLS9/
+http://example.com/2023/04/03/DLS10/
 http://example.com/2023/04/02/DLS8/
 http://example.com/2023/04/02/DLS7/
 http://example.com/2023/04/02/DLS6/
