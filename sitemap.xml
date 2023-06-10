@@ -13,7 +13,7 @@
   <url>
     <loc>https://shuoandy.github.io/2023/05/01/dsa/</loc>
     
-    <lastmod>2023-06-07</lastmod>
+    <lastmod>2023-06-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -313,6 +313,13 @@
   </url>
   
   <url>
+    <loc>https://shuoandy.github.io/tags/network/</loc>
+    <lastmod>2023-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://shuoandy.github.io/tags/C/</loc>
     <lastmod>2023-06-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -330,6 +337,13 @@
   
   <url>
     <loc>https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2023-06-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://shuoandy.github.io/categories/network/</loc>
     <lastmod>2023-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
