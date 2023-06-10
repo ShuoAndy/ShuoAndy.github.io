@@ -2,24 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://shuoandy.github.io/2023/06/10/wy/</loc>
-    
-    <lastmod>2023-06-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://shuoandy.github.io/2023/06/05/Emotion/</loc>
-    
-    <lastmod>2023-06-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://shuoandy.github.io/2023/05/25/Connect4/</loc>
     
     <lastmod>2023-06-10</lastmod>
@@ -29,7 +11,25 @@
   </url>
   
   <url>
+    <loc>https://shuoandy.github.io/2023/06/10/wy/</loc>
+    
+    <lastmod>2023-06-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shuoandy.github.io/2023/05/01/dsa/</loc>
+    
+    <lastmod>2023-06-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://shuoandy.github.io/2023/06/05/Emotion/</loc>
     
     <lastmod>2023-06-10</lastmod>
     
@@ -306,14 +306,14 @@
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/tags/git/</loc>
+    <loc>https://shuoandy.github.io/tags/C/</loc>
     <lastmod>2023-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/tags/C/</loc>
+    <loc>https://shuoandy.github.io/tags/git/</loc>
     <lastmod>2023-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -336,14 +336,14 @@
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/</loc>
+    <loc>https://shuoandy.github.io/categories/C/</loc>
     <lastmod>2023-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/categories/C/</loc>
+    <loc>https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/</loc>
     <lastmod>2023-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
