@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shuoandy.github.io/2023/06/10/wy/</loc>
+    
+    <lastmod>2023-06-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shuoandy.github.io/categories/index.html</loc>
     
     <lastmod>2023-06-12</lastmod>
@@ -21,15 +30,6 @@
   
   <url>
     <loc>https://shuoandy.github.io/tags/index.html</loc>
-    
-    <lastmod>2023-06-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://shuoandy.github.io/2023/06/10/wy/</loc>
     
     <lastmod>2023-06-12</lastmod>
     
