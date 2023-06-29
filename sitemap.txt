@@ -42,8 +42,8 @@ https://shuoandy.github.io/2023/05/01/hello-world/
 https://shuoandy.github.io/about/index.html
 https://shuoandy.github.io/
 https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
-https://shuoandy.github.io/tags/git/
 https://shuoandy.github.io/tags/THU-course/
+https://shuoandy.github.io/tags/git/
 https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/
-https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/
 https://shuoandy.github.io/categories/THU-course/
+https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/
