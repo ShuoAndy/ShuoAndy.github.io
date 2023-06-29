@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>Andy's blog - 面向小白编程！</title><meta name="author" content="Andy"><meta name="copyright" content="Andy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="虽然世界被无聊填平 我还有台老唱机~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Andy&#39;s blog">
+<meta property="og:url" content="https://shuoandy.github.io/page/4/index.html">
+<meta property="og:site_name" content="Andy&#39;s blog">
+<meta property="og:description" content="虽然世界被无聊填平 我还有台老唱机~">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shuoandy.github.io/img/avatar.png">
+<meta property="article:author" content="Andy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shuoandy.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shuoandy.github.io/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Andy\'s blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-06-29 23:37:40'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Andy's blog" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://pic1.zhimg.com/v2-b1bc7f08e6a99c2f3cf6e43956c98f0c_r.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Andy's blog"><span class="site-name">Andy's blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Andy's blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/06/29/DLS2/" title="笛子的单恋史2--小张【2】"><img class="post-bg" src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史2--小张【2】"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/29/DLS2/" title="笛子的单恋史2--小张【2】">笛子的单恋史2--小张【2】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-29T15:36:27.215Z" title="发表于 2023-06-29 23:36:27">2023-06-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/">笛子的单恋史</a></span></div><div class="content">
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/06/29/DLS1/" title="笛子的单恋史1--小张【1】"><img class="post-bg" src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史1--小张【1】"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/29/DLS1/" title="笛子的单恋史1--小张【1】">笛子的单恋史1--小张【1】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-29T15:36:27.122Z" title="发表于 2023-06-29 23:36:27">2023-06-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/">笛子的单恋史</a></span></div><div class="content">
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/06/10/wy/" title="网原个人题库"><img class="post-bg" src="https://th.bing.com/th/id/R.6a8e61e0990d317a1b047cc5b3217eca?rik=mbFsW63x%2bb9xmw&amp;riu=http%3a%2f%2fp2.so.qhmsg.com%2ft01990d317a1b047cc5.jpg&amp;ehk=fxOz9TVQLngAPw3FEvLnCr3t7Cjsy2t9u8Tvy2WqY1Q%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网原个人题库"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/10/wy/" title="网原个人题库">网原个人题库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-10T09:50:08.120Z" title="发表于 2023-06-10 17:50:08">2023-06-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/THU-course/">THU-course</a></span></div><div class="content">崔勇的网络原理是逐层教学的：与CMU的自顶而下方法不同，崔老师是自底而上（即从物理层开始讲）的讲法。假如在学期初就能知道这门课的核心主旨（介绍各种各样的协议），是不是体验会良好很多？另外，我觉得大作业放到暑假来做会更好一些，在讲网络层之前就留网络层相关的编程作业实在是有些抽象…总之，这里是博主在期末复习时做的一些练习题；另外最好练习一下一些具体的计算题（这里面并没有这些题目），亲自动动笔比看答案要管用很多。
+【复杂】在选择性重传协议中，发送方窗口大小为2，接收方窗口当前状态为[4 5 6 7]，则发送方窗口此时的下界可以是？2，3，4都有可能。
+首先要明确的是，发送窗口下界为未收到确认的最小帧序号；上界为下一个要发的帧序号（还没有发）。比如下界2上界4的窗口代表已经发了2和3，2还在等待确认，4还没发。故而发送窗口下界增加&#x3D;收到了ack，发送窗口上界增加&#x3D;新发一个帧。接收窗口的上下界表示希望接收的最大&#x2F;最小帧序号，每当接收方发送ack就把上下界都加一。
+回到本题，正常情况下应该是下界4上界6的窗口（此时发送端正在等待接收方收到它的4和5，并传回ack）。但 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/06/05/Emotion/" title="情感分类代码"><img class="post-bg" src="https://ai.bdstatic.com/file/89B701A1D5574E559A0B250A0951D312" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="情感分类代码"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/06/05/Emotion/" title="情感分类代码">情感分类代码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-04T16:00:00.000Z" title="发表于 2023-06-05 00:00:00">2023-06-05</time></span></div><div class="content">
+  27b90833956bfcbaac0ef4ff058e8812cc95a90a033ade5ebc2e9cb5328a43d2393c8df9646bbd85aa84e1a801241d19474b95d645338e2a5e78fb6ca50ead309e77a018c6d47486ab2686988e94624c0d7b5275cf848345a9a4157cdf7755800ba46c321f83e65a0b924daacc6a44f10e1bd32e2300dcfe3ff2e4b0d59502315152a6f1fcf3ad7f79451406a3eee8518d41895987533f6ed502ef42c70ae9e0c5d519224c92f56c9649891c28740ef8d550aa6475ccc729b58e4e0922c49185d8b55ea7f92fdf1c09ba4aad580daea0eef000df89b01b0fb021c4a7de0ef5660aa61e9070f241ec75f5284c13973f4028e29cc750ced586d ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/25/Connect4/" title="四子棋代码"><img class="post-bg" src="https://n.sinaimg.cn/sinakd10116/273/w676h397/20200805/2437-ixkvvuc2374313.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="四子棋代码"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/25/Connect4/" title="四子棋代码">四子棋代码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-24T16:00:00.000Z" title="发表于 2023-05-25 00:00:00">2023-05-25</time></span></div><div class="content">
+  ab994b59af80911791e90480d81b4d904d5773e27cbc7014dae17db9d125b1ea7979f238da6543d892fe4b093ed7352fe893aef70f684e4787ba87845c530430113a952f17832a089113fa7d6f49c8c51525d0f2aa6229576cb32069e7395eec3b875060ef9e92402f94249120cafbf24fabe2935c855753fbf036bf1f8f50f17789da2f0626315deb3837d532eb6977b5f2373ab78a0d40a6f47d0d3109e354276ef08832ce742460cc02b462a8f68c126892dfc3d7a5ad019e530791fe670d04de358703f1de022e2162c365289a022f83030f0f53e62bc90a2d9f7eda44090a61209846361ccb51a285f6712565d660d74ab55800011fb ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/01/hello-world/" title="Hello world!"><img class="post-bg" src="https://ts1.cn.mm.bing.net/th/id/R-C.19ed615c7869a1dafba73495b55e6097?rik=fGZ6MiZaWM%2foHw&amp;riu=http%3a%2f%2fpic.bizhi360.com%2fbbpic%2f38%2f9938.jpg&amp;ehk=dIWPRiiJ8Vny1U5TxSEprqdOe6yynpkKb4kgvTOHpj0%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello world!"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/01/hello-world/" title="Hello world!">Hello world!</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-01T13:58:09.594Z" title="发表于 2023-05-01 21:58:09">2023-05-01</time></span></div><div class="content">这里是博主闲的没事搭的一个无脑博客！（说是搭建，其实就是直接用butterfly主题…）为此，博主斥九块巨资买了这个域名的一年使用权…美化和功能还在持续更新！
+搭建博客的过程中意识到这个东西真的是小学生都会…纯敲代码真的能赚到钱吗？博主对此表示大大的怀疑…总之，说不定以后博主会不定期地发一些面向小白编程、数学和概率论问题（虽然博主的概率论学的一坨屎…）的帖子，敬请期待！
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/01/dsa/" title="dsa个人题库"><img class="post-bg" src="https://image.bliner.me/2018-12-13-15446748009361.png?imageView2/0/q/100|watermark/1/image/aHR0cDovL2ltYWdlLmJsaW5lci5tZS9ibGluZXJ3YXRlcm1hcmsucG5n/dissolve/40/gravity/SouthWest/dx/10/dy/10|imageslim" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dsa个人题库"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/01/dsa/" title="dsa个人题库">dsa个人题库</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-01T13:58:09.593Z" title="发表于 2023-05-01 21:58:09">2023-05-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/THU-course/">THU-course</a></span></div><div class="content">本文是作者在复习数据结构刷题的时候遇到的简单但不完全简单的小题（大题的话博主已经弃疗了…要杀要刮随邓公了）。dsa知识点相当的多，随便举一些例子吧：主定理、动态规划、向量列表、先序遍历的递归&#x2F;迭代版、AVL树和红黑树、散列冲突、dijkstra、堆合并、KMP算法、各种各样的排序（以及它们的性质和改进）…
+其实重点就是红黑树这些复杂结构的理解，只要这些知识学会了就行。反正难题不会，会题不难，不是吗？
+总之，这些题目是巩固理解、记牢算法的好选择，而难度较大的证明大题则超出了博主的理解范围…
+
+
+对于二分查找版本C，当查找区间的长度缩小为0时，V[lo]是：min{0 &lt; r &lt; n &amp; e &lt; V[r]}。因为事实上命中的秩是lo-1，而lo-1右边的（也就是从lo开始的左闭右开区间）都是严格大于e的元素。故而V[lo]是大于e的，而v[lo-1]不大于e。顺便一提，课本中的向量中的lo和hi永远是左闭右开区间，即[lo，hi）。
+
+
+在有序向量V中插入元素e并使之保持有序，下列代码正确的是:V.insert( V.Search(e)+1 , e )。 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/01/blog/" title="搭建个人网站的教程&amp;踩坑实录"><img class="post-bg" src="https://ts1.cn.mm.bing.net/th/id/R-C.740f2d36136b091fca6bf439b8043be3?rik=DfZ1XiYF3OWSiA&amp;riu=http%3a%2f%2fi1.3conline.com%2fimages%2fpiclib%2f201004%2f23%2fbatch%2f1%2f58538%2f127197858249656st9wgftr.jpg&amp;ehk=CwjaCS65ytVDcczEfkiMgBP74HAXFwChn3l0IEjOjw0%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搭建个人网站的教程&amp;踩坑实录"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/01/blog/" title="搭建个人网站的教程&amp;踩坑实录">搭建个人网站的教程&amp;踩坑实录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-05-01T13:58:09.561Z" title="发表于 2023-05-01 21:58:09">2023-05-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/git%E6%93%8D%E4%BD%9C/">git操作</a></span></div><div class="content">在开始之前先po一下我用的教程：
+https://zhuanlan.zhihu.com/p/102592286
+里面的内容非常详细！即便是纯计算机小白，对着这份教程至多只需两天就可以搭出来（抄出来）一个完成度还可以的个人博客网站！博主大概用了一天左右（虽然实际上是两个小半天…），完成了如您所见的效果…博主小学期没怎么学好，css啥的美化和github还是不太会用，或许过两天还会进一步美化、丰富这个网站！
+总之，博主总结了一下搭建过程中教程几个没有提到的问题，以及博主是如何解决（绕开）这些bug的。博主是第一次记录自己的debug过程，事后再回忆bug一方面没有截图，另一方面可能记忆不够清晰…看来写这种东西得随de随记录：
+git push报错在第三篇教程中”git push origin master“一步会报错如下：
+1error: src refspec master does not match any error: failed to push some refs to
+
+简单来说，就是github更新了…把默认分支从master改成了main，把master改成main即可… ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Andy</div><div class="author-info__description">虽然世界被无聊填平 我还有台老唱机~</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">38</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" href="https://github.com/ShuoAndy"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎投稿！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/29/DLS32/" title="笛子的单恋史32--小张【32】"><img src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史32--小张【32】"/></a><div class="content"><a class="title" href="/2023/06/29/DLS32/" title="笛子的单恋史32--小张【32】">笛子的单恋史32--小张【32】</a><time datetime="2023-06-29T15:36:31.640Z" title="发表于 2023-06-29 23:36:31">2023-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/29/DLS31/" title="笛子的单恋史31--小张【31】"><img src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史31--小张【31】"/></a><div class="content"><a class="title" href="/2023/06/29/DLS31/" title="笛子的单恋史31--小张【31】">笛子的单恋史31--小张【31】</a><time datetime="2023-06-29T15:36:31.540Z" title="发表于 2023-06-29 23:36:31">2023-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/29/DLS30/" title="笛子的单恋史30--小张【30】"><img src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史30--小张【30】"/></a><div class="content"><a class="title" href="/2023/06/29/DLS30/" title="笛子的单恋史30--小张【30】">笛子的单恋史30--小张【30】</a><time datetime="2023-06-29T15:36:31.399Z" title="发表于 2023-06-29 23:36:31">2023-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/29/DLS29/" title="笛子的单恋史29--小张【29】"><img src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史29--小张【29】"/></a><div class="content"><a class="title" href="/2023/06/29/DLS29/" title="笛子的单恋史29--小张【29】">笛子的单恋史29--小张【29】</a><time datetime="2023-06-29T15:36:31.282Z" title="发表于 2023-06-29 23:36:31">2023-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/29/DLS28/" title="笛子的单恋史28--小张【28】"><img src="https://th.bing.com/th/id/R.a0b19a68c1bc77b6e0671b634156b9e4?rik=UYAlhdhg%2fd1GRw&amp;riu=http%3a%2f%2fimage.qianye88.com%2fpic%2f629d4ddf58e7978ea0309af374894a6c&amp;ehk=qSTVZAcbk4TA10p9yhfaRZlQV7yLIACbqRdzwIoCclU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="笛子的单恋史28--小张【28】"/></a><div class="content"><a class="title" href="/2023/06/29/DLS28/" title="笛子的单恋史28--小张【28】">笛子的单恋史28--小张【28】</a><time datetime="2023-06-29T15:36:31.144Z" title="发表于 2023-06-29 23:36:31">2023-06-29</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/THU-course/"><span class="card-category-list-name">THU-course</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/git%E6%93%8D%E4%BD%9C/"><span class="card-category-list-name">git操作</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"><span class="card-category-list-name">笛子的单恋史</span><span class="card-category-list-count">32</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/THU-course/" style="font-size: 1.3em; color: #99a1ac">THU-course</a> <a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/" style="font-size: 1.5em; color: #99a9bf">笛子的单恋史</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">34</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">五月 2023</span><span class="card-archive-list-count">4</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">38</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-06-29T15:37:40.432Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Andy</div><div class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: (str) => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"source":"2  調用一句網（簡體） https://yijuzhan.com/"}))
+  },
+  run: (subtitleType) => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["先活着吧，别的我再想想办法..."])
+  } else {
+    document.getElementById("subtitle").innerHTML = '先活着吧，别的我再想想办法...'
+  }
+}
+typedJSFn.run(subtitleType)</script></div></div></body></html>

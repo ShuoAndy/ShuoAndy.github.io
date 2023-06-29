@@ -6,7 +6,7 @@
   <link href="https://shuoandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://shuoandy.github.io/"/>
-  <updated>2023-06-16T15:42:38.849Z</updated>
+  <updated>2023-06-29T15:36:31.642Z</updated>
   <id>https://shuoandy.github.io/</id>
   
   <author>
@@ -17,121 +17,18 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>网原个人题库</title>
-    <link href="https://shuoandy.github.io/2023/06/10/wy/"/>
-    <id>https://shuoandy.github.io/2023/06/10/wy/</id>
-    <published>2023-06-10T09:50:08.120Z</published>
-    <updated>2023-06-16T15:42:38.849Z</updated>
+    <title>笛子的单恋史32--小张【32】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS32/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS32/</id>
+    <published>2023-06-29T15:36:31.640Z</published>
+    <updated>2023-06-29T15:36:31.642Z</updated>
     
-    <content type="html"><![CDATA[<p>崔勇的网络原理是逐层教学的：与CMU的自顶而下方法不同，崔老师是自底而上（即从物理层开始讲）的讲法。<br>假如在学期初就能知道这门课的核心主旨（介绍各种各样的协议），是不是体验会良好很多？另外，我觉得大作业放到暑假来做会更好一些，在讲网络层之前就留网络层相关的编程作业实在是有些抽象…<br>总之，这里是博主在期末复习时做的一些练习题；另外最好练习一下一些具体的计算题（这里面并没有这些题目），亲自动动笔比看答案要管用很多。<br><br></p><h3 id="【复杂】在选择性重传协议中，发送方窗口大小为2，接收方窗口当前状态为-4-5-6-7-，则发送方窗口此时的下界可以是？"><a href="#【复杂】在选择性重传协议中，发送方窗口大小为2，接收方窗口当前状态为-4-5-6-7-，则发送方窗口此时的下界可以是？" class="headerlink" title="【复杂】在选择性重传协议中，发送方窗口大小为2，接收方窗口当前状态为[4 5 6 7]，则发送方窗口此时的下界可以是？"></a>【复杂】在选择性重传协议中，发送方窗口大小为2，接收方窗口当前状态为[4 5 6 7]，则发送方窗口此时的下界可以是？</h3><p>2，3，4都有可能。</p><p>首先要明确的是，发送窗口下界为未收到确认的最小帧序号；上界为下一个要发的帧序号（还没有发）。比如下界2上界4的窗口代表已经发了2和3，2还在等待确认，4还没发。故而发送窗口下界增加&#x3D;收到了ack，发送窗口上界增加&#x3D;新发一个帧。接收窗口的上下界表示希望接收的最大&#x2F;最小帧序号，每当接收方发送ack就把上下界都加一。</p><p>回到本题，正常情况下应该是下界4上界6的窗口（此时发送端正在等待接收方收到它的4和5，并传回ack）。但是下界2或者下界3也有可能，假若它发送了2和3，接收端收到并发送ack2和ack3，此时接收端不管发送端的死活就把窗口下界加到4了，但是ack2丢了，发送端就不能增加下界。</p><p>值得注意的是，下界5是不可能的，因为发送窗口下界5表示它收到了ack5，但是倘若接收端真的发了ack5其下界应当加到5。这也说明（倘若不考虑循环）接收窗口的下界永远不可能小于（或者说慢于）发送窗口的下界。</p><p>发送和接收窗口的上下界的概念有些迷惑（博主也没太懂），主要还是掌握窗口内有哪几个序号应该就行。</p><br><h3 id="【简单】255-255-240-0网段有多少可用IP？"><a href="#【简单】255-255-240-0网段有多少可用IP？" class="headerlink" title="【简单】255.255.240.0网段有多少可用IP？"></a>【简单】255.255.240.0网段有多少可用IP？</h3><p>4094。这道题主要需要注意主机号全0为子网码，全1为广播，这两个不能用于IP。所以共有2^12-2&#x3D;4094个IP。</p><br><h3 id="【简单】TCP基于消息流？"><a href="#【简单】TCP基于消息流？" class="headerlink" title="【简单】TCP基于消息流？"></a>【简单】TCP基于消息流？</h3><p>TCP基于字节流。</p><p><strong>“TCP 把应用程序交下来的数据看成仅仅是一连串无结构的字节流。接收方应用程序收到的字节流和发送方应用程序发出的字节顺序完全一样”</strong></p><br><h3 id="【简单】FTP会话全过程，会建立几次控制连接，几次数据连接？"><a href="#【简单】FTP会话全过程，会建立几次控制连接，几次数据连接？" class="headerlink" title="【简单】FTP会话全过程，会建立几次控制连接，几次数据连接？"></a>【简单】FTP会话全过程，会建立几次控制连接，几次数据连接？</h3><p>1次控制连接，N次数据连接。</p><p><strong>“控制连接（服务器TCP21端口）在整个会话期间一直保持”</strong></p><br><h3 id="【简单】除了带宽和延迟以外，服务质量QoS与什么有关？"><a href="#【简单】除了带宽和延迟以外，服务质量QoS与什么有关？" class="headerlink" title="【简单】除了带宽和延迟以外，服务质量QoS与什么有关？"></a>【简单】除了带宽和延迟以外，服务质量QoS与什么有关？</h3><p>抖动和丢包率。</p><br><h3 id="【略复杂】如果在一条3kHz的信道上发送一个二进制信号，该信道的信噪比为20dB，则最大可达到的数据传输率为多少？"><a href="#【略复杂】如果在一条3kHz的信道上发送一个二进制信号，该信道的信噪比为20dB，则最大可达到的数据传输率为多少？" class="headerlink" title="【略复杂】如果在一条3kHz的信道上发送一个二进制信号，该信道的信噪比为20dB，则最大可达到的数据传输率为多少？"></a>【略复杂】如果在一条3kHz的信道上发送一个二进制信号，该信道的信噪比为20dB，则最大可达到的数据传输率为多少？</h3><p>首先计算香农定律：信噪比的单位为分贝时，需要用10*log_10 (S&#x2F;N)来计算，即S&#x2F;N为100。故而香农定律对其的限制为19.97kbps。</p><p><strong>再计算Nyquist定律，二进制信号即为课件所写的信号电平分为2级，故对其的限制为6kbps。</strong></p><p>取两者之中的最小值，答案为6kbps。请注意习题课中并没有提到需要考虑Nyquist定律，因为习题课的那道题并没有传输具体的N级信号，也就无需计算之。</p><br><h3 id="【一个知识】CSMA-x2F-CD是基于1-坚持型CSMA改进的，而非p-坚持型或非坚持型。"><a href="#【一个知识】CSMA-x2F-CD是基于1-坚持型CSMA改进的，而非p-坚持型或非坚持型。" class="headerlink" title="【一个知识】CSMA&#x2F;CD是基于1-坚持型CSMA改进的，而非p-坚持型或非坚持型。"></a>【一个知识】CSMA&#x2F;CD是基于1-坚持型CSMA改进的，而非p-坚持型或非坚持型。</h3><br><h3 id="【复杂】在TCP协议中，使用慢启动算法和拥塞避免算法进行拥塞控制。假设网络负载非常稳定，在一个TCP连接中，每当拥塞窗口大小达到W时就会丢包，W-x3D-2-n-（n是正整数）。假设每个TCP段的长度都是最大发送段长MSS，段的发送和接收时间可以忽略，RTT（Round-Trip-Time）为常量，并且有足够多的数据要发送。求平均传输速率。"><a href="#【复杂】在TCP协议中，使用慢启动算法和拥塞避免算法进行拥塞控制。假设网络负载非常稳定，在一个TCP连接中，每当拥塞窗口大小达到W时就会丢包，W-x3D-2-n-（n是正整数）。假设每个TCP段的长度都是最大发送段长MSS，段的发送和接收时间可以忽略，RTT（Round-Trip-Time）为常量，并且有足够多的数据要发送。求平均传输速率。" class="headerlink" title="【复杂】在TCP协议中，使用慢启动算法和拥塞避免算法进行拥塞控制。假设网络负载非常稳定，在一个TCP连接中，每当拥塞窗口大小达到W时就会丢包，W &#x3D; 2^n （n是正整数）。假设每个TCP段的长度都是最大发送段长MSS，段的发送和接收时间可以忽略，RTT（Round Trip Time）为常量，并且有足够多的数据要发送。求平均传输速率。"></a>【复杂】在TCP协议中，使用慢启动算法和拥塞避免算法进行拥塞控制。假设网络负载非常稳定，在一个TCP连接中，每当拥塞窗口大小达到W时就会丢包，W &#x3D; 2^n （n是正整数）。假设每个TCP段的长度都是最大发送段长MSS，段的发送和接收时间可以忽略，RTT（Round Trip Time）为常量，并且有足够多的数据要发送。求平均传输速率。</h3><p>需要注意的是，这里的拥塞窗口没有KB的单位，所以指的应该是段的个数，即 2 ^ n * MSS。另外，这道题似乎用的是TCP Tahoe的方法，即不考虑TCP Reno的快速恢复（不再重新慢启动，而是直接从阈值开始线性增长）。</p><p>我们先计算慢启动阶段发送的数据量和时间：从初始的一个 MSS 到 W&#x2F;2 （也就是2 ^ (n - 1)个MSS），共发送 1 + 2 + 4 + … + 2 ^ (n – 1) &#x3D; 2 ^ n – 1个MSS，RTT个数为n个。</p><p>再计算线性增加（即所谓的拥塞避免算法）发送的数据量和时间：从 W&#x2F;2 （也就是2^(n - 1)个MSS）到 W（也就是2 ^ n个MSS），共发送2 ^ (2n – 2) + 2 ^ (2n – 3) + 2 ^ (n – 2)个MSS，RTT个数为2 ^ (n – 1)个。</p><p>综合两个阶段，我们得出平均传输速率大致为 (3W ^2 + 10W – 8) &#x2F; (4W + 8log_2 W) * (MSS &#x2F; RTT)。</p><p>近似等于0.75 W * MSS &#x2F; RTT 。<br><br></p><h3 id="【略复杂】5台路由器组成全相连的网络，每台路由器有5个接口，分别连接其它4台路由器和1个局域网，每个局域网最多连接20台计算机，每台计算机分配1个IP地址。如果只有一个IPv4地址块202-112-10-0-x2F-24可供分配，请给出一种合理的地址分配方案，分别给出每个局域网的地址空间和路由器每个端口的地址以及它们的掩码。"><a href="#【略复杂】5台路由器组成全相连的网络，每台路由器有5个接口，分别连接其它4台路由器和1个局域网，每个局域网最多连接20台计算机，每台计算机分配1个IP地址。如果只有一个IPv4地址块202-112-10-0-x2F-24可供分配，请给出一种合理的地址分配方案，分别给出每个局域网的地址空间和路由器每个端口的地址以及它们的掩码。" class="headerlink" title="【略复杂】5台路由器组成全相连的网络，每台路由器有5个接口，分别连接其它4台路由器和1个局域网，每个局域网最多连接20台计算机，每台计算机分配1个IP地址。如果只有一个IPv4地址块202.112.10.0&#x2F;24可供分配，请给出一种合理的地址分配方案，分别给出每个局域网的地址空间和路由器每个端口的地址以及它们的掩码。"></a>【略复杂】5台路由器组成全相连的网络，每台路由器有5个接口，分别连接其它4台路由器和1个局域网，每个局域网最多连接20台计算机，每台计算机分配1个IP地址。如果只有一个IPv4地址块202.112.10.0&#x2F;24可供分配，请给出一种合理的地址分配方案，分别给出每个局域网的地址空间和路由器每个端口的地址以及它们的掩码。</h3><p>5台路由器之间有10条链路，每个链路都要分配4个IP地址（事实上最少只能4个IP地址）。可分配202.112.10.（0，4，8，12，16，20，24，28，32，36），掩码为255.255.255.252（即只有两位主机号）。<br>每个局域网有20台主机，故分配32个地址。可分配202.112.10.（64，96，128，160，192），掩码为255.255.255.224（即有五位主机号）。<br><br></p><h3 id="【简单】差分曼彻斯特码的原理是：每一位中间都有一个跳变，位中间跳变表示（-），位前跳变表示（-）"><a href="#【简单】差分曼彻斯特码的原理是：每一位中间都有一个跳变，位中间跳变表示（-），位前跳变表示（-）" class="headerlink" title="【简单】差分曼彻斯特码的原理是：每一位中间都有一个跳变，位中间跳变表示（ ），位前跳变表示（ ）"></a>【简单】差分曼彻斯特码的原理是：每一位中间都有一个跳变，位中间跳变表示（ ），位前跳变表示（ ）</h3><p>差分曼彻斯特编码的位中间跳变表示时钟，位前跳变表示数据。而曼彻斯特编码每位中间的跳变同时作为数据和时钟。（自同步）这也能看出差分曼彻斯特码时钟、数据分离，便于提取的优点。【这么细致且坑爹的题真的会考吗？？】<br><br></p><h3 id="【简单】DHCP为什么需要四次交互而不是两次交互？明明两次交互就足够发现DHCP服务器并获取IP地址了"><a href="#【简单】DHCP为什么需要四次交互而不是两次交互？明明两次交互就足够发现DHCP服务器并获取IP地址了" class="headerlink" title="【简单】DHCP为什么需要四次交互而不是两次交互？明明两次交互就足够发现DHCP服务器并获取IP地址了"></a>【简单】DHCP为什么需要四次交互而不是两次交互？明明两次交互就足够发现DHCP服务器并获取IP地址了</h3><p>因为主机可能获得了多个DHCP服务器提供的IP地址，而显然它只会用到一个（而多余的地址不会用到）；故而需要再次进行request-ACK交互来确认它的确使用了这个地址。（值得一提的是，DHCP服务器分配给客户端的IP地址在yiaddr这个字段里；服务器端在67端口，客户端在68号端口）<br><br></p><h3 id="【一个知识】一个新主机加入网络并发送数据包的全过程（如下图）"><a href="#【一个知识】一个新主机加入网络并发送数据包的全过程（如下图）" class="headerlink" title="【一个知识】一个新主机加入网络并发送数据包的全过程（如下图）"></a>【一个知识】一个新主机加入网络并发送数据包的全过程（如下图）</h3><p><img src="/2023/06/10/wy/1.png"></p><br><h3 id="【复杂】考虑在一个无错的64Kbps卫星信道上单向发送512字节长的数据帧，来自另一个方向反馈的确认帧非常短。对于窗口大小为1、7、15和127-的情形，试问最大的吞吐量分别是多少？从地球到卫星的传播延迟为270ms。"><a href="#【复杂】考虑在一个无错的64Kbps卫星信道上单向发送512字节长的数据帧，来自另一个方向反馈的确认帧非常短。对于窗口大小为1、7、15和127-的情形，试问最大的吞吐量分别是多少？从地球到卫星的传播延迟为270ms。" class="headerlink" title="【复杂】考虑在一个无错的64Kbps卫星信道上单向发送512字节长的数据帧，来自另一个方向反馈的确认帧非常短。对于窗口大小为1、7、15和127 的情形，试问最大的吞吐量分别是多少？从地球到卫星的传播延迟为270ms。"></a>【复杂】考虑在一个无错的64Kbps卫星信道上单向发送512字节长的数据帧，来自另一个方向反馈的确认帧非常短。对于窗口大小为1、7、15和127 的情形，试问最大的吞吐量分别是多少？从地球到卫星的传播延迟为270ms。</h3><p><strong>本题需要注意，信道利用率不要超出100% – 这意味着吞吐量不可能大于信道传输速率，即64Kbps。</strong></p><p>首先我们求一下信道利用率：信道利用率的分子为窗口大小W乘以每个数据帧的发送时间；分母为一个数据帧的时间加上RTT【发送端发送完一整个窗口之后需要立刻收到ACK。所以从头开始算的话，发送第一个数据帧的发送时间要计算在内、往返的信号传播速度要计算在内、ACK的发送时间也要计算在内（虽然本题的确认帧默认发送时间忽略）。所以加起来是一个数据帧的时间加上RTT；倘若ACK的长度跟普通数据帧一样，或者是捎带确认，那么分母就应该是两个数据帧的时间加上RTT】。信道利用率最大为100%，故而W大于等于10的时候，吞吐量就已经达到极限的64Kbps了：即窗口为15和127时，吞吐量为64Kbps。</p><p>然后我们再计算窗口为1和7的情况：由上面的公式可知W&#x3D;1时吞吐量为6781.5bps，W&#x3D;7时吞吐量为47470.2bps。计算过程详见下图：<br><img src="/2023/06/10/wy/2.png"></p><br><h3 id="【简单】波特率（baud）和比特率（bit）的关系"><a href="#【简单】波特率（baud）和比特率（bit）的关系" class="headerlink" title="【简单】波特率（baud）和比特率（bit）的关系"></a>【简单】波特率（baud）和比特率（bit）的关系</h3><ul><li>波特率：每秒钟信号变化的次数，也称调制速率（频谱带宽）</li><li>比特率：每秒钟传送的二进制位数（数据传输带宽）</li></ul><p>故而波特率与比特率的关系取决于信号值与比特位的关系：例如每个信号值可表示3位，则比特率是波特率的3倍；每个信号值可表示1位，则比特率和波特率相同</p><br><h3 id="【一个知识】IPV4数据报（报头）格式"><a href="#【一个知识】IPV4数据报（报头）格式" class="headerlink" title="【一个知识】IPV4数据报（报头）格式"></a>【一个知识】IPV4数据报（报头）格式</h3><ul><li>版本：4bit，表示采用的IP协议版本</li><li>首部长度：4bit，表示整个IP数据报首部的长度，以4B为单位，最大表示范围(2^4-1)×4&#x3D;60字节（最小为20字节）</li><li>服务类型ToS：8bit，该字段一般情况下不使用</li><li>总长度：16bit，表示整个IP报文的长度,能表示的最大字节为2^16-1&#x3D;65535字节</li><li>标识ID：16bit，IP软件通过计数器自动产生，每产生1个数据报计数器加1，在ip分片后用来标识同一片的分片</li><li>标志：3bit，目前只有两位有意义；MF，置1表示后面还有分片，置0表示这是数据报片的最后1个；DF，不能分片标志，置0时表示允许分片</li><li>片偏移：13bit，表示IP分片后，相应的IP片在总的IP片的相对位置(8octets)</li><li>生存时间TTL(Time To Live)：8bit,表示数据报在网络中的生命周期，用通过路由器的数量来计量，即跳数（每经过一个路由器会减1）</li><li>协议：8bit，标识上层协议（TCP&#x2F;UDP&#x2F;ICMP…）</li><li>首部校验和：16bit，对数据报首部进行校验，不包括数据部分</li><li>源地址：32bit，标识IP片的发送源IP地址➢目的地址：32bit，标识IP片的目的地IP地址</li><li>选项：可扩充部分，具有可变长度，定义了安全性、严格源路由、松散源路由、记录路由、时间戳等选项</li><li>填充Padding：用全0的填充字段补齐为4字节的整数倍</li></ul><p><strong>其中值得注意的是，协议不是指ip协议的版本（而版本才是）、标志中的MF为1表示后面还有分片、标志中的DF为1表示不能分片</strong></p><br><h3 id="域名服务提供下列哪些信息之间的转换？（一般而言）本地服务器向根服务器查询采用递归还是迭代查询法？"><a href="#域名服务提供下列哪些信息之间的转换？（一般而言）本地服务器向根服务器查询采用递归还是迭代查询法？" class="headerlink" title="域名服务提供下列哪些信息之间的转换？（一般而言）本地服务器向根服务器查询采用递归还是迭代查询法？"></a>域名服务提供下列哪些信息之间的转换？（一般而言）本地服务器向根服务器查询采用递归还是迭代查询法？</h3><p>域名与IP地址的转换；一般采用迭代方式。</p><p>递归查询指的是域名服务器替本地服务器查询下一个服务器，而迭代查询指的是域名服务器将下一步应当查询的服务器告知本地服务器。递归查询的坏处在于一旦某个查询失联了就得从头开始查询，而迭代查询只需重复这步查询即可。</p><br><h3 id="【简单】一个IPv4-数据报长度为4000B（固定头部长度）。现在经过一个网络传送，但此网络能够传送的最大数据长度为1500B。试问各数据报片段的数据字段长度应为何值？"><a href="#【简单】一个IPv4-数据报长度为4000B（固定头部长度）。现在经过一个网络传送，但此网络能够传送的最大数据长度为1500B。试问各数据报片段的数据字段长度应为何值？" class="headerlink" title="【简单】一个IPv4 数据报长度为4000B（固定头部长度）。现在经过一个网络传送，但此网络能够传送的最大数据长度为1500B。试问各数据报片段的数据字段长度应为何值？"></a>【简单】一个IPv4 数据报长度为4000B（固定头部长度）。现在经过一个网络传送，但此网络能够传送的最大数据长度为1500B。试问各数据报片段的数据字段长度应为何值？</h3><p>数据报的头部有20字节，故而实际载荷为3980B。所以三段分片长度分别为1480B，1480B，1020B。</p><p><strong>需要注意的是原数据报就有20字节的首部！</strong><br><br></p><h3 id="【简单】”http-info-tsinghua-edu-cn-80-index-jsp“-说出这个URL各个组成部分"><a href="#【简单】”http-info-tsinghua-edu-cn-80-index-jsp“-说出这个URL各个组成部分" class="headerlink" title="【简单】”http://info.tsinghua.edu.cn:80/index.jsp“ 说出这个URL各个组成部分"></a>【简单】”<a href="http://info.tsinghua.edu.cn/index.jsp">http://info.tsinghua.edu.cn:80/index.jsp</a>“ 说出这个URL各个组成部分</h3><p>http是协议名；info.tsinghua.edu.cn是主机名；80是端口号；index.jsp是路径和文件名。</p><br><h3 id="【自制题目（不保证正确性）】服务器浪费带宽有哪几种可能？"><a href="#【自制题目（不保证正确性）】服务器浪费带宽有哪几种可能？" class="headerlink" title="【自制题目（不保证正确性）】服务器浪费带宽有哪几种可能？"></a>【自制题目（不保证正确性）】服务器浪费带宽有哪几种可能？</h3><ul><li>有带宽但是没有充分利用（比如带宽明明可以传高清视频，但还是只传了低清的）</li><li>传输过去后接收端发现数据无用（比如既发高清又发低清版本，接收端会发现低清版本没有用）</li><li>接收端缓存满了，传过去直接被丢掉了</li><li>因为信道错误导致的重传（这是否可以算一个答案？）</li></ul><br><h3 id="考后感想"><a href="#考后感想" class="headerlink" title="考后感想"></a>考后感想</h3><p>日你妈了个逼，出了两道综合性很强的大题，一个主要考vlan，一个主要考http协议。他妈的这两个协议的具体运作方式上课就没怎么讲，根本就tm不会（怎么可能只根据ppt上的文字描述就知道这个东西是怎么运行的呢？），乱写。对比dsa邓公给的一整套demo，高下立判。</p><p>总之是门体验不太好的课。如果不考虑给分、大作业和考试的话其实这些东西挺有意思的。但是莫名其妙的大作业、避重就轻的讲课方式让人很恶心，属于是标准的清华魅力时刻；就这种教学水平怎么能和CMU的毕业生竞争？</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;崔勇的网络原理是逐层教学的：与CMU的自顶而下方法不同，崔老师是自底而上（即从物理层开始讲）的讲法。&lt;br&gt;假如在学期初就能知道这门课的核心主旨（介绍各种各样的协议），是不是体验会良好很多？另外，我觉得大作业放到暑假来做会更好一些，在讲网络层之前就留网络层相关的编程作业实在</summary>
-      
-    
-    
-    
-    <category term="THU-course" scheme="https://shuoandy.github.io/categories/THU-course/"/>
-    
-    
-    <category term="THU-course" scheme="https://shuoandy.github.io/tags/THU-course/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>情感分类代码</title>
-    <link href="https://shuoandy.github.io/2023/06/05/Emotion/"/>
-    <id>https://shuoandy.github.io/2023/06/05/Emotion/</id>
-    <published>2023-06-04T16:00:00.000Z</published>
-    <updated>2023-06-16T15:39:47.041Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="a853790e6bb60126f5bc694296aff41b1fa92d38a667979649ede7eae34cd5e7">27b90833956bfcbaac0ef4ff058e8812cc95a90a033ade5ebc2e9cb5328a43d2393c8df9646bbd85aa84e1a801241d19474b95d645338e2a5e78fb6ca50ead309e77a018c6d47486ab2686988e94624c0d7b5275cf848345a9a4157cdf7755800ba46c321f83e65a0b924daacc6a44f10e1bd32e2300dcfe3ff2e4b0d59502315152a6f1fcf3ad7f79451406a3eee8518d41895987533f6ed502ef42c70ae9e0c5d519224c92f56c9649891c28740ef8d550aa6475ccc729b58e4e0922c49185d8b55ea7f92fdf1c09ba4aad580daea0eef000df89b01b0fb021c4a7de0ef5660aa61e9070f241ec75f5284c13973f4028e29cc750ced586d557941c444cb15b577b771e92f23eed8dbd1c7af34bef5fa65f10797b50fe93254406f1092e01c261e0ca63c6cc0a2a5a90d03293cb886e2c7001f3877e5d77577097ced00a97ad8f7a84f90f2f46702a118f24c13b43ecf3cc85e2e2d2d8440f7ecd9a4834ae1de0f2952e178da353aa89d549d56beb50e1b32eacc7181b159d5ecfbda7666766243d0cb0648d98e8646079a9eba73063e54f7b367b056cc6d2f965724df09f5cf4fb0b417349730dea3dd76b4e355e93f59cef2b78210eb60cbc6bf93d380b9c50ff93fa96e71ef2fc82d8f4e618f10aaa078ffbb1df01355f4fdf756310991848d67f48ad43b60f0a5c9ef3cf2abf99253692042f9f0996eba47171d8a812aaf3ae5b9df439ab33bd6b0bbdf0be1ab166768435623552b324bd154497f62954af4d5fc71592f498d60573a54c67cefb28406654f49d6b83830e985ed34506fbe7c202d220c500d40bd60166afce6563f39cf8a67bbd3dd235144f72b7eda67d01aaf06c39c4375e5af0abd6d4a36865330ecf799e77e3e2c1cf554b5165048927481fe0c7b18a667937c03cc190854734ea6eedcf148abed9e2e8ac69b52d7d1c1cca2f96d18e765c62a0f068894cc4e96c51b11a3aacf73915165cac90ff5a95dd02214cffc740b2b1dcd80e156aca9745d3c60d367c776772a587cfbc1b82f8b11d0305688550b14e39c448964d18f7cd8fbd41625c34f7313bb0a4bf1ab09a80aa1b33f3f2bf5ab88f4abd234c6bcef02c5f5848a193f578938e8eba8b28e94425f1ed049dfaf19fdb533aa8870df17ef24005bd37ce4156216327c35fd046a68c0d64991afe33de4702e97ab65a42e2f7fe253c2486d1fc5820c4d0bbebe6ff20ae64413bcb9b5e7d8e9fe0215c6b85219886db89e78eaf47b5002d6ecc658bae2a04ea19bd47a7b082d8536ddbe84ec9535a4db5a2317a33b7101ad6550762a9dd007185506c7e910621178f75eeb1e7bac92aa159f67c88b5885dfe96c673e7a1457c9bf5a84d084c6d89837fbfbbd03dcddb1337a7cc7b063cc09e147d8e78f09aa3ad7048111a794c70acf7c9af77ecc4f07a1f660dcc3821598cda3e123bd893a57a630ed3635be681daa71857f5ff83d11a64514c65b710000ff62f1c7529ce6155a4e55cb0be3bdc89a702dbf577957849b7491113d100fcaf33bed4481dddfbe4a7e2662379509154fa0ead6f43e9c475d3392402d157dfa3bede5446d62195e56a8ae596124e8252ce8f189521090fa2a1ba01efc85d9d34ca6497e196a510ebb4fc374f5c3612a80817cbb38f9e44418df93d4c42aaef8f755ef00949130015d64c12a9c309b83ffdf0bc743e17e8e74f29c15890e64691688d84cb924275d4981fd2045a5256d2d3c2728c226333973e9818f8800dfdd2bf443ea1db276ebb415eeea8aff50fa00d9ab1160a02f4e17eae0c74803f809d25629264b602557e5558f07cd7c01eca3b8c97446ed2f286f9768e1605afd0966f4a62d8943393bd27bbed92371d23c71130b90e30f0992add77955cf4d955181a7b9516feb8fd9e654be5e0e038a9f46b0334675f118687a2236b39a5e932d7b9824bf564c29c1ee475b0c334f8b3f5841f46a8e14551ff2e47c0c85cf0a7261eb86d83f18a172cd02f3c19b408f1fea0f204e20235e211cb3c832e822b7ad37b2c75a73ba6396c38c8e6227e72687bc2b38d0fe903d014fd33bee666094924a72bcc4abe1e0207952bfbbd235176f9f690e4b5ea0b095bb22256e55f725ad438d77616c111c25743bcf52165eae2aee94651ec937846917bb7664befb766f10ae9665f22122f67b51000694cf58f654563c16033071ce56ac7e22a16e89c9bbfe0e39532a914eae79a85a9352079f24e97c3a106eff19a88120caa8fbaca758dd52862c562049d3e51a5036d358b43bd13b75d54a04399a7f0eac871c72537817d0424ba85fb5a457b6f689a52f73af3e2a4d4196e1b6173447448f36d682435efa515537401efbb48a59ed77980d80c22231b78ae488390a1d4ce32d81c8636f41fec24a9665de1401d7e16c62b77dac80ce636a7e61afe04c480315d4bf2b860d16aca947121a2b83d754b0f0a247c65ea8c93a09af5f15478452645c165b70eb6315f67582b4184f38b21d67e21873bc50c62c5e9667ddcfbe60ba942cb344d9a044aad7a3aaa2b82f15265845be2d47b4f782056f2d4c04221c8e995f10f4f57a3e682c7a6d92d6b7b3b3a9faaf180dc82e1430e4de76371a06f2d2cb111cf33550fc3ccc3fa82bc227273e2e9c14626e9bc2bee5d9a01bfd6dec0643cd9451e81989d7210b8ac3a72d77e43f8438112679438b68c84b198ffb0289d525769c53a3b5b5deedb7b6405ce80e152b31fa51a6a18d9d613184bacfb5773760a6d52ce4c51c413032686dab25984e3bfa21a6b7e32e0db185a8284ee08aefb5156baa0222b4729c4ed5226f88aea2992e1405ecfca7809b74a2e71eab4818af106117c01323529d6e09e0fd9d6710085f3c342a838c616ded0ac81eea9dec02f817ed738ef0a1cc353eb0dc676e87f0e9b9c892beb01904a659b286e34c01ee30de156ff5e6cd3132fd7b59bd809d3e5db1525609652222ce7f5c9991ce908a7de4c75a61cfdfe7685093c24336db15e77500880fe43944eeca3ee68f0ab6c667587e5915e70b45a5271e767dd4e93f4c2b92cb2958b70bb8d6ebe6e9b596e13063d36881d05b24f71026767db943d4dab30c449576b198c516414bbf61bc0d943d4fb884dd78a9fc1d6982611502fc8661ec7a13e4ade24a866c57eed5c632b2e497f58069323ba17813337441be8f6bea2e3b729bc6ad8eeb63b3db7f26c2661824b2290c2933593f1bcc5ac28afc372c79bac043e0983d8c165355b25da465ea0d19cbee645e0ccf307d69bd55c71ac33a17e544af027563286f0ca1f6e3d3ac440940cb506f056711d2c948b658eedd2fbf4b55c9744b91ef5697ef9760a4dcd4d86e3a4b417608a3e3f68ca90d7f5acbdc58a0725c0149f078377639d7155393fccc061e960b2a93920155071621ecd4b802f82c9dcb3468e1089ab77f887c108cd2aa98a80772f8d96eb8640122b8ac64a494e5a0cb11dca655070a4bdcb01d7954fc8234479832622f103040a6b3b8a237c31b003e8832a9f6e2b952d755f3efa5ea93d16d44a60878bdd9c9748f49e6e1c998177629a6faf3eafcf4d73899430b07e785b69c9eb1e19b0bf4c7934fa93029db66d87c27926b33cdabe71fbdf262df3bd0d261a6d126bd7f8827d0d2b9d095346241e82e3bfe4b70e06042f97b0f647ab2a871b0728b1c9748b9d1695d80467858bd4267bd9790bf7f2574f1c162106903f2a38cd33b0e3b195f69d4183e47bbcd514630bd34880e2ea27de48199141decc8fb892b5e579d3566c3d5102af45db7900f8c7fcbea052f4410bd21500cc2897b364107af23c9c41142aaa0e26fddff38b04a95b9af7bb38f479497e5989f42f9594d908e1539c032260b6fe8a57de76a18a0e9c0c4ebcfca78c82213005f9e7ea84acb1df48dc9ec182b696a401a937db455a61bbaf00e2c65cd5704eaa8c0ded80509cf1c43aa940487017784ff0185a7ee044c7540456583090275d827b32e5ac5e4c88bc9a25c31c85949df8dbe375a823aedb363e4035f416a73923c44683080d3cea67df7818fbd23b10ef52fc9d8d455e5464500aa999a67c344c46d9055e5b99486f1709cbca380d782f5ed68579ecad29686ca1b9a9f0bdb8a2f75b95e2017e56238eb6fe22d630f8d86899404c3084b212337e9557be63ef90ca78489eee79469451404d7db31169a25899803d1918a69d3ce6a08a7b7f18b2d1e1b20e00e389b98060dbcb960afb181368abfcd6ec297da331aee2fc95b0d97b2d330e5554f1059811d67975373e2c6baa66ba39dc049fa7e6cad802b016a7d4190b2319f8c984a774181863753873a2345f732a54ef5f9bee2bd795323105977755056dafae1b2944f778b40bef8bdb00e4ab58eb70d300eab48efbf5e7a36c7fd076098b7a25846953253357f46f7fc9f7364388a4385464fb2c833ddaa7013e50b37cc4cb4b2481530aff42bdaf067b74cb3c36a0128c30ac60df3c5daa1cc26be310f3c96c935904dd28dee11df32472c14947fe6b657cfd1411b6770ab515ddf8b6ec0fe189df2786d83a4cfb91a490b8268761818ae836207c895a97da8b5604e0d661635b36c1ad25c3ef9d0ea5e2b7d28bb2d693683e64ed970ce525b245249a18c7e65ff03d4572bd5903c9dd31768bc6e66eefeb4bea12497555707593d12717c2a73a7d5ac5d4b84211417a7a55f88e1c97b28d4e2fa5b1b86ecf405a4a2003c4083f0920835b94d6785076ab32de01b0e9876cbe5b4cc0a24fba68996b8854d0362abefc8ae2772fba4a719bc17d4a2b4ad67eb5976e7035a71708c92aedab30a0477a</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>四子棋代码</title>
-    <link href="https://shuoandy.github.io/2023/05/25/Connect4/"/>
-    <id>https://shuoandy.github.io/2023/05/25/Connect4/</id>
-    <published>2023-05-24T16:00:00.000Z</published>
-    <updated>2023-06-10T14:25:40.222Z</updated>
-    
-    <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="d7c1dbfc3ffbcdddb4d3d84106f4fcbc1a82b50631454489f66b11fe5ceb82e9">ab994b59af80911791e90480d81b4d904d5773e27cbc7014dae17db9d125b1ea7979f238da6543d892fe4b093ed7352fe893aef70f684e4787ba87845c530430113a952f17832a089113fa7d6f49c8c51525d0f2aa6229576cb32069e7395eec3b875060ef9e92402f94249120cafbf24fabe2935c855753fbf036bf1f8f50f17789da2f0626315deb3837d532eb6977b5f2373ab78a0d40a6f47d0d3109e354276ef08832ce742460cc02b462a8f68c126892dfc3d7a5ad019e530791fe670d04de358703f1de022e2162c365289a022f83030f0f53e62bc90a2d9f7eda44090a61209846361ccb51a285f6712565d660d74ab55800011fb05d50b743d2fd3fddeef61b1a7400588f0617ec2e862c5349fbe5eb65ded92046376c8e585565f87821441ba881f2f2a4607c2bb9b9a11b14585012e3a7dece09347c6585d69320d2b00d65a0084873ee14eca2791edb20c4c4502628b4212e20c50c418e3221662719d3910c276605bbbc0c2f119d59fac8995a0593a039ae404f3e436adaf44d937faa288d95e002b94d04fa16fd3747e3b141116a8ead8b9baf7fc9c40a5c22f295c0464df0abd5dc62c374afd8596c33783fb8a45f29d22d1dd5a12f3dc894b6b20e295ff6c771b567063b57fe8d8f9db2bcb8d73008557c59f1debbcfd4fabd26335014a6c316d7d905f40ea23d228c29f08074d3e70916ed4f23663046879e6a99f1bda5c1849d7be3623ac7fd9121c36d3a0753ba1e68e050acdf43d3274f73c2339152c8ed4d27a4df5a0ceb00a8e1f42d88253deef89465a9b6c2ba750fac28a07a268acc846b4311f74ae06602ffc9699b49efd775eeb41bf6224e46f451960a13310c11474c8828c776256ff8f96ae8b5ca8c830bd0e6056fdc4a73b761cfd4ee998dbeceb6777795126a73002e5ea9201f17a8f521fddd6f7b9ef4131738a555914cc6b8545373b166b5283118ecbee7f0a287a5f78fcdd1f11e945987af123380f44f7d4070d7928b7faeb845ec6bf01f2e97e3592d6a903396b9ccb15898b5c5ead77dd8570bb475815143563933a83e484b1e0d4be6b6d543d2545d74672ba0ac4e8f4ce3bf09d5cb4df1a59425973badeb4f44a2a7794a44b3caa6abf9e8fd90bfc1c4585a640a04213c3bf6e2aa606651b2ade57e8b92fb3115f0da36c37aa50ca4950ec0bac73c8e06d5411373eca082b1ec390b8f3e39dff7fea6435119a9071e745fc1be8a2581e229d3a863ef55a18bb8f505eb29287b3b63ed602c3cce7626e5d675c3d1466f11bf66ba0241ebd2ce32ba2c6421e868a733b46fa69d0800dab490903b66c17053abe2782c5e25430f0786f2b1fca7b7e23c168a11bf34c8801666ae3ed4bf13ee64a201463b6770e31ac996219290cd11218e5cc8ac3f27b0b03a43683c78f19c2eea9d903041afa8f58ebb8b083ad433d8b777a356b802f9cf53f1b695a83b7bd112d9616a126223a4890bdca67cd3b3445843c1b94d356c2f04a1d7aa3d207801efcfe9402b8a45e2285aca8b4ba4c6138ee16c3a63949040db03100373eae083b8c66ed54462fb063e624d0fbd2721cc11a21d135ae1d7fa67243a35da9b2baafe4d99a0543d68858fc42e4b3f471a357aa843b7a74fdda22788c04a7206269b98c0bc86811c7a856029672f9d05ccd541d0c0f0911c64fff0651af5de5d53c7b5217346e3460a311657faad430260338b1e0c394519e4b75cbcec0b2fc348f0d6291be3ebcc871ca0c36d18ce9311594d65e45a1f22d6946d3c0485ce59dc49f1c148e5d64396ac0f335f5df2c66add5030ce637de174ccc727e2aa4ae2669f16146292ec4e5936cb5279f9007ffb77bd51f95409cb54ecd37dd6226d9b5efcd4866223c33c016a5eea15b029e94dbebefce3c06e8931a541d10a5fe288af19f51007b4b799568573a92e1b5fa8570ace55a237c75e0e67cf5d32ae7541532164c158d9071f04b31579bde38bed3f5299ad10792abefaf1e651381254e51f5272ea267c2d010fa7cb7ecfd90132a79ebf2ae235c2e50db0c8812bc194c6aa778a78b9a03185a7599512d1e2698787bc0bfa894b4b64e842166103263e9b34b6453ca6321f1a54debe2ec860914b41b8a2749e81c14af69d123aea2bcdb20ec4312b275cef1458ef2248ea469b97aedb6b9f3010d83328d4dfd47851dd920a2a8e5a458b1db307dd56e316857f202d82ab3f41b36317d0744f30a9c0591c54cb79d217cdf384d3f086e5463a56941d6f888d8e94da569a319d1853fd37aa9dae34351cde06c7fb086176e6d30f76b604a3363d657a04eba1e80c828d0eb6de3e2311b8022371b1713bc4139d520045ec62627e5bf556563ee97af02f0d8ff3dd42a9277c3493d020e3c8d5b669e46f09eb069a672d124d2e61f90514ff7b927b18b1e801588de430c8c5d31be09425a4aa6846be56ec21f5007b17b6fc5885a6dbfc7d8bdc9183badd3ab2ae3fbcd970709866258ad8ef363e031a7619400897f8550d86408b5677ddd360bc623c2cfd0910229873438e4aba91650964a5852594c300a7067a126e0ab1678826381bfc9cc6fae1be7d2431e886348a2210717ca04dc32ef2ab44524846af55eeb88e99f225d1b5e2ae315082d6b69b7f362b6cb5de2771e5a49afdcf7a66b6f181d0ae67e7150bbc21b848f60a60a07f3bab8935de4c28d33fe757693c747797502f8297ec0d51347a38b4d3dc34dc1c81a400ba231f8c17e804adedd8bbb5e7aa1bdec1c8299f4b45f2df0420c494f39e176ca1b4bd603e4e595f4d1b59bbcb30df5ead3af8c64dae425282f648058ba503c2579675e21954a83319384d545d94792d3f3a7732909d0e13e374e73a8a12fefeb3682f93e777eaa10ac3f229d16e4206104bc471c51acddf50052e65a86b9228c7e77a2113cc0d123192cb1dccac7df4cb02a9a0f9b79342cf75bd7f22ecf708f5b731f4c191bf48a7757126f60a8dc9a157fb09141c53c18ffd85899044a445f478750818e7f3bddd28bb63e06ec6ea03607fe7b65fc49b019871a6ad1b66fcc475c8989e79ae1b6aeefadd0571e09c341a6326390fe9fdbde5829184cda658b5bf8c8e99b8829e7380fc5d6636a0853c6e3c92b899f8bbae9e183d3be462b447a724e700f0388501c8c4459a75d2ae6dbf8457c91df61e281a9cc002cfa494e829777c2c3c92a391e655971c7afa9b30efd60ffec42f05b401d07cbb4e61ee929a1b9113c41f9420efe14400f4171afab8a4bf2c526033da273c301d3ae2465ec09d937ca495a098bb11ac25461a5fd7d33f0d0a41c78374dabd1808b5cfcbae69d2d7c9d15d2cb21ad2339ccec1f21add0a7cfeec53f8d62c878ba8b7b25ef3f251ccdce67fa9f936f72d66c95ee9deee0c07693444fe8c15dbd4584c810b448e3a89a6d53541735163ee6d1892b3d9731e21c57303f729336b7ccb977c2cbb14a57e17e2f58be8c63ec3860f3a3521303551a6833be1c56c0d4aa7d9c208904680a4388696a30a15b8d05ac3f3e1052627f9052ac8200d8cb9f57f66f6afed13980168d2f076716f33e1fadbfc1e7eca58926537248ff4ea51119be33190f29d5dc8bf22d0b6ddd4461269d1d33a22c155d4f64968c5ba761df588ef926b8c54d7fbe9d78874f58e2601a722093c9ab6ca28f80a0e8518b44b081ad79956da1236d9960bb84b34d2cbc1fc2f88f7cb0d92a1d1a2356227b77c069c0f6de0d0ef9f981403206db3e3d44dde6ecd5e3476788c3993a3f00faa0f10c645c57ad893ec329b574fff8fc2ac4a8495f42d009470ad5986799b5399784a9e7ab920d224f7eaa224292947edb15d9053075ab5e1d0725cc9c32e57e36b43266b290ccaacde8817ee7a5ba0156441b26187c708aa215edd7020886c2de79f21d0e31bb56af0172c576a004a2575f2f5ebcdbb8bdf61578fabeeef3306f45d24df5eaa4d3a8840978fca39aff01a2ba511f397e74a8f5418f3dcbb8c667f72506dbc24f3c15e24387c538652e521bb415234c0ae5b1db58708fefe25ddd28a9eb7a8525479ded320ea0609d63b605d4fff7ccebba6e7c2e7fc7375ecacaf9799b6fe8c7a474bf4dc0d11924da13e0f064dc63d53a87b8ecc3ffe77f352b35b648323fbc3953d19e6bbda47168214b7c8f9eeefcf7d4ae255b157846e4a4a732cd6397fb65287a7c48cad7501bfd440030ad04cc18a8ba4f11cd9a0a2c245e1340e32bfe154c598734f95a7c1949e5fd74e8b1e4d14add5af708476022ffb99385824e224d9e687c8f879495b57b2ddc7f054b2105739cd43f6d5d7b6bbd4cf8164bd48b227f763c17a5ab71fea8b3a04b750d6c5fcb4500c65ee809bd7b3f51a8076d4e61f391397717913e4b79602d58cef75f8e063e8ddea8c1ba1c89b384bdf54297418710fb835539e56cc92942ae51dd9d04fc278cbb9ae615ec521ffe5a732f1655656cf02470695d13725afa0bb1435a84adbb42e41fdb983a4a2805d264c85c51f3475ca29b6530397ae03e45d1b6d8de2174e738380e2696126ae73760d1db473a039a3b8bb75ba1ac86c6026e21a0fe82889655c45788252ad6f643b37e5615530a50d02c82618e2fb87d35444d80c95ab0e1b44b761318d3b7fcd16b26852e0dd3e9c370a781405a212ba54b324ccb806bea87c47d16929fafc4031e4fe64b193c8bc0d0cf42960658ee706c152b6893ab3874459905d483a75f515bc4f2f29e6d52f8ccbe9f63bf3f7fbdf33a5e2ef5e3693597aa4b0ea4127e75c199d01cd52cb0ca186576ebe21cb254c7e5e31bac9f36c4b22f961146e81cc079aed7d31ca538f597c45d35893621f84868e1b471ac3f255bfff72624b24e0cf06f872fc520cce485efaf04edfe3e856846a0f7be600289395fab7c2dca0ee4f8bb2327934eae59cf4d28b7712ba3fe9b325e72b57380744221e6b284abd599fa99e19333f3b317d5c162b5959a07745a9f83a99af8a50900c6e82b4125e66ff321c597c01da97420f284baa5c086e05c98e0c0647999e946277f35ad97cf736c4985f9c16959a5c6e7eb9efb12668b2927a449d92976321902df7ab747c0d936e8fd179b46e18cc17af0b9abb60549e0ad593d6eb2970df23561b79c5cfbade8d0c1f65b715866f480331b5bf30ea1789b57fd5bd127c53d1ad252160fd5d6ae2c9930ba81fb926fe21544903a5c10da49080c511e737cef904c033b4f539bb3ffb82f0e41ac540e083dac6716894ba72ceed721616f8860b58d7801073edc6d7740abc05be6fd034e64a2268d767e908bd3bea3e4fe6d44bf55e842340e3b949955c6c87ae19b74f895efcca6f709cb04c8651a1eded520d4e3b16ede71f408a950b60368d2de69c489673096f24bf057547b0272b36a7f65ca090883e6daed1faf9cc27d4018d3c1f8758ba27ed20266206e666fa49c854ef3aa115256c94aa94e9d52d2293ebf381d1ba038e48ea7abcb702ecbdca625787ba7a57ea75168b34a1f295b0d81c2138b49caeba2aa832379aa5f8130163226d8e6a24cbd0c386080f5e467c438dce38abdb394fae90c73f2be12cf8b9b0c9d9b28788c0a86d6a8ebd3d89f852120e01826f3aeeb5f285a8876c400751e28f2d6a1b00b4197cee40adb7aaa7585963c62b474c6c1b3f3f26c81c6976b9c0dd8c4cff25e335f1a64b54088c1a0ad28d0ca47cd19aea29e5e359c8447f21ad1393c4ff397f6ee77f7c86a5fc06d661cd6ccdde99f2d888d29212e3b081e0595b73af251dd0183b66a923574a24a968541394927d2ebb3e200feef4e95b2bca9cc04742c16743c03b5f701ef6334a2ae49c54ffffaacb9ea4d9f7c8a420f0099ecab1f32c9d510803fefa04331a44ab8c3c7c1d4971d461886d1c3db043fc90a1863f128215198db1126170d999b5cf9ee183b326d40e1a28e082dd490e40f9253ad6d56dd2a2fa0c5f8ee5736ad0929a341f48754b03b4f609d31ed84496dbc05a70a1819f47e8dd32ffd49d6c6018465056266efc2a455fbf56d7d563c0a416e8f9f812fec9156c3a719a618daf22d7d3190e20c73f73687319a040e5dee19f6edad7e5e95529e3245fb38cef88db2b438c8062a0375867e788206de736488d5a6940f09db2b5a648e5d85a5f33e9584711d412da5b52e073097cfa937949dfa83b0857e792c8882aae518816c994f60e4595d111a24de481112ce5bedc2cdd34c3f07421699874549b7b2caf0296b7a6eb7414e863a6aa433cec9a3f4e0a606233dd103ab1e8b5192e198a632e80aefce0df1bd1eccd78716e01effd80a7a5991c25e64d7f8337934980c4074e2028c6b407979bab0c24f8f5e56a4bcf39c70202918dfc8f24bfd74fb4773609fb201349070b2ff241c8fda3a4aa1193044f2bf6dd7aac3ec411ab02d4196464b87f5b292c0db8cbf511e9d8eaefcde211a5ddaeb0b364f3045fd50031b97186fa9218a43a63953b3d0656d7baadf42338c59635061270d029efa4f703d80b72ca618c94359e93c62f51a4e291222604493466d254c5fbcd7f6f980511a338941cad7b36422f0151dae5fee28cace2a319cb6cceb698a3476b9e4c609a3303a3ef258d1b58eeed24d540b6b4bd447c7b695abe7584e96cdd65fa11a7c993bef01d16070cb619ac4540d0dfe969c726f6785e0239f43cf8735978c1ebe8c000b029600bc0cfa105f7f2f0980f3370ffd3dafec29d227fceae567ab485e697b6af5d4238e88db920d375fc03152e983f92339f9cc19d17ead588cf317e5ffba94c69a814e4a2b55a2d0221a6fa2daf913a06f21da6084c7c809298c159a4f2dcb137523613c5161434685ac4e1858fcbae55c9915f077e9148ed3c673e862779bed2d7438e0fbd4dacf596e22aeded86aa2096bad3cc70297e0906aeb82e8fa02ec01aba498522a9fbc5469e1e177e5835bcd71ec5a67a49528b5b70e67aad04a88ee5286fdcb16793e9c37dfaaf4098a9d9cee1efb1fa199c7969dc682f3aceccf9346ff438491f5d5802999bde8d994bc9ddf84a082db921a96b5cfedd64816904cbf59419801041ec353be77cd93dc52b60af4ae992caa41728a57be6875007258d55c6d36bb204571d6afdd322a0a4af2ab3e707abf5ebe384f430a7ea5321e26d747a8f743169dede73a4a9e7292fe2ceffeec8d81c800c1507dd49d2f89f9fb6b4529c77757ca0d0009b9e308abd016ef918c094605f97e417e6347a4d540ebec1a5d9da4391e36396a72d2a6971cf54a014c55b18705e60128b1ac8c58b06d3a10d3d82e6a7cfd921d30df7989d9db94b85783000112d270c6662811d152470e9de84d6c92e72b37c81d89413765d815525063e5d369313040fca0fcf104d500c6c11a99d5539785e4d09872a2dcd838c0f8b9073d176b0ec11697272f701e66eb27799648c05742fe1c1deac016487c584717cdd49e7eb47c448c28636cf2a1785569c572560c2f4c3a4873f5ff985cc03e579957f0a9ca54a87b3cb1ed00f88cb5a402afbcbbdc7b5149249bcdd70da2162fa9dd1a1d396fd04398e13010ca54501ed1adf972dfc356964c5413be1e080fa41ce72f3bbb062e0bfd5b7d2821506183de4c78a4b18c13cbbbc9ad67e76e2780a81c0cb</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello world!</title>
-    <link href="https://shuoandy.github.io/2023/05/01/hello-world/"/>
-    <id>https://shuoandy.github.io/2023/05/01/hello-world/</id>
-    <published>2023-05-01T13:58:09.594Z</published>
-    <updated>2023-04-02T08:39:54.543Z</updated>
-    
-    <content type="html"><![CDATA[<p>这里是博主闲的没事搭的一个无脑博客！（说是搭建，其实就是直接用butterfly主题…）为此，博主斥九块巨资买了这个域名的一年使用权…美化和功能还在持续更新！</p><p>搭建博客的过程中意识到这个东西真的是小学生都会…纯敲代码真的能赚到钱吗？博主对此表示大大的怀疑…总之，说不定以后博主会不定期地发一些面向小白编程、数学和概率论问题（虽然博主的概率论学的一坨屎…）的帖子，敬请期待！</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS32/504.jpg"><br><img src="/2023/06/29/DLS32/505.jpg"><br><img src="/2023/06/29/DLS32/506.jpg"><br><img src="/2023/06/29/DLS32/507.jpg"><br><img src="/2023/06/29/DLS32/508.jpg"><br><img src="/2023/06/29/DLS32/509.jpg"><br><img src="/2023/06/29/DLS32/510.jpg"><br><img src="/2023/06/29/DLS32/511.jpg"><br><img src="/2023/06/29/DLS32/512.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;这里是博主闲的没事搭的一个无脑博客！（说是搭建，其实就是直接用butterfly主题…）为此，博主斥九块巨资买了这个域名的一年使用权…美化和功能还在持续更新！&lt;/p&gt;
-&lt;p&gt;搭建博客的过程中意识到这个东西真的是小学生都会…纯敲代码真的能赚到钱吗？博主对此表示大大的怀疑…总之</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>dsa个人题库</title>
-    <link href="https://shuoandy.github.io/2023/05/01/dsa/"/>
-    <id>https://shuoandy.github.io/2023/05/01/dsa/</id>
-    <published>2023-05-01T13:58:09.593Z</published>
-    <updated>2023-06-12T06:31:53.654Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文是作者在复习数据结构刷题的时候遇到的简单但不完全简单的小题（大题的话博主已经弃疗了…要杀要刮随邓公了）。dsa知识点相当的多，随便举一些例子吧：主定理、动态规划、向量列表、先序遍历的递归&#x2F;迭代版、AVL树和红黑树、散列冲突、dijkstra、堆合并、KMP算法、各种各样的排序（以及它们的性质和改进）…</p><p>其实重点就是红黑树这些复杂结构的理解，只要这些知识学会了就行。反正难题不会，会题不难，不是吗？</p><p>总之，这些题目是巩固理解、记牢算法的好选择，而难度较大的证明大题则超出了博主的理解范围…</p><br><h3 id="对于二分查找版本C，当查找区间的长度缩小为0时，V-lo-是："><a href="#对于二分查找版本C，当查找区间的长度缩小为0时，V-lo-是：" class="headerlink" title="对于二分查找版本C，当查找区间的长度缩小为0时，V[lo]是："></a>对于二分查找版本C，当查找区间的长度缩小为0时，V[lo]是：</h3><p>min{0 &lt; r &lt; n &amp; e &lt; V[r]}。因为<strong>事实上命中的秩是lo-1</strong>，而lo-1右边的（也就是从lo开始的左闭右开区间）都是严格大于e的元素。故而V[lo]是大于e的，而v[lo-1]不大于e。顺便一提，课本中的向量中的lo和hi永远是左闭右开区间，即[lo，hi）。</p><br><h3 id="在有序向量V中插入元素e并使之保持有序，下列代码正确的是"><a href="#在有序向量V中插入元素e并使之保持有序，下列代码正确的是" class="headerlink" title="在有序向量V中插入元素e并使之保持有序，下列代码正确的是:"></a>在有序向量V中插入元素e并使之保持有序，下列代码正确的是:</h3><p>V.insert( V.Search(e)+1 , e )。V.Search(e)应当+1，否则会将最后一个元素挤掉。</p><br><h3 id="【这道题似乎是oop的题，可以无视它】是否可以将视频里向量扩容代码中的："><a href="#【这道题似乎是oop的题，可以无视它】是否可以将视频里向量扩容代码中的：" class="headerlink" title="【这道题似乎是oop的题，可以无视它】是否可以将视频里向量扩容代码中的："></a>【这道题似乎是oop的题，可以无视它】是否可以将视频里向量扩容代码中的：</h3><p><code>for (int i = 0; i &lt; _size; i++) _elem[i] = oldElem[i];</code></p><p>替代为：</p><p><code>memcpy(_elem, oldElem, _size * sizeof(T));</code></p><p>不可以，与T的数据类型有关。简单地说，假如T不是基本数据类型例如string或一个类，那么&#x3D;号或许是重载过的，<strong>前者相当于深拷贝；而memcpy是浅拷贝</strong> （假如你去查memcpy的源代码的话会发现它就是在逐字节地复制hhhh），析构的时候可能会报错！</p><br><h3 id="以递归的方式计算fib-n-的时间复杂度是Θ-2-n-？"><a href="#以递归的方式计算fib-n-的时间复杂度是Θ-2-n-？" class="headerlink" title="以递归的方式计算fib(n)的时间复杂度是Θ(2^n)？"></a>以递归的方式计算fib(n)的时间复杂度是Θ(2^n)？</h3><p>错，实际上时间复杂度是Θ(1.618^n)，故而只能说是O(2^n)而非θ(2^n)。</p><br><h3 id="在向量V-x3D-2-3-5-7-11-13-17-19-23-中用插值查找搜索元素7，猜测的轴点mi为："><a href="#在向量V-x3D-2-3-5-7-11-13-17-19-23-中用插值查找搜索元素7，猜测的轴点mi为：" class="headerlink" title="在向量V&#x3D;{2, 3, 5, 7, 11, 13, 17, 19, 23}中用插值查找搜索元素7，猜测的轴点mi为："></a>在向量V&#x3D;{2, 3, 5, 7, 11, 13, 17, 19, 23}中用插值查找搜索元素7，猜测的轴点mi为：</h3><p>答案为1。 <strong>mi&#x3D;lo+(hi-lo)*(e-V[lo])&#x2F;(V[hi]-V[lo])</strong></p><br><h3 id="长度为n的列表，被等分为n-x2F-k段，每段长度为k，不同段之间的元素不存在逆序。对该列表进行插入排序的最坏时间复杂度为："><a href="#长度为n的列表，被等分为n-x2F-k段，每段长度为k，不同段之间的元素不存在逆序。对该列表进行插入排序的最坏时间复杂度为：" class="headerlink" title="长度为n的列表，被等分为n&#x2F;k段，每段长度为k，不同段之间的元素不存在逆序。对该列表进行插入排序的最坏时间复杂度为："></a>长度为n的列表，被等分为n&#x2F;k段，每段长度为k，不同段之间的元素不存在逆序。对该列表进行插入排序的最坏时间复杂度为：</h3><p>O(n*k)。插入排序的时间复杂度&#x3D;O(n+I)，其中I为逆序对（不是相邻逆序对）的数量。本题中最多有 n &#x2F; k * k^2&#x3D; n * k个逆序对。</p><p>顺便一提，<strong>逆序对与插入排序相关，而循环节与选择排序相关</strong>（循环节的数量决定了选择排序中“无效交换”的次数，期望为θ(log n) ）。</p><br><h3 id="（在中缀表达式求值中）什么时候进行实际的运算？"><a href="#（在中缀表达式求值中）什么时候进行实际的运算？" class="headerlink" title="（在中缀表达式求值中）什么时候进行实际的运算？"></a>（在中缀表达式求值中）什么时候进行实际的运算？</h3><p>当前的操作符比栈顶的操作符优先级低时，即栈顶运算符优先级高时。因为每次运算都是对于栈顶运算符的运算。</p><br><h3 id="在一棵树中-顶点p是顶点v的父亲-则它们的高度的关系是否为height-v-x3D-height-p-1？"><a href="#在一棵树中-顶点p是顶点v的父亲-则它们的高度的关系是否为height-v-x3D-height-p-1？" class="headerlink" title="在一棵树中,顶点p是顶点v的父亲,则它们的高度的关系是否为height(v)&#x3D;height(p)-1？"></a>在一棵树中,顶点p是顶点v的父亲,则它们的高度的关系是否为height(v)&#x3D;height(p)-1？</h3><p>不一定，比如p的左孩子是v，右孩子有一棵很大的子树，此时height(v)&#x3D;0而height(p)&#x3D;k。故而只能说height(v)&lt;height(p)。</p><br><h3 id="对以下二叉树进行先序遍历，刚访问完节点d时（迭代实现2）栈中的元素从栈顶到栈底依次为"><a href="#对以下二叉树进行先序遍历，刚访问完节点d时（迭代实现2）栈中的元素从栈顶到栈底依次为" class="headerlink" title="对以下二叉树进行先序遍历，刚访问完节点d时（迭代实现2）栈中的元素从栈顶到栈底依次为:"></a>对以下二叉树进行先序遍历，刚访问完节点d时（迭代实现2）栈中的元素从栈顶到栈底依次为:</h3><p><img src="/2023/05/01/dsa/1.jpg"></p><p>只有f。</p><p>事实上，“沿藤爬取”算法会先访问该节点，再将该节点的右孩子推入栈，并顺左侧藤下行。主算法会试图对每次调用“沿藤爬取”算法，并在无法继续爬取后将栈顶pop掉，再次对该元素进行爬取。</p><p>故而首先对a爬取，访问a，将c压栈，再访问b。此时“沿藤爬取”算法结束，将c pop掉并沿c爬取，访问c，将f压栈，再访问d，再将e压栈。故而刚访问完d的时候栈中只有c的右孩子f。</p><br><h3 id="对以下二叉树进行中序遍历，节点c刚被访问完毕时栈中的元素从栈顶到栈底为"><a href="#对以下二叉树进行中序遍历，节点c刚被访问完毕时栈中的元素从栈顶到栈底为" class="headerlink" title="对以下二叉树进行中序遍历，节点c刚被访问完毕时栈中的元素从栈顶到栈底为:"></a>对以下二叉树进行中序遍历，节点c刚被访问完毕时栈中的元素从栈顶到栈底为:</h3><p><img src="/2023/05/01/dsa/6a847e3de9105b2fa947e777fad2235.jpg"></p><p>d和f。</p><p>中序遍历时，“沿藤爬取”算法会将每个节点入栈，直到爬完为止。回到主算法，算法会pop掉栈顶元素并访问它，同时试图进入它的右孩子。若有右孩子，则以右孩子为根实施“沿藤爬取”算法，若没有右孩子，则会再pop掉栈顶元素，以此为根实施“沿藤爬取”算法。</p><p>故而首先对b爬取，b入栈，a入栈，访问a，访问b，并且转向其右孩子f，对f进行爬取会将f，d，c入栈，访问c。</p><br><h3 id="对以下二叉树进行层次遍历，节点F正欲出队时队列中的元素从队头到队尾为"><a href="#对以下二叉树进行层次遍历，节点F正欲出队时队列中的元素从队头到队尾为" class="headerlink" title="对以下二叉树进行层次遍历，节点F正欲出队时队列中的元素从队头到队尾为:"></a>对以下二叉树进行层次遍历，节点F正欲出队时队列中的元素从队头到队尾为:</h3><p><img src="/2023/05/01/dsa/4575cfc47ab97c73e4b59c1401d8064.jpg"></p><p>f和g。</p><p>请注意，层次遍历使用的辅助数据结构不是栈，而是队列。也没有藤算法，只有一个主算法。主算法会将根入队，并且每次循环将队首出队并访问，并将其左孩子入队、右孩子入队。</p><p>访问A，将B入队。访问B，将C和D依次入队…本算法比先序中序容易很多。</p><br><h3 id="从n个节点的二叉树的叶节点u逐个节点地上溯到根节点的过程中，最坏时间复杂度为O-n-？"><a href="#从n个节点的二叉树的叶节点u逐个节点地上溯到根节点的过程中，最坏时间复杂度为O-n-？" class="headerlink" title="从n个节点的二叉树的叶节点u逐个节点地上溯到根节点的过程中，最坏时间复杂度为O(n)？"></a>从n个节点的二叉树的叶节点u逐个节点地上溯到根节点的过程中，最坏时间复杂度为O(n)？</h3><p>正确，因为极端退化的二叉树就是链表（即所有节点都只有一个孩子），BST也是一样的。</p><br><h3 id="AVL树插入节点最多会使多少节点失衡？删除节点呢？"><a href="#AVL树插入节点最多会使多少节点失衡？删除节点呢？" class="headerlink" title="AVL树插入节点最多会使多少节点失衡？删除节点呢？"></a>AVL树插入节点最多会使多少节点失衡？删除节点呢？</h3><p>O(log n)和O(1)。<strong>事实上，删除节点至多只会令一个节点失衡</strong></p><p>值得一提的是，插入节点后失衡的节点最低为其祖父（爷爷），而删除节点后失衡的节点最低可以是其父亲。但在调整时，插入导致的失衡只需一次单旋&#x2F;双旋即可，而删除导致的失衡却可能需要至多O(log n)次单旋&#x2F;双旋。</p><br><h3 id="AVL树中删除节点引发失衡，经旋转调整后重新平衡，此时包含节点g-p-v的子树高度？"><a href="#AVL树中删除节点引发失衡，经旋转调整后重新平衡，此时包含节点g-p-v的子树高度？" class="headerlink" title="AVL树中删除节点引发失衡，经旋转调整后重新平衡，此时包含节点g,p,v的子树高度？"></a>AVL树中删除节点引发失衡，经旋转调整后重新平衡，此时包含节点g,p,v的子树高度？</h3><p>有可能不变也有可能减小1。请注意这里的子树高度是相比于原AVL树而言，即删除操作之前的树。如果子树高度不变，那么全树复衡；高度减1，则需要向上继续旋转。</p><p>顺便一说，插入节点后旋转，其子树高度一定不变，这也对应了上一个问题中所说的，插入后只需一次单旋&#x2F;双旋。</p><br><h3 id="伸展树采用双层伸展策略，即可避免最坏情况的发生？"><a href="#伸展树采用双层伸展策略，即可避免最坏情况的发生？" class="headerlink" title="伸展树采用双层伸展策略，即可避免最坏情况的发生？"></a>伸展树采用双层伸展策略，即可避免最坏情况的发生？</h3><p>错误。【这道题有点文字游戏…】只能减小最坏情况的频率，也就是最坏情况不致持续发生，但仍可能极少地发生。</p><br><h3 id="如果说访问一次内存需要1秒，则一次外存访问大概需要："><a href="#如果说访问一次内存需要1秒，则一次外存访问大概需要：" class="headerlink" title="如果说访问一次内存需要1秒，则一次外存访问大概需要："></a>如果说访问一次内存需要1秒，则一次外存访问大概需要：</h3><p>一天。访问内存需要100 ns，而磁盘访问需要10^7 ns。两者相差10^5倍。</p><br><h3 id="教材P-802的重散列（rehash）一定是扩容操作吗？"><a href="#教材P-802的重散列（rehash）一定是扩容操作吗？" class="headerlink" title="教材P 802的重散列（rehash）一定是扩容操作吗？"></a>教材P 802的重散列（rehash）一定是扩容操作吗？</h3><p>不一定。如果懒惰删除的标记太多，那么4 N（其中N是当前真实的非空桶，不包括懒惰删除标记）不一定比当前散列表的长度大，此时的重散列反而是缩容操作。这也是为什么我们不用2 M（M是散列表长度）而用4 N的原因。</p><br><h3 id="红黑树在每次插入-x2F-删除操作后，拓扑结构的变化不超过O-1-。"><a href="#红黑树在每次插入-x2F-删除操作后，拓扑结构的变化不超过O-1-。" class="headerlink" title="红黑树在每次插入&#x2F;删除操作后，拓扑结构的变化不超过O(1)。"></a>红黑树在每次插入&#x2F;删除操作后，拓扑结构的变化不超过O(1)。</h3><p>正确。事实上，这是红黑树非常重要的性质之一。而AVL树虽然插入操作满足题意，但正如14题所说，删除操作可能会有O(log n)级别的拓扑改变。</p><br><h3 id="当叔父节点u为红色时，修正双红缺陷导致的红黑树拓扑结构的变化为："><a href="#当叔父节点u为红色时，修正双红缺陷导致的红黑树拓扑结构的变化为：" class="headerlink" title="当叔父节点u为红色时，修正双红缺陷导致的红黑树拓扑结构的变化为："></a>当叔父节点u为红色时，修正双红缺陷导致的红黑树拓扑结构的变化为：</h3><p>没有变化。RR1（叔父为黑）会改变O(1)的拓扑结构，但会立刻终止修正；而RR2（叔父为红）不会改变任何拓扑结构（而仅仅是将颜色重染），但可能会向上传递双红缺陷。</p><p>另一方面，对于删除操作，对于叔父节点、叔父节点的孩子、祖父的颜色共有四种情况，其中BB-1、BB-2R都是一蹴而就的，BB-3是两蹴而就的，只有BB-2B（叔父节点为黑、叔父节点的孩子均为黑、祖父为黑）的情况可能向上传递双黑缺陷；但只有BB-1和BB-3会改变拓扑结构，故而跟如20题所说，红黑树的插入、删除操作都不会使拓扑结构改变较大。</p><br><h3 id="伸展树单次查找操作的最坏时间复杂度比AVL树大。"><a href="#伸展树单次查找操作的最坏时间复杂度比AVL树大。" class="headerlink" title="伸展树单次查找操作的最坏时间复杂度比AVL树大。"></a>伸展树单次查找操作的最坏时间复杂度比AVL树大。</h3><p>正确。在单链伸展树中插入叶子元素，需要一直向上双层伸展（事实上双层伸展也是“逐层”伸展，只是顺序略有不同），此时复杂度为O(n)。</p><p>值得一提的是，在分摊分析的时候，我们为了避免这样的情况，将分摊时间记为A，其等于实际时间T与势能差delta的和。其中势能可以理解为“银行”，简单操作省下来的时间会“积德行善”地存入一些多余的时间，在遇到最坏情况时我们再将这些“存款”取出，用于弥补不足。如是便能均衡地“劫富济贫”，完成分析。每一步的A之和不大于每一步的T之和，而每一步的A均不超过log n（当T为θ(n)时，势能函数会为一个θ(n)级别的负数）。具体过程请见邓公编写的习题解析8-2。</p><br><h3 id="对于长度为n的文本串和长度为m的模式串，KMP算法的时间复杂度为："><a href="#对于长度为n的文本串和长度为m的模式串，KMP算法的时间复杂度为：" class="headerlink" title="对于长度为n的文本串和长度为m的模式串，KMP算法的时间复杂度为："></a>对于长度为n的文本串和长度为m的模式串，KMP算法的时间复杂度为：</h3><p>O(n)。假如我们粗略地估计时间复杂度，大概率得出的结论是O(m*n)…然而假如我们记录一个观察值k&#x3D;2 i - j，那么我们会发现无论是失败匹配还是成功匹配，其都会使得观察值k严格递增（至少加1），于是迭代过程至多不会超过2 n次，即时间复杂度为O(n)。（说是O(m+n)也行）</p><br><h3 id="有2015个节点的左式堆，左子堆的规模最小为？"><a href="#有2015个节点的左式堆，左子堆的规模最小为？" class="headerlink" title="有2015个节点的左式堆，左子堆的规模最小为？"></a>有2015个节点的左式堆，左子堆的规模最小为？</h3><p>1。事实上正如教材所说，左式堆的左子堆未必要比右子堆“大”很多，左子堆的规模和高度都不一定大于其兄弟，甚至可以夸张到本题的程度。本题的例子是根的左子堆只有一个节点，右子堆根节点只有左孩子，其左孩子亦只有左孩子…即每个节点的右侧链都只有其本身，这样每个节点的npl均等于其右侧链长度1。</p><br><h3 id="与MAD相比，除余法的缺陷在于："><a href="#与MAD相比，除余法的缺陷在于：" class="headerlink" title="与MAD相比，除余法的缺陷在于："></a>与MAD相比，除余法的缺陷在于：</h3><p>不动点和高阶均匀性（相关性）。不动点是指hash(0)&#x3D;0；高阶均匀性指相邻的关键码的地址一定相邻。而multipy-add-divide方法便不会有这些问题。</p><br><h3 id="将1、2、3…2018插入到一个空伸展树中，若最终树高为2017，则插入的次序一定是单调的。"><a href="#将1、2、3…2018插入到一个空伸展树中，若最终树高为2017，则插入的次序一定是单调的。" class="headerlink" title="将1、2、3…2018插入到一个空伸展树中，若最终树高为2017，则插入的次序一定是单调的。"></a>将1、2、3…2018插入到一个空伸展树中，若最终树高为2017，则插入的次序一定是单调的。</h3><p>错误。比如1，2，3，4，6，5，7【5和6是乱序的！】，由于在7插入的时候会重新将splay tree变成单链，故诸如此类的操作仍然会形成单链。</p><br><h3 id="linearselect最坏复杂度为？"><a href="#linearselect最坏复杂度为？" class="headerlink" title="linearselect最坏复杂度为？"></a>linearselect最坏复杂度为？</h3><p>O(n)。事实上，见教材 P 1274，我们取一堆小子序列中位数的中位数，以此作为轴点来解决轴点选取过差的问题。（此时轴点至少能排除n&#x2F;4长度的差区间）我们得出如下公式：T(n)&#x3D; c n+ T(n&#x2F;Q) + T(3&#x2F;(4 n))。</p><br><h3 id="图的广度优先搜索访问各顶点的模式类似于二叉树的："><a href="#图的广度优先搜索访问各顶点的模式类似于二叉树的：" class="headerlink" title="图的广度优先搜索访问各顶点的模式类似于二叉树的："></a>图的广度优先搜索访问各顶点的模式类似于二叉树的：</h3><p>层次遍历。顺便一说，深度优先搜索类似于先序遍历。</p><br><h3 id="多叉堆比二叉堆的操作复杂度更高？"><a href="#多叉堆比二叉堆的操作复杂度更高？" class="headerlink" title="多叉堆比二叉堆的操作复杂度更高？"></a>多叉堆比二叉堆的操作复杂度更高？</h3><p>错误。事实上，上滤成本会降低，而（由于至多需要比对d个孩子）下滤成本会升高。另一方面，d最好是2的次幂，否则不能直接借助移位操作来加快秩的计算。</p><br><h3 id="在理想随机下，quickselect（k-select）的复杂度及其证明？"><a href="#在理想随机下，quickselect（k-select）的复杂度及其证明？" class="headerlink" title="在理想随机下，quickselect（k-select）的复杂度及其证明？"></a>在理想随机下，quickselect（k-select）的复杂度及其证明？</h3><p>O(n)。我们记T(n)为期望比较次数，T(n) &lt;&#x3D; (n-1) + (2&#x2F;n)*( T(2&#x2F;n) + T(1+2&#x2F;n) + … + T(n-1) )，在此我们<strong>大胆猜测</strong>T(n)&lt; 4 n，归纳证明该结论是正确的。【“大胆猜想”，看来邓公数竞学的不错】</p><br><h3 id="下图是一个三叉树实现的trie树，请写出其中储存的所有单词："><a href="#下图是一个三叉树实现的trie树，请写出其中储存的所有单词：" class="headerlink" title="下图是一个三叉树实现的trie树，请写出其中储存的所有单词："></a>下图是一个三叉树实现的trie树，请写出其中储存的所有单词：</h3><p><img src="/2023/05/01/dsa/593ec60e90487b413ecea3ed74aa70e.png"></p><p>（顺序无关）how many roads must a man walk down. </p><p>三叉trie树的左右孩子都是“另开炉灶”的，只有中孩子继承了父亲的字母，比如中间的must，u是m的中孩子，s是u的中孩子，t是u的中孩子，故而有must。而d是m的左孩子，故而d没有继承m，该单词为down而非mdown。</p><br><h3 id="在散列表中，一个好的散列函数h需要是单射？"><a href="#在散列表中，一个好的散列函数h需要是单射？" class="headerlink" title="在散列表中，一个好的散列函数h需要是单射？"></a>在散列表中，一个好的散列函数h需要是单射？</h3><p>错误。事实上不可能是单射，因为可用地址空间比所有词条的空间要小，所以一定会有多个词条映射到同一个地址。</p><br><h3 id="若某算法的时间复杂度递归式可写为T-n-x3D-2020-T-n-1-x2F-2020-O-log-n-，求其渐进复杂度。"><a href="#若某算法的时间复杂度递归式可写为T-n-x3D-2020-T-n-1-x2F-2020-O-log-n-，求其渐进复杂度。" class="headerlink" title="若某算法的时间复杂度递归式可写为T(n)&#x3D;2020 * T(n^(1&#x2F;2020)) + O(log n)，求其渐进复杂度。"></a>若某算法的时间复杂度递归式可写为T(n)&#x3D;2020 * T(n^(1&#x2F;2020)) + O(log n)，求其渐进复杂度。</h3><p>log n* log log n。本题的递归式不是主定理传统的T(n&#x2F;b)，故而看起来我们对其无可奈何；但假如我们设m &#x3D; log n，那么原式变成T(n) &#x3D;R(m) &#x3D; 2020 * R(m&#x2F;2020) + O(m)，故而得出结论。【这道题好像是OI的题吧？实在有点奇技淫巧】</p><br><h3 id="请证明，如果表长为4k-3的素数，那么双向平方试探的确可以遍历所有地址空间。"><a href="#请证明，如果表长为4k-3的素数，那么双向平方试探的确可以遍历所有地址空间。" class="headerlink" title="请证明，如果表长为4k+3的素数，那么双向平方试探的确可以遍历所有地址空间。"></a>请证明，如果表长为4k+3的素数，那么双向平方试探的确可以遍历所有地址空间。</h3><p>首先，我们需要引入费马双平方引理及其推论，即一个自然数是两个整数的平方和当且仅当其4k+3形式的素因子的次数为偶数。如45&#x3D;5*3^2，其等于9+36。</p><p>我们首先易得，正向试探中0 – 2k+1的模是互异的，而2k+2 – 4k+3与其完全对称。简单来说，n^2-m^2能被该素数整除当且仅当n+m等于该素数。</p><p>然后我们证明，反向试探中0 – 2k+1（同上，是互异的）与正向试探除了0之外，模都是互异的。否则，n^2+m^2可以被该素数整除，但由费马双平方引理知其只能整除该素数的平方、四次方…而这显然是不可能的，因为n^2+m^2小于该素数平方。</p><p>由此证毕，正向试探共有2k+2个（算上0），而反向试探共有2k+1个。</p><br><h3 id="基于比较的排序算法，对于任何输入序列都需要至少Ω-n-log-n-时间。"><a href="#基于比较的排序算法，对于任何输入序列都需要至少Ω-n-log-n-时间。" class="headerlink" title="基于比较的排序算法，对于任何输入序列都需要至少Ω(n log n)时间。"></a>基于比较的排序算法，对于任何输入序列都需要至少Ω(n log n)时间。</h3><p>错误。插入排序是输入敏感的，其最好情况只需O(n)时间。</p><br><h3 id="在二叉树的先序、中序、后序遍历中，叶子节点的次序都是一样的。"><a href="#在二叉树的先序、中序、后序遍历中，叶子节点的次序都是一样的。" class="headerlink" title="在二叉树的先序、中序、后序遍历中，叶子节点的次序都是一样的。"></a>在二叉树的先序、中序、后序遍历中，叶子节点的次序都是一样的。</h3><p>正确。这是一个蛮有意思的小结论。</p><br><h3 id="基于二分查询A版本改进的fib查找，对于长度为n-x3D-fib-k-1的向量，最坏查找长度为？"><a href="#基于二分查询A版本改进的fib查找，对于长度为n-x3D-fib-k-1的向量，最坏查找长度为？" class="headerlink" title="基于二分查询A版本改进的fib查找，对于长度为n&#x3D;fib(k)-1的向量，最坏查找长度为？"></a>基于二分查询A版本改进的fib查找，对于长度为n&#x3D;fib(k)-1的向量，最坏查找长度为？</h3><p>k-1。可以用归纳证明：由于fib(k)-1左右区间分别为fib(k-1)-1和fib(k-2)-1，向左的最坏长度为k-2+1，向右的最坏长度为k-3+2，均为k-1。本题也体现了最坏情况下fib查找的均衡性。</p><br><h3 id="具有2020个内部节点的红黑树的最大黑高度是？"><a href="#具有2020个内部节点的红黑树的最大黑高度是？" class="headerlink" title="具有2020个内部节点的红黑树的最大黑高度是？"></a>具有2020个内部节点的红黑树的最大黑高度是？</h3><p>10。黑高度&#x3D;其等价B树的高度。另一方面，最大高度有些困难，我们试图让一个红黑树的高度等于其黑高度的二倍，并且用尽可能少的节点，故而我们只用h&#x2F;2个红色节点即可。后续计算相对麻烦，详见习题解析8-13。</p><br><h3 id="请证明：高度为h的AVL树，其叶子节点的深度不会小于h-x2F-2向上取整。"><a href="#请证明：高度为h的AVL树，其叶子节点的深度不会小于h-x2F-2向上取整。" class="headerlink" title="请证明：高度为h的AVL树，其叶子节点的深度不会小于h&#x2F;2向上取整。"></a>请证明：高度为h的AVL树，其叶子节点的深度不会小于h&#x2F;2向上取整。</h3><p><strong>对h做归纳</strong>（h&#x3D;1时显然）。假设以上命题对高度小于h的AVL 树均成立，以下考查高度为h的AVL树：</p><p>由于左、右子树的高度至多为h - 1，至少为h - 2，由归纳假设，高度h-1的叶子节点到该子树根的深度至少为(h-1)&#x2F;2向上取整，大于等于h&#x2F;2向上取整 -1；高度h-1的叶子节点到该子树根的深度至少为h&#x2F;2向上取整 -1。故而无论是h-1还是h-2，其叶子到总根节点的深度均不小于h&#x2F;2向上取整 -1 +1。证毕。</p><p><strong>本题体现了归纳法在树状结构（顺便一说，二分查找这类的证明题也可视作类树）中的出色发挥</strong></p><br><h3 id="若将众数的定义改为“一半及一半以上的元素同为m，则m为众数”（原定义为：一半以上的元素同为m），课本P-1258的majCandidate算法是否还正确？"><a href="#若将众数的定义改为“一半及一半以上的元素同为m，则m为众数”（原定义为：一半以上的元素同为m），课本P-1258的majCandidate算法是否还正确？" class="headerlink" title="若将众数的定义改为“一半及一半以上的元素同为m，则m为众数”（原定义为：一半以上的元素同为m），课本P 1258的majCandidate算法是否还正确？"></a>若将众数的定义改为“一半及一半以上的元素同为m，则m为众数”（原定义为：一半以上的元素同为m），课本P 1258的majCandidate算法是否还正确？</h3><p>错误。虽然对于向量长度为奇数时，修改的定义显然与原定义没有区别，但对于向量长度为偶数时，我们很容易便能举出反例：0, 0, 0, 0, 1, 1, 1, 1, 2, 1。其中1是我修改定义后的众数，但算法会认为2是众数的候选者。本例中我们也能看到，算法选取的众数候选者甚至有可能是一个仅出现过一次的龙套元素。</p><br><h3 id="若T-n-x3D-O-n-2-，F-n-x3D-O-n-，则T-n-x2F-F-n-x3D-O-n-2-。"><a href="#若T-n-x3D-O-n-2-，F-n-x3D-O-n-，则T-n-x2F-F-n-x3D-O-n-2-。" class="headerlink" title="若T(n)&#x3D;O(n^2)，F(n)&#x3D;O(n)，则T(n)&#x2F;F(n)&#x3D;O(n^2)。"></a>若T(n)&#x3D;O(n^2)，F(n)&#x3D;O(n)，则T(n)&#x2F;F(n)&#x3D;O(n^2)。</h3><p>错误。事实上复杂度函数可以小于常数如F(n)&#x3D;θ(1&#x2F;n)，对于本课程而言请注意这种可能性的存在。【虽然但是，小于常数有什么意义？反正背就完了】</p><br><h3 id="在中缀表达式求值的时候，优先级表中有对应了非法表达式的空格项，列出所有这样的栈顶-x2F-当前运算符组合。"><a href="#在中缀表达式求值的时候，优先级表中有对应了非法表达式的空格项，列出所有这样的栈顶-x2F-当前运算符组合。" class="headerlink" title="在中缀表达式求值的时候，优先级表中有对应了非法表达式的空格项，列出所有这样的栈顶&#x2F;当前运算符组合。"></a>在中缀表达式求值的时候，优先级表中有对应了非法表达式的空格项，列出所有这样的栈顶&#x2F;当前运算符组合。</h3><p>“(“与”\0”、”)”与所有运算符、”\0”与”)”、”!”与”(“（其中第一个为栈顶运算符，第二个为当前运算符）。即左括号不可能留到最后而不遇到右括号；右括号不可能进入运算符栈；！是单目运算符，不可能直接与左括号相邻。</p><br><h3 id="为了实现”在2014个元素中挑选5个最大元素“的功能，在最坏情况下锦标赛树和二叉堆的比较次数相同吗？"><a href="#为了实现”在2014个元素中挑选5个最大元素“的功能，在最坏情况下锦标赛树和二叉堆的比较次数相同吗？" class="headerlink" title="为了实现”在2014个元素中挑选5个最大元素“的功能，在最坏情况下锦标赛树和二叉堆的比较次数相同吗？"></a>为了实现”在2014个元素中挑选5个最大元素“的功能，在最坏情况下锦标赛树和二叉堆的比较次数相同吗？</h3><p>不相同，后者是前者的二倍。与简单的上滤不同，<strong>每一步下滤需要和左右孩子都比较一番</strong>，而锦标赛树只需比较一次即可。</p><br><h3 id="规模为n的任何两棵等价二叉搜索树，至多经过2n-2-次旋转调整，即可彼此转换。"><a href="#规模为n的任何两棵等价二叉搜索树，至多经过2n-2-次旋转调整，即可彼此转换。" class="headerlink" title="规模为n的任何两棵等价二叉搜索树，至多经过2n - 2 次旋转调整，即可彼此转换。"></a>规模为n的任何两棵等价二叉搜索树，至多经过2n - 2 次旋转调整，即可彼此转换。</h3><p>正确。见习题解析7-15，将任意一棵”最左侧通路“长为s的（博主个人认为这东西几乎就是相对于npl右侧链的左侧链）二叉搜索树转换为一个左倾单链需要n-1-s步旋转。故而可知我们可以将树A先转为单链，再将单链反向转为树B，至多不会超过2n-2次旋转。</p><br><h3 id="对不含括号的中缀表达式求值时，操作符栈的容量可以固定为某一常数。"><a href="#对不含括号的中缀表达式求值时，操作符栈的容量可以固定为某一常数。" class="headerlink" title="对不含括号的中缀表达式求值时，操作符栈的容量可以固定为某一常数。"></a>对不含括号的中缀表达式求值时，操作符栈的容量可以固定为某一常数。</h3><p>正确。对于优先级表中除了左右括号和结束符&#x2F;0之外的操作符，当栈顶和当前运算符均为此操作符时，优先级均为栈顶&gt;当前，故而在不存在括号的情况下，操作符栈不可能堆叠大量运算符；在堆叠了各种不同的操作符后一定会执行运算并开始清除栈中元素。</p><br><h3 id="带权重的最优PFC（前缀无歧义）编码树不仅未必唯一、拓扑结构未必相同，甚至树高也可能不等。"><a href="#带权重的最优PFC（前缀无歧义）编码树不仅未必唯一、拓扑结构未必相同，甚至树高也可能不等。" class="headerlink" title="带权重的最优PFC（前缀无歧义）编码树不仅未必唯一、拓扑结构未必相同，甚至树高也可能不等。"></a>带权重的最优PFC（前缀无歧义）编码树不仅未必唯一、拓扑结构未必相同，甚至树高也可能不等。</h3><p>正确。对于Huffman算法，若有出现频率相同的字符（或是在合并过程中存在出现频率相同的子树），则会有歧义的发生，这样的歧义虽不会导致Huffman树的最优性，却会导致不同结构的情况，这就是所谓Huffman树的不唯一性（另两个性质是内部节点的双子性和层次性）。至于题中所说的情况，abcd的出现频率分别是2211，这个简单的例子就可以构造出两棵高度不同的Huffman树。</p><br><h3 id="考后感想"><a href="#考后感想" class="headerlink" title="考后感想"></a>考后感想</h3><p>妈的，设计大题让设计一个括号匹配的数据结构。不会做，二十分白给，寄。</p><p><strong>印象很深的两道题目是“指出教材中【为了易于理解而牺牲效率】的两个算法”和设计答题“请设计一个有插入功能的左右括号匹配判别器”（具体需求复杂度忘了，据说是用二叉树+lazy标记解决）。这两道题博主没有做出来…</strong></p><p>可能是因为判断题和简答题做的还不错（不过简答题第一题就不会，问的是教材中有些算法为了精简代码而牺牲了效率，根本没记）最后还是拿A-了，邓公太善良了T T</p><h3 id="2023年秋季的反馈"><a href="#2023年秋季的反馈" class="headerlink" title="2023年秋季的反馈"></a>2023年秋季的反馈</h3><p>据说2023年秋考了不少具体算法的题目（比如那个求最大矩形的算法）。看来考前复习一下邓公给的那些excel的demo是有必要的。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;本文是作者在复习数据结构刷题的时候遇到的简单但不完全简单的小题（大题的话博主已经弃疗了…要杀要刮随邓公了）。dsa知识点相当的多，随便举一些例子吧：主定理、动态规划、向量列表、先序遍历的递归&amp;#x2F;迭代版、AVL树和红黑树、散列冲突、dijkstra、堆合并、KMP算法</summary>
-      
-    
-    
-    
-    <category term="THU-course" scheme="https://shuoandy.github.io/categories/THU-course/"/>
-    
-    
-    <category term="THU-course" scheme="https://shuoandy.github.io/tags/THU-course/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛子的单恋史9--思思【2】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS9/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS9/</id>
-    <published>2023-05-01T13:58:09.592Z</published>
-    <updated>2023-04-03T01:57:20.196Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS9/01.jpg"><br><img src="/2023/05/01/DLS9/02.jpg"><br><img src="/2023/05/01/DLS9/03.jpg"><br><img src="/2023/05/01/DLS9/04.jpg"><br><img src="/2023/05/01/DLS9/05.jpg"><br><img src="/2023/05/01/DLS9/06.jpg"><br><img src="/2023/05/01/DLS9/07.jpg"><br><img src="/2023/05/01/DLS9/08.jpg"><br><img src="/2023/05/01/DLS9/09.jpg"><br><img src="/2023/05/01/DLS9/10.jpg"><br><img src="/2023/05/01/DLS9/11.jpg"><br><img src="/2023/05/01/DLS9/12.jpg"></p><p><img src="/2023/05/01/DLS9/13.jpg"></p><p><img src="/2023/05/01/DLS9/14.jpg"></p><p><img src="/2023/05/01/DLS9/15.jpg"></p><p><img src="/2023/05/01/DLS9/16.jpg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS9/01.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS9/02.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS9/03.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/0</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS32/504.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS32/505.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS32/506.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -144,42 +41,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史8--小张【5】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS8/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS8/</id>
-    <published>2023-05-01T13:58:09.590Z</published>
-    <updated>2023-04-02T13:08:32.584Z</updated>
+    <title>笛子的单恋史31--小张【31】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS31/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS31/</id>
+    <published>2023-06-29T15:36:31.540Z</published>
+    <updated>2023-06-29T15:36:31.540Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS8/01.jpg"><br><img src="/2023/05/01/DLS8/02.jpg"><br><img src="/2023/05/01/DLS8/03.jpg"><br><img src="/2023/05/01/DLS8/04.jpg"><br><img src="/2023/05/01/DLS8/05.jpg"><br><img src="/2023/05/01/DLS8/06.jpg"><br><img src="/2023/05/01/DLS8/07.jpg"><br><img src="/2023/05/01/DLS8/08.jpg"><br><img src="/2023/05/01/DLS8/09.jpg"><br><img src="/2023/05/01/DLS8/10.jpg"><br><img src="/2023/05/01/DLS8/11.jpg"><br><img src="/2023/05/01/DLS8/12.jpg"></p><p><img src="/2023/05/01/DLS8/13.jpg"></p><p><img src="/2023/05/01/DLS8/14.jpg"></p><p><img src="/2023/05/01/DLS8/15.jpg"></p><p><img src="/2023/05/01/DLS8/16.jpg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS8/01.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS8/02.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS8/03.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/0</summary>
-      
-    
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛子的单恋史7--龙套A【2】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS7/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS7/</id>
-    <published>2023-05-01T13:58:09.589Z</published>
-    <updated>2023-04-02T13:08:23.992Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS7/01.jpg"><br><img src="/2023/05/01/DLS7/02.jpg"><br><img src="/2023/05/01/DLS7/03.jpg"><br><img src="/2023/05/01/DLS7/04.jpg"><br><img src="/2023/05/01/DLS7/05.jpg"><br><img src="/2023/05/01/DLS7/06.jpg"><br><img src="/2023/05/01/DLS7/07.jpg"><br><img src="/2023/05/01/DLS7/08.jpg"><br><img src="/2023/05/01/DLS7/09.jpg"><br><img src="/2023/05/01/DLS7/10.jpg"><br><img src="/2023/05/01/DLS7/11.jpg"><br><img src="/2023/05/01/DLS7/12.jpg"></p><p><img src="/2023/05/01/DLS7/13.jpg"></p><p><img src="/2023/05/01/DLS7/14.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS31/490.jpg"><br><img src="/2023/06/29/DLS31/491.jpg"><br><img src="/2023/06/29/DLS31/492.jpg"><br><img src="/2023/06/29/DLS31/493.jpg"><br><img src="/2023/06/29/DLS31/494.jpg"><br><img src="/2023/06/29/DLS31/495.jpg"><br><img src="/2023/06/29/DLS31/496.jpg"><br><img src="/2023/06/29/DLS31/497.jpg"><br><img src="/2023/06/29/DLS31/498.jpg"><br><img src="/2023/06/29/DLS31/499.jpg"><br><img src="/2023/06/29/DLS31/500.jpg"><br><img src="/2023/06/29/DLS31/501.jpg"><br><img src="/2023/06/29/DLS31/502.jpg"><br><img src="/2023/06/29/DLS31/503.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS7/01.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS7/02.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS7/03.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/0</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS31/490.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS31/491.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS31/492.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -192,45 +65,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史6--龙套A【1】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS6/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS6/</id>
-    <published>2023-05-01T13:58:09.587Z</published>
-    <updated>2023-04-02T13:08:11.855Z</updated>
+    <title>笛子的单恋史30--小张【30】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS30/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS30/</id>
+    <published>2023-06-29T15:36:31.399Z</published>
+    <updated>2023-06-29T15:36:31.400Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS6/01.jpg"><br><img src="/2023/05/01/DLS6/02.jpg"><br><img src="/2023/05/01/DLS6/03.jpg"><br><img src="/2023/05/01/DLS6/04.jpg"><br><img src="/2023/05/01/DLS6/05.jpg"><br><img src="/2023/05/01/DLS6/06.jpg"><br><img src="/2023/05/01/DLS6/07.jpg"><br><img src="/2023/05/01/DLS6/08.jpg"><br><img src="/2023/05/01/DLS6/09.jpg"><br><img src="/2023/05/01/DLS6/10.jpg"><br><img src="/2023/05/01/DLS6/11.jpg"><br><img src="/2023/05/01/DLS6/12.jpg"></p><p><img src="/2023/05/01/DLS6/13.jpg"></p><p><img src="/2023/05/01/DLS6/14.jpg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS6/01.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS6/02.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS6/03.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/0</summary>
-      
-    
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛子的单恋史5--小张【4】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS5/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS5/</id>
-    <published>2023-05-01T13:58:09.586Z</published>
-    <updated>2023-04-02T13:07:56.517Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS5/01.jpg"></p><p><img src="/2023/05/01/DLS5/02.jpg"></p><p><img src="/2023/05/01/DLS5/03.jpg"></p><p><img src="/2023/05/01/DLS5/04.jpg"></p><p><img src="/2023/05/01/DLS5/05.jpg"></p><p><img src="/2023/05/01/DLS5/06.jpg"></p><p><img src="/2023/05/01/DLS5/07.jpg"></p><p><img src="/2023/05/01/DLS5/08.jpg"></p><p><img src="/2023/05/01/DLS5/09.jpg"></p><p><img src="/2023/05/01/DLS5/10.jpg"></p><p><img src="/2023/05/01/DLS5/11.jpg"></p><p><img src="/2023/05/01/DLS5/12.jpg"></p><p><img src="/2023/05/01/DLS5/13.jpg"></p><p><img src="/2023/05/01/DLS5/14.jpg"></p><p><img src="/2023/05/01/DLS5/15.jpg"></p><p><img src="/2023/05/01/DLS5/16.jpg"></p><p><img src="/2023/05/01/DLS5/17.jpg"></p><p><img src="/2023/05/01/DLS5/18.jpg"></p><p><img src="/2023/05/01/DLS5/19.jpg"></p><p><img src="/2023/05/01/DLS5/20.jpg"></p><p><img src="/2023/05/01/DLS5/21.jpg"></p><p><img src="/2023/05/01/DLS5/22.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS30/479.jpg"><br><img src="/2023/06/29/DLS30/480.jpg"><br><img src="/2023/06/29/DLS30/481.jpg"><br><img src="/2023/06/29/DLS30/482.jpg"><br><img src="/2023/06/29/DLS30/483.jpg"><br><img src="/2023/06/29/DLS30/484.jpg"><br><img src="/2023/06/29/DLS30/485.jpg"><br><img src="/2023/06/29/DLS30/486.jpg"><br><img src="/2023/06/29/DLS30/487.jpg"><br><img src="/2023/06/29/DLS30/488.jpg"><br><img src="/2023/06/29/DLS30/489.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS5/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS5/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS5/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS30/479.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS30/480.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS30/481.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -243,21 +89,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史4--思思【1】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS4/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS4/</id>
-    <published>2023-05-01T13:58:09.584Z</published>
-    <updated>2023-04-02T13:07:36.575Z</updated>
+    <title>笛子的单恋史29--小张【29】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS29/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS29/</id>
+    <published>2023-06-29T15:36:31.282Z</published>
+    <updated>2023-06-29T15:36:31.283Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS4/01.jpg"></p><p><img src="/2023/05/01/DLS4/02.jpg"></p><p><img src="/2023/05/01/DLS4/03.jpg"></p><p><img src="/2023/05/01/DLS4/04.jpg"></p><p><img src="/2023/05/01/DLS4/05.jpg"></p><p><img src="/2023/05/01/DLS4/06.jpg"></p><p><img src="/2023/05/01/DLS4/07.jpg"></p><p><img src="/2023/05/01/DLS4/08.jpg"></p><p><img src="/2023/05/01/DLS4/09.jpg"></p><p><img src="/2023/05/01/DLS4/10.jpg"></p><p><img src="/2023/05/01/DLS4/11.jpg"></p><p><img src="/2023/05/01/DLS4/12.jpg"></p><p><img src="/2023/05/01/DLS4/13.jpg"></p><p><img src="/2023/05/01/DLS4/14.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS29/465.jpg"><br><img src="/2023/06/29/DLS29/466.jpg"><br><img src="/2023/06/29/DLS29/467.jpg"><br><img src="/2023/06/29/DLS29/468.jpg"><br><img src="/2023/06/29/DLS29/469.jpg"><br><img src="/2023/06/29/DLS29/470.jpg"><br><img src="/2023/06/29/DLS29/471.jpg"><br><img src="/2023/06/29/DLS29/472.jpg"><br><img src="/2023/06/29/DLS29/473.jpg"><br><img src="/2023/06/29/DLS29/474.jpg"><br><img src="/2023/06/29/DLS29/475.jpg"><br><img src="/2023/06/29/DLS29/476.jpg"><br><img src="/2023/06/29/DLS29/477.jpg"><br><img src="/2023/06/29/DLS29/478.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS4/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS4/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS4/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS29/465.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS29/466.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS29/467.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -270,21 +113,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史3--小张【3】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS3/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS3/</id>
-    <published>2023-05-01T13:58:09.583Z</published>
-    <updated>2023-04-02T12:44:20.894Z</updated>
+    <title>笛子的单恋史28--小张【28】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS28/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS28/</id>
+    <published>2023-06-29T15:36:31.144Z</published>
+    <updated>2023-06-29T15:36:31.144Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS3/01.jpg"></p><p><img src="/2023/05/01/DLS3/02.jpg"></p><p><img src="/2023/05/01/DLS3/03.jpg"></p><p><img src="/2023/05/01/DLS3/04.jpg"></p><p><img src="/2023/05/01/DLS3/05.jpg"></p><p><img src="/2023/05/01/DLS3/06.jpg"></p><p><img src="/2023/05/01/DLS3/07.jpg"></p><p><img src="/2023/05/01/DLS3/08.jpg"></p><p><img src="/2023/05/01/DLS3/09.jpg"></p><p><img src="/2023/05/01/DLS3/10.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS28/443.jpg"><br><img src="/2023/06/29/DLS28/444.jpg"><br><img src="/2023/06/29/DLS28/445.jpg"><br><img src="/2023/06/29/DLS28/446.jpg"><br><img src="/2023/06/29/DLS28/447.jpg"><br><img src="/2023/06/29/DLS28/448.jpg"><br><img src="/2023/06/29/DLS28/449.jpg"><br><img src="/2023/06/29/DLS28/450.jpg"><br><img src="/2023/06/29/DLS28/451.jpg"><br><img src="/2023/06/29/DLS28/452.jpg"><br><img src="/2023/06/29/DLS28/453.jpg"><br><img src="/2023/06/29/DLS28/454.jpg"><br><img src="/2023/06/29/DLS28/455.jpg"><br><img src="/2023/06/29/DLS28/456.jpg"><br><img src="/2023/06/29/DLS28/457.jpg"><br><img src="/2023/06/29/DLS28/458.jpg"><br><img src="/2023/06/29/DLS28/459.jpg"><br><img src="/2023/06/29/DLS28/460.jpg"><br><img src="/2023/06/29/DLS28/461.jpg"><br><img src="/2023/06/29/DLS28/462.jpg"><br><img src="/2023/06/29/DLS28/463.jpg"><br><img src="/2023/06/29/DLS28/464.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS3/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS3/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS3/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS28/443.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS28/444.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS28/445.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -297,45 +137,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史20--回忆【2】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS20/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS20/</id>
-    <published>2023-05-01T13:58:09.581Z</published>
-    <updated>2023-04-03T02:19:49.502Z</updated>
+    <title>笛子的单恋史27--小张【27】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS27/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS27/</id>
+    <published>2023-06-29T15:36:30.966Z</published>
+    <updated>2023-06-29T15:36:30.966Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS20/01.jpg"><br><img src="/2023/05/01/DLS20/02.jpg"><br><img src="/2023/05/01/DLS20/03.jpg"><br><img src="/2023/05/01/DLS20/04.jpg"><br><img src="/2023/05/01/DLS20/05.jpg"><br><img src="/2023/05/01/DLS20/06.jpg"><br><img src="/2023/05/01/DLS20/07.jpg"><br><img src="/2023/05/01/DLS20/08.jpg"><br><img src="/2023/05/01/DLS20/09.jpg"><br><img src="/2023/05/01/DLS20/10.jpg"><br><img src="/2023/05/01/DLS20/11.jpg"><br><img src="/2023/05/01/DLS20/12.jpg"></p><p><img src="/2023/05/01/DLS20/13.jpg"></p><p><img src="/2023/05/01/DLS20/14.jpg"></p><p><img src="/2023/05/01/DLS20/15.jpg"></p><p><img src="/2023/05/01/DLS20/16.jpg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS20/01.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS20/02.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/05/01/DLS20/03.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/0</summary>
-      
-    
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛子的单恋史2--小张【2】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS2/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS2/</id>
-    <published>2023-05-01T13:58:09.580Z</published>
-    <updated>2023-04-02T12:38:12.594Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS2/01.jpg"></p><p><img src="/2023/05/01/DLS2/02.jpg"></p><p><img src="/2023/05/01/DLS2/03.jpg"></p><p><img src="/2023/05/01/DLS2/04.jpg"></p><p><img src="/2023/05/01/DLS2/05.jpg"></p><p><img src="/2023/05/01/DLS2/06.jpg"></p><p><img src="/2023/05/01/DLS2/07.jpg"></p><p><img src="/2023/05/01/DLS2/08.jpg"></p><p><img src="/2023/05/01/DLS2/09.jpg"></p><p><img src="/2023/05/01/DLS2/10.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS27/423.jpg"><br><img src="/2023/06/29/DLS27/424.jpg"><br><img src="/2023/06/29/DLS27/425.jpg"><br><img src="/2023/06/29/DLS27/426.jpg"><br><img src="/2023/06/29/DLS27/427.jpg"><br><img src="/2023/06/29/DLS27/428.jpg"><br><img src="/2023/06/29/DLS27/429.jpg"><br><img src="/2023/06/29/DLS27/430.jpg"><br><img src="/2023/06/29/DLS27/431.jpg"><br><img src="/2023/06/29/DLS27/432.jpg"><br><img src="/2023/06/29/DLS27/433.jpg"><br><img src="/2023/06/29/DLS27/434.jpg"><br><img src="/2023/06/29/DLS27/435.jpg"><br><img src="/2023/06/29/DLS27/436.jpg"><br><img src="/2023/06/29/DLS27/437.jpg"><br><img src="/2023/06/29/DLS27/438.jpg"><br><img src="/2023/06/29/DLS27/439.jpg"><br><img src="/2023/06/29/DLS27/440.jpg"><br><img src="/2023/06/29/DLS27/441.jpg"><br><img src="/2023/06/29/DLS27/442.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS2/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS2/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS2/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS27/423.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS27/424.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS27/425.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -348,21 +161,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史19--回忆【1】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS19/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS19/</id>
-    <published>2023-05-01T13:58:09.578Z</published>
-    <updated>2023-04-03T02:14:47.836Z</updated>
+    <title>笛子的单恋史26--小张【26】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS26/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS26/</id>
+    <published>2023-06-29T15:36:30.798Z</published>
+    <updated>2023-06-29T15:36:30.798Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS19/01.jpg"></p><p><img src="/2023/05/01/DLS19/02.jpg"></p><p><img src="/2023/05/01/DLS19/03.jpg"></p><p><img src="/2023/05/01/DLS19/04.jpg"></p><p><img src="/2023/05/01/DLS19/05.jpg"></p><p><img src="/2023/05/01/DLS19/06.jpg"></p><p><img src="/2023/05/01/DLS19/07.jpg"></p><p><img src="/2023/05/01/DLS19/08.jpg"></p><p><img src="/2023/05/01/DLS19/09.jpg"></p><p><img src="/2023/05/01/DLS19/10.jpg"></p><p><img src="/2023/05/01/DLS19/11.jpg"></p><p><img src="/2023/05/01/DLS19/12.jpg"></p><p><img src="/2023/05/01/DLS19/13.jpg"></p><p><img src="/2023/05/01/DLS19/14.jpg"></p><p><img src="/2023/05/01/DLS19/15.jpg"></p><p><img src="/2023/05/01/DLS19/16.jpg"></p><p><img src="/2023/05/01/DLS19/17.jpg"></p><p><img src="/2023/05/01/DLS19/18.jpg"></p><p><img src="/2023/05/01/DLS19/19.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS26/408.jpg"><br><img src="/2023/06/29/DLS26/409.jpg"><br><img src="/2023/06/29/DLS26/410.jpg"><br><img src="/2023/06/29/DLS26/411.jpg"><br><img src="/2023/06/29/DLS26/412.jpg"><br><img src="/2023/06/29/DLS26/413.jpg"><br><img src="/2023/06/29/DLS26/414.jpg"><br><img src="/2023/06/29/DLS26/415.jpg"><br><img src="/2023/06/29/DLS26/416.jpg"><br><img src="/2023/06/29/DLS26/417.jpg"><br><img src="/2023/06/29/DLS26/418.jpg"><br><img src="/2023/06/29/DLS26/419.jpg"><br><img src="/2023/06/29/DLS26/420.jpg"><br><img src="/2023/06/29/DLS26/421.jpg"><br><img src="/2023/06/29/DLS26/422.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS19/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS19/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS19/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img </summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS26/408.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS26/409.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS26/410.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -375,21 +185,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史18--龙套A【3】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS18/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS18/</id>
-    <published>2023-05-01T13:58:09.576Z</published>
-    <updated>2023-04-03T02:13:04.718Z</updated>
+    <title>笛子的单恋史25--小张【25】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS25/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS25/</id>
+    <published>2023-06-29T15:36:30.666Z</published>
+    <updated>2023-06-29T15:36:30.668Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS18/01.jpg"></p><p><img src="/2023/05/01/DLS18/02.jpg"></p><p><img src="/2023/05/01/DLS18/03.jpg"></p><p><img src="/2023/05/01/DLS18/04.jpg"></p><p><img src="/2023/05/01/DLS18/05.jpg"></p><p><img src="/2023/05/01/DLS18/06.jpg"></p><p><img src="/2023/05/01/DLS18/07.jpg"></p><p><img src="/2023/05/01/DLS18/08.jpg"></p><p><img src="/2023/05/01/DLS18/09.jpg"></p><p><img src="/2023/05/01/DLS18/10.jpg"></p><p><img src="/2023/05/01/DLS18/11.jpg"></p><p><img src="/2023/05/01/DLS18/12.jpg"></p><p><img src="/2023/05/01/DLS18/13.jpg"></p><p><img src="/2023/05/01/DLS18/14.jpg"></p><p><img src="/2023/05/01/DLS18/15.jpg"></p><p><img src="/2023/05/01/DLS18/16.jpg"></p><p><img src="/2023/05/01/DLS18/17.jpg"></p><p><img src="/2023/05/01/DLS18/18.jpg"></p><p><img src="/2023/05/01/DLS18/19.jpg"></p><p><img src="/2023/05/01/DLS18/20.jpg"></p><p><img src="/2023/05/01/DLS18/21.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS25/389.jpg"><br><img src="/2023/06/29/DLS25/390.jpg"><br><img src="/2023/06/29/DLS25/391.jpg"><br><img src="/2023/06/29/DLS25/392.jpg"><br><img src="/2023/06/29/DLS25/393.jpg"><br><img src="/2023/06/29/DLS25/394.jpg"><br><img src="/2023/06/29/DLS25/395.jpg"><br><img src="/2023/06/29/DLS25/396.jpg"><br><img src="/2023/06/29/DLS25/397.jpg"><br><img src="/2023/06/29/DLS25/398.jpg"><br><img src="/2023/06/29/DLS25/399.jpg"><br><img src="/2023/06/29/DLS25/400.jpg"><br><img src="/2023/06/29/DLS25/401.jpg"><br><img src="/2023/06/29/DLS25/402.jpg"><br><img src="/2023/06/29/DLS25/403.jpg"><br><img src="/2023/06/29/DLS25/404.jpg"><br><img src="/2023/06/29/DLS25/405.jpg"><br><img src="/2023/06/29/DLS25/406.jpg"><br><img src="/2023/06/29/DLS25/407.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS18/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS18/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS18/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img </summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS25/389.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS25/390.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS25/391.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -402,21 +209,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史17--红雨【4】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS17/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS17/</id>
-    <published>2023-05-01T13:58:09.575Z</published>
-    <updated>2023-04-03T02:10:21.378Z</updated>
+    <title>笛子的单恋史24--小张【24】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS24/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS24/</id>
+    <published>2023-06-29T15:36:30.476Z</published>
+    <updated>2023-06-29T15:36:30.477Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS17/01.jpg"></p><p><img src="/2023/05/01/DLS17/02.jpg"></p><p><img src="/2023/05/01/DLS17/03.jpg"></p><p><img src="/2023/05/01/DLS17/04.jpg"></p><p><img src="/2023/05/01/DLS17/05.jpg"></p><p><img src="/2023/05/01/DLS17/06.jpg"></p><p><img src="/2023/05/01/DLS17/07.jpg"></p><p><img src="/2023/05/01/DLS17/08.jpg"></p><p><img src="/2023/05/01/DLS17/09.jpg"></p><p><img src="/2023/05/01/DLS17/10.jpg"></p><p><img src="/2023/05/01/DLS17/11.jpg"></p><p><img src="/2023/05/01/DLS17/12.jpg"></p><p><img src="/2023/05/01/DLS17/13.jpg"></p><p><img src="/2023/05/01/DLS17/14.jpg"></p><p><img src="/2023/05/01/DLS17/15.jpg"></p><p><img src="/2023/05/01/DLS17/16.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS24/374.jpg"><br><img src="/2023/06/29/DLS24/375.jpg"><br><img src="/2023/06/29/DLS24/376.jpg"><br><img src="/2023/06/29/DLS24/377.jpg"><br><img src="/2023/06/29/DLS24/378.jpg"><br><img src="/2023/06/29/DLS24/379.jpg"><br><img src="/2023/06/29/DLS24/380.jpg"><br><img src="/2023/06/29/DLS24/381.jpg"><br><img src="/2023/06/29/DLS24/382.jpg"><br><img src="/2023/06/29/DLS24/383.jpg"><br><img src="/2023/06/29/DLS24/384.jpg"><br><img src="/2023/06/29/DLS24/385.jpg"><br><img src="/2023/06/29/DLS24/386.jpg"><br><img src="/2023/06/29/DLS24/387.jpg"><br><img src="/2023/06/29/DLS24/388.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS17/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS17/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS17/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img </summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS24/374.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS24/375.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS24/376.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -429,21 +233,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史16--红雨【3】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS16/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS16/</id>
-    <published>2023-05-01T13:58:09.574Z</published>
-    <updated>2023-04-03T02:08:22.487Z</updated>
+    <title>笛子的单恋史23--小张【23】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS23/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS23/</id>
+    <published>2023-06-29T15:36:30.341Z</published>
+    <updated>2023-06-29T15:36:30.342Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS16/01.jpg"></p><p><img src="/2023/05/01/DLS16/02.jpg"></p><p><img src="/2023/05/01/DLS16/03.jpg"></p><p><img src="/2023/05/01/DLS16/04.jpg"></p><p><img src="/2023/05/01/DLS16/05.jpg"></p><p><img src="/2023/05/01/DLS16/06.jpg"></p><p><img src="/2023/05/01/DLS16/07.jpg"></p><p><img src="/2023/05/01/DLS16/08.jpg"></p><p><img src="/2023/05/01/DLS16/09.jpg"></p><p><img src="/2023/05/01/DLS16/10.jpg"></p><p><img src="/2023/05/01/DLS16/11.jpg"></p><p><img src="/2023/05/01/DLS16/12.jpg"></p><p><img src="/2023/05/01/DLS16/13.jpg"></p><p><img src="/2023/05/01/DLS16/14.jpg"></p><p><img src="/2023/05/01/DLS16/15.jpg"></p><p><img src="/2023/05/01/DLS16/16.jpg"></p><p><img src="/2023/05/01/DLS16/17.jpg"></p><p><img src="/2023/05/01/DLS16/18.jpg"></p><p><img src="/2023/05/01/DLS16/19.jpg"></p><p><img src="/2023/05/01/DLS16/20.jpg"></p><p><img src="/2023/05/01/DLS16/21.jpg"></p><p><img src="/2023/05/01/DLS16/22.jpg"></p><p><img src="/2023/05/01/DLS16/23.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS23/361.jpg"><br><img src="/2023/06/29/DLS23/362.jpg"><br><img src="/2023/06/29/DLS23/363.jpg"><br><img src="/2023/06/29/DLS23/364.jpg"><br><img src="/2023/06/29/DLS23/365.jpg"><br><img src="/2023/06/29/DLS23/366.jpg"><br><img src="/2023/06/29/DLS23/367.jpg"><br><img src="/2023/06/29/DLS23/368.jpg"><br><img src="/2023/06/29/DLS23/369.jpg"><br><img src="/2023/06/29/DLS23/370.jpg"><br><img src="/2023/06/29/DLS23/371.jpg"><br><img src="/2023/06/29/DLS23/372.jpg"><br><img src="/2023/06/29/DLS23/373.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS16/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS16/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS16/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img </summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS23/361.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS23/362.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS23/363.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -456,21 +257,18 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史15--红雨【2】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS15/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS15/</id>
-    <published>2023-05-01T13:58:09.572Z</published>
-    <updated>2023-04-03T02:07:06.211Z</updated>
+    <title>笛子的单恋史22--小张【22】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS22/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS22/</id>
+    <published>2023-06-29T15:36:30.222Z</published>
+    <updated>2023-06-29T15:36:30.222Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS15/01.jpg"></p><p><img src="/2023/05/01/DLS15/02.jpg"></p><p><img src="/2023/05/01/DLS15/03.jpg"></p><p><img src="/2023/05/01/DLS15/04.jpg"></p><p><img src="/2023/05/01/DLS15/05.jpg"></p><p><img src="/2023/05/01/DLS15/06.jpg"></p><p><img src="/2023/05/01/DLS15/07.jpg"></p><p><img src="/2023/05/01/DLS15/08.jpg"></p><p><img src="/2023/05/01/DLS15/09.jpg"></p><p><img src="/2023/05/01/DLS15/10.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS22/340.jpg"><br><img src="/2023/06/29/DLS22/341.jpg"><br><img src="/2023/06/29/DLS22/342.jpg"><br><img src="/2023/06/29/DLS22/343.jpg"><br><img src="/2023/06/29/DLS22/344.jpg"><br><img src="/2023/06/29/DLS22/345.jpg"><br><img src="/2023/06/29/DLS22/346.jpg"><br><img src="/2023/06/29/DLS22/347.jpg"><br><img src="/2023/06/29/DLS22/348.jpg"><br><img src="/2023/06/29/DLS22/349.jpg"><br><img src="/2023/06/29/DLS22/350.jpg"><br><img src="/2023/06/29/DLS22/351.jpg"><br><img src="/2023/06/29/DLS22/352.jpg"><br><img src="/2023/06/29/DLS22/353.jpg"><br><img src="/2023/06/29/DLS22/354.jpg"><br><img src="/2023/06/29/DLS22/355.jpg"><br><img src="/2023/06/29/DLS22/356.jpg"><br><img src="/2023/06/29/DLS22/357.jpg"><br><img src="/2023/06/29/DLS22/358.jpg"><br><img src="/2023/06/29/DLS22/359.jpg"><br><img src="/2023/06/29/DLS22/360.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS15/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS15/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS15/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img </summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS22/340.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS22/341.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS22/342.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
@@ -483,21 +281,210 @@
   </entry>
   
   <entry>
-    <title>笛子的单恋史14--红雨【1】</title>
-    <link href="https://shuoandy.github.io/2023/05/01/DLS14/"/>
-    <id>https://shuoandy.github.io/2023/05/01/DLS14/</id>
-    <published>2023-05-01T13:58:09.571Z</published>
-    <updated>2023-04-03T02:06:11.875Z</updated>
+    <title>笛子的单恋史21--小张【21】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS21/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS21/</id>
+    <published>2023-06-29T15:36:30.039Z</published>
+    <updated>2023-06-29T15:36:30.039Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2023/05/01/DLS14/01.jpg"></p><p><img src="/2023/05/01/DLS14/02.jpg"></p><p><img src="/2023/05/01/DLS14/03.jpg"></p><p><img src="/2023/05/01/DLS14/04.jpg"></p><p><img src="/2023/05/01/DLS14/05.jpg"></p><p><img src="/2023/05/01/DLS14/06.jpg"></p><p><img src="/2023/05/01/DLS14/07.jpg"></p><p><img src="/2023/05/01/DLS14/08.jpg"></p><p><img src="/2023/05/01/DLS14/09.jpg"></p><p><img src="/2023/05/01/DLS14/10.jpg"></p><p><img src="/2023/05/01/DLS14/11.jpg"></p><p><img src="/2023/05/01/DLS14/12.jpg"></p><p><img src="/2023/05/01/DLS14/13.jpg"></p><p><img src="/2023/05/01/DLS14/14.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS21/325.jpg"><br><img src="/2023/06/29/DLS21/326.jpg"><br><img src="/2023/06/29/DLS21/327.jpg"><br><img src="/2023/06/29/DLS21/328.jpg"><br><img src="/2023/06/29/DLS21/329.jpg"><br><img src="/2023/06/29/DLS21/330.jpg"><br><img src="/2023/06/29/DLS21/331.jpg"><br><img src="/2023/06/29/DLS21/332.jpg"><br><img src="/2023/06/29/DLS21/333.jpg"><br><img src="/2023/06/29/DLS21/334.jpg"><br><img src="/2023/06/29/DLS21/335.jpg"><br><img src="/2023/06/29/DLS21/336.jpg"><br><img src="/2023/06/29/DLS21/337.jpg"><br><img src="/2023/06/29/DLS21/338.jpg"><br><img src="/2023/06/29/DLS21/339.jpg"></p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS14/01.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS14/02.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2023/05/01/DLS14/03.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img </summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS21/325.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS21/326.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS21/327.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史20--小张【20】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS20/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS20/</id>
+    <published>2023-06-29T15:36:29.914Z</published>
+    <updated>2023-06-29T15:36:29.914Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS20/309.jpg"><br><img src="/2023/06/29/DLS20/310.jpg"><br><img src="/2023/06/29/DLS20/311.jpg"><br><img src="/2023/06/29/DLS20/312.jpg"><br><img src="/2023/06/29/DLS20/313.jpg"><br><img src="/2023/06/29/DLS20/314.jpg"><br><img src="/2023/06/29/DLS20/315.jpg"><br><img src="/2023/06/29/DLS20/316.jpg"><br><img src="/2023/06/29/DLS20/317.jpg"><br><img src="/2023/06/29/DLS20/318.jpg"><br><img src="/2023/06/29/DLS20/319.jpg"><br><img src="/2023/06/29/DLS20/320.jpg"><br><img src="/2023/06/29/DLS20/321.jpg"><br><img src="/2023/06/29/DLS20/322.jpg"><br><img src="/2023/06/29/DLS20/323.jpg"><br><img src="/2023/06/29/DLS20/324.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS20/309.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS20/310.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS20/311.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史19--小张【19】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS19/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS19/</id>
+    <published>2023-06-29T15:36:29.784Z</published>
+    <updated>2023-06-29T15:36:29.785Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS19/290.jpg"><br><img src="/2023/06/29/DLS19/291.jpg"><br><img src="/2023/06/29/DLS19/292.jpg"><br><img src="/2023/06/29/DLS19/293.jpg"><br><img src="/2023/06/29/DLS19/294.jpg"><br><img src="/2023/06/29/DLS19/295.jpg"><br><img src="/2023/06/29/DLS19/296.jpg"><br><img src="/2023/06/29/DLS19/297.jpg"><br><img src="/2023/06/29/DLS19/298.jpg"><br><img src="/2023/06/29/DLS19/299.jpg"><br><img src="/2023/06/29/DLS19/300.jpg"><br><img src="/2023/06/29/DLS19/301.jpg"><br><img src="/2023/06/29/DLS19/302.jpg"><br><img src="/2023/06/29/DLS19/303.jpg"><br><img src="/2023/06/29/DLS19/304.jpg"><br><img src="/2023/06/29/DLS19/305.jpg"><br><img src="/2023/06/29/DLS19/306.jpg"><br><img src="/2023/06/29/DLS19/307.jpg"><br><img src="/2023/06/29/DLS19/308.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS19/290.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS19/291.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS19/292.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史18--小张【18】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS18/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS18/</id>
+    <published>2023-06-29T15:36:29.583Z</published>
+    <updated>2023-06-29T15:36:29.583Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS18/269.jpg"><br><img src="/2023/06/29/DLS18/270.jpg"><br><img src="/2023/06/29/DLS18/271.jpg"><br><img src="/2023/06/29/DLS18/272.jpg"><br><img src="/2023/06/29/DLS18/273.jpg"><br><img src="/2023/06/29/DLS18/274.jpg"><br><img src="/2023/06/29/DLS18/275.jpg"><br><img src="/2023/06/29/DLS18/276.jpg"><br><img src="/2023/06/29/DLS18/277.jpg"><br><img src="/2023/06/29/DLS18/278.jpg"><br><img src="/2023/06/29/DLS18/279.jpg"><br><img src="/2023/06/29/DLS18/280.jpg"><br><img src="/2023/06/29/DLS18/281.jpg"><br><img src="/2023/06/29/DLS18/282.jpg"><br><img src="/2023/06/29/DLS18/283.jpg"><br><img src="/2023/06/29/DLS18/284.jpg"><br><img src="/2023/06/29/DLS18/285.jpg"><br><img src="/2023/06/29/DLS18/286.jpg"><br><img src="/2023/06/29/DLS18/287.jpg"><br><img src="/2023/06/29/DLS18/288.jpg"><br><img src="/2023/06/29/DLS18/289.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS18/269.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS18/270.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS18/271.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史17--小张【17】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS17/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS17/</id>
+    <published>2023-06-29T15:36:29.398Z</published>
+    <updated>2023-06-29T15:36:29.398Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS17/253.jpg"><br><img src="/2023/06/29/DLS17/254.jpg"><br><img src="/2023/06/29/DLS17/255.jpg"><br><img src="/2023/06/29/DLS17/256.jpg"><br><img src="/2023/06/29/DLS17/257.jpg"><br><img src="/2023/06/29/DLS17/258.jpg"><br><img src="/2023/06/29/DLS17/259.jpg"><br><img src="/2023/06/29/DLS17/260.jpg"><br><img src="/2023/06/29/DLS17/261.jpg"><br><img src="/2023/06/29/DLS17/262.jpg"><br><img src="/2023/06/29/DLS17/263.jpg"><br><img src="/2023/06/29/DLS17/264.jpg"><br><img src="/2023/06/29/DLS17/265.jpg"><br><img src="/2023/06/29/DLS17/266.jpg"><br><img src="/2023/06/29/DLS17/267.jpg"><br><img src="/2023/06/29/DLS17/268.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS17/253.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS17/254.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS17/255.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史16--小张【16】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS16/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS16/</id>
+    <published>2023-06-29T15:36:29.256Z</published>
+    <updated>2023-06-29T15:36:29.256Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS16/230.jpg"><br><img src="/2023/06/29/DLS16/231.jpg"><br><img src="/2023/06/29/DLS16/232.jpg"><br><img src="/2023/06/29/DLS16/233.jpg"><br><img src="/2023/06/29/DLS16/234.jpg"><br><img src="/2023/06/29/DLS16/235.jpg"><br><img src="/2023/06/29/DLS16/236.jpg"><br><img src="/2023/06/29/DLS16/237.jpg"><br><img src="/2023/06/29/DLS16/238.jpg"><br><img src="/2023/06/29/DLS16/239.jpg"><br><img src="/2023/06/29/DLS16/240.jpg"><br><img src="/2023/06/29/DLS16/241.jpg"><br><img src="/2023/06/29/DLS16/242.jpg"><br><img src="/2023/06/29/DLS16/243.jpg"><br><img src="/2023/06/29/DLS16/244.jpg"><br><img src="/2023/06/29/DLS16/245.jpg"><br><img src="/2023/06/29/DLS16/246.jpg"><br><img src="/2023/06/29/DLS16/247.jpg"><br><img src="/2023/06/29/DLS16/248.jpg"><br><img src="/2023/06/29/DLS16/249.jpg"><br><img src="/2023/06/29/DLS16/250.jpg"><br><img src="/2023/06/29/DLS16/251.jpg"><br><img src="/2023/06/29/DLS16/252.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS16/230.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS16/231.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS16/232.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史15--小张【15】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS15/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS15/</id>
+    <published>2023-06-29T15:36:29.037Z</published>
+    <updated>2023-06-29T15:36:29.038Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS15/219.jpg"><br><img src="/2023/06/29/DLS15/220.jpg"><br><img src="/2023/06/29/DLS15/221.jpg"><br><img src="/2023/06/29/DLS15/222.jpg"><br><img src="/2023/06/29/DLS15/223.jpg"><br><img src="/2023/06/29/DLS15/224.jpg"><br><img src="/2023/06/29/DLS15/225.jpg"><br><img src="/2023/06/29/DLS15/226.jpg"><br><img src="/2023/06/29/DLS15/227.jpg"><br><img src="/2023/06/29/DLS15/228.jpg"><br><img src="/2023/06/29/DLS15/229.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS15/219.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS15/220.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS15/221.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史14--小张【14】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS14/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS14/</id>
+    <published>2023-06-29T15:36:28.932Z</published>
+    <updated>2023-06-29T15:36:28.932Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS14/205.jpg"><br><img src="/2023/06/29/DLS14/206.jpg"><br><img src="/2023/06/29/DLS14/207.jpg"><br><img src="/2023/06/29/DLS14/208.jpg"><br><img src="/2023/06/29/DLS14/209.jpg"><br><img src="/2023/06/29/DLS14/210.jpg"><br><img src="/2023/06/29/DLS14/211.jpg"><br><img src="/2023/06/29/DLS14/212.jpg"><br><img src="/2023/06/29/DLS14/213.jpg"><br><img src="/2023/06/29/DLS14/214.jpg"><br><img src="/2023/06/29/DLS14/215.jpg"><br><img src="/2023/06/29/DLS14/216.jpg"><br><img src="/2023/06/29/DLS14/217.jpg"><br><img src="/2023/06/29/DLS14/218.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS14/205.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS14/206.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS14/207.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
+      
+    
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+    
+    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笛子的单恋史13--小张【13】</title>
+    <link href="https://shuoandy.github.io/2023/06/29/DLS13/"/>
+    <id>https://shuoandy.github.io/2023/06/29/DLS13/</id>
+    <published>2023-06-29T15:36:28.804Z</published>
+    <updated>2023-06-29T15:36:28.805Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS13/193.jpg"><br><img src="/2023/06/29/DLS13/194.jpg"><br><img src="/2023/06/29/DLS13/195.jpg"><br><img src="/2023/06/29/DLS13/196.jpg"><br><img src="/2023/06/29/DLS13/197.jpg"><br><img src="/2023/06/29/DLS13/198.jpg"><br><img src="/2023/06/29/DLS13/199.jpg"><br><img src="/2023/06/29/DLS13/200.jpg"><br><img src="/2023/06/29/DLS13/201.jpg"><br><img src="/2023/06/29/DLS13/202.jpg"><br><img src="/2023/06/29/DLS13/203.jpg"><br><img src="/2023/06/29/DLS13/204.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS13/193.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS13/194.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS13/195.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
