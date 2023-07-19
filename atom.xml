@@ -6,7 +6,7 @@
   <link href="https://shuoandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://shuoandy.github.io/"/>
-  <updated>2023-07-09T01:46:16.942Z</updated>
+  <updated>2023-07-19T00:18:41.225Z</updated>
   <id>https://shuoandy.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SAST2023笔记——Linux&amp;&amp;git相关</title>
+    <link href="https://shuoandy.github.io/2023/07/19/linux&amp;git/"/>
+    <id>https://shuoandy.github.io/2023/07/19/linux&amp;git/</id>
+    <published>2023-07-19T00:17:28.026Z</published>
+    <updated>2023-07-19T00:18:41.225Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul><li><p>在Linux的根目录下有很多文件（并且他们可能需要我们手动修改！）例如etc文件夹：正如其名，这个目录的意思就是一些杂七杂八的配置文件。例如其中的etc&#x2F;passwd是用户数据库，其中的域给出了用户名、真实姓名、家目录、加密的口令和用户的其他信息【例如w:x1000:1000:Andyshuo:&#x2F;home&#x2F;w:&#x2F;bin&#x2F;bash这一行就代表了用户”w”的存在】。</p></li><li><p>如果使用的命令行shell是bash，那么修改代理的时候要用到nano ~.&#x2F;bashrc；如果使用的命令行shell是zsh，那么修改代理的时候要用到nano ~.&#x2F;zshrc，然后在这个文件的最后引入配置的http或者https端口。个人认为nano比vim要更好用一些（没有乱七八糟的神奇操作要求）。</p></li><li><p>命名中以”.”开头的Linux文件（比如”.hidden”）无法用<code>ls</code>命令看到，但是可以用<code>ls -a</code>强制看到这些隐藏文件。</p></li><li><p>linux还有很多神奇的命令…例如：（你说得对，但我选择直接问chatgpt）</p></li></ul><table><thead><tr><th align="center">Command</th><th align="center">Description</th></tr></thead><tbody><tr><td align="center"><strong>目录相关</strong></td><td align="center"></td></tr><tr><td align="center">pwd</td><td align="center">当前目录</td></tr><tr><td align="center">cd</td><td align="center">切换目录</td></tr><tr><td align="center">ls</td><td align="center">查看目录列表</td></tr><tr><td align="center">mkdir</td><td align="center">创建目录</td></tr><tr><td align="center">find</td><td align="center">在层级目录下搜索文件</td></tr><tr><td align="center"><strong>文件相关</strong></td><td align="center"></td></tr><tr><td align="center">touch</td><td align="center">创建</td></tr><tr><td align="center">mv</td><td align="center">移动（可用于重命名）</td></tr><tr><td align="center">cp</td><td align="center">拷贝</td></tr><tr><td align="center">rm</td><td align="center">删除</td></tr><tr><td align="center">chmod</td><td align="center">更改文件权限</td></tr><tr><td align="center">chown</td><td align="center">更改文件所属</td></tr><tr><td align="center">echo</td><td align="center">输出提供的文本</td></tr><tr><td align="center">file</td><td align="center">查看文件类型</td></tr><tr><td align="center">cat</td><td align="center">将文件内容输出到标准输出</td></tr><tr><td align="center"><strong>用户和组相关</strong></td><td align="center"></td></tr><tr><td align="center">useradd</td><td align="center">创建用户</td></tr><tr><td align="center">groupadd</td><td align="center">创建组</td></tr><tr><td align="center">passwd</td><td align="center">更改密码</td></tr><tr><td align="center">chpasswd</td><td align="center">批量更改密码</td></tr><tr><td align="center">su</td><td align="center">一般用于切换用户</td></tr></tbody></table><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>首先给大家推荐一下学习git的网站： <a href="https://learngitbranching.js.org/?locale=zh_CN">https://learngitbranching.js.org/?locale=zh_CN</a> （可能是最好的git教学网站——核心就是git branch其实只是指向版本的指针而已，并不会多占很多内存，多多益善），然后推荐大家在vscode中安装git graph来图形化git分支，体验会良好很多。</p><p>直到现在我才明白分离分支究竟是什么意思：大致来说，正常操作下我们的HEAD指针都是指向某个分支的（例如master），我们的commit 或者reset操作都会使该分支一同前进&#x2F;回退。但假如强行切换到一个“野”版本（例如git checkout a4d2），那么现在就不会指向任何指针了。另外要说明的是，以后最好用git switch而不是git checkout（据说后者有可能在未来的版本被废除）、并且上文的a4d2指的是某一个版本的哈希值（一般取前四位即可定位）。</p><p>这次暑培还让我学到了一些新的实用命令，比如：</p><ul><li><code>git blame</code>：可以检查每一行代码究竟是谁最后一次提交的，这样出了bug就能知道是谁搞的了。</li><li><code>git bisect</code>：如果你的当前版本有bug，而之前有一个很久远的版本没有bug，那么使用该命令吧！该命令可以二分查找究竟是哪次commit导致了bug的出现。一开始需要用<code>git bisect start [终点][起点]</code>来查找起点和终点的中位点（并且还会贴心地直接帮你切换到这个中位点版本）。此时你需要运行当前的版本来肉眼查看该版本是否有bug。如果有，那么运行<code> git bisect bad</code>，git会直接帮你切换到起点和当前版本的中位点版本；如果没有，那么运行<code> git bisect good</code>，git会直接帮你切换到终点和当前版本的中位点版本。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;Linux&quot;&gt;&lt;a href=&quot;#Linux&quot; class=&quot;headerlink&quot; title=&quot;Linux&quot;&gt;&lt;/a&gt;Linux&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在Linux的根目录下有很多文件（并且他们可能需要我们手动修改！）例如etc文件夹：正如其名，这个</summary>
+      
+    
+    
+    
+    <category term="git" scheme="https://shuoandy.github.io/categories/git/"/>
+    
+    
+    <category term="git" scheme="https://shuoandy.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>利用github部署博客/文档</title>
@@ -461,30 +486,6 @@
       
       
     <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS15/219.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS15/220.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS15/221.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
-      
-    
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛子的单恋史14--小张【14】</title>
-    <link href="https://shuoandy.github.io/2023/06/29/DLS14/"/>
-    <id>https://shuoandy.github.io/2023/06/29/DLS14/</id>
-    <published>2023-06-29T15:36:28.932Z</published>
-    <updated>2023-06-29T15:36:28.932Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS14/205.jpg"><br><img src="/2023/06/29/DLS14/206.jpg"><br><img src="/2023/06/29/DLS14/207.jpg"><br><img src="/2023/06/29/DLS14/208.jpg"><br><img src="/2023/06/29/DLS14/209.jpg"><br><img src="/2023/06/29/DLS14/210.jpg"><br><img src="/2023/06/29/DLS14/211.jpg"><br><img src="/2023/06/29/DLS14/212.jpg"><br><img src="/2023/06/29/DLS14/213.jpg"><br><img src="/2023/06/29/DLS14/214.jpg"><br><img src="/2023/06/29/DLS14/215.jpg"><br><img src="/2023/06/29/DLS14/216.jpg"><br><img src="/2023/06/29/DLS14/217.jpg"><br><img src="/2023/06/29/DLS14/218.jpg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS14/205.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS14/206.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS14/207.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
       
     
     
