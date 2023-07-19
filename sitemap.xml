@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://shuoandy.github.io/2023/05/01/dsa/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://shuoandy.github.io/2023/07/19/linux&git/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://shuoandy.github.io/2023/06/10/wy/</loc>
     
     <lastmod>2023-07-19</lastmod>
     
@@ -13,7 +31,16 @@
   <url>
     <loc>https://shuoandy.github.io/2023/07/07/github_pages/</loc>
     
-    <lastmod>2023-07-09</lastmod>
+    <lastmod>2023-07-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://shuoandy.github.io/2023/05/01/blog/</loc>
+    
+    <lastmod>2023-07-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -317,15 +344,6 @@
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/2023/06/10/wy/</loc>
-    
-    <lastmod>2023-06-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://shuoandy.github.io/categories/index.html</loc>
     
     <lastmod>2023-06-12</lastmod>
@@ -347,24 +365,6 @@
     <loc>https://shuoandy.github.io/tags/index.html</loc>
     
     <lastmod>2023-06-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://shuoandy.github.io/2023/05/01/dsa/</loc>
-    
-    <lastmod>2023-06-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://shuoandy.github.io/2023/05/01/blog/</loc>
-    
-    <lastmod>2023-06-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -412,6 +412,13 @@
   </url>
   
   <url>
+    <loc>https://shuoandy.github.io/tags/linux/</loc>
+    <lastmod>2023-07-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://shuoandy.github.io/tags/THU-course/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -428,21 +435,7 @@
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2023-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://shuoandy.github.io/categories/THU-course/</loc>
-    <lastmod>2023-07-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://shuoandy.github.io/categories/git/</loc>
+    <loc>https://shuoandy.github.io/categories/coding/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

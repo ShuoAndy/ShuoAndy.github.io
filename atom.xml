@@ -6,7 +6,7 @@
   <link href="https://shuoandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://shuoandy.github.io/"/>
-  <updated>2023-07-19T00:18:41.225Z</updated>
+  <updated>2023-07-19T00:56:50.110Z</updated>
   <id>https://shuoandy.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://shuoandy.github.io/2023/07/19/linux&amp;git/"/>
     <id>https://shuoandy.github.io/2023/07/19/linux&amp;git/</id>
     <published>2023-07-19T00:17:28.026Z</published>
-    <updated>2023-07-19T00:18:41.225Z</updated>
+    <updated>2023-07-19T00:56:50.110Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul><li><p>在Linux的根目录下有很多文件（并且他们可能需要我们手动修改！）例如etc文件夹：正如其名，这个目录的意思就是一些杂七杂八的配置文件。例如其中的etc&#x2F;passwd是用户数据库，其中的域给出了用户名、真实姓名、家目录、加密的口令和用户的其他信息【例如w:x1000:1000:Andyshuo:&#x2F;home&#x2F;w:&#x2F;bin&#x2F;bash这一行就代表了用户”w”的存在】。</p></li><li><p>如果使用的命令行shell是bash，那么修改代理的时候要用到nano ~.&#x2F;bashrc；如果使用的命令行shell是zsh，那么修改代理的时候要用到nano ~.&#x2F;zshrc，然后在这个文件的最后引入配置的http或者https端口。个人认为nano比vim要更好用一些（没有乱七八糟的神奇操作要求）。</p></li><li><p>命名中以”.”开头的Linux文件（比如”.hidden”）无法用<code>ls</code>命令看到，但是可以用<code>ls -a</code>强制看到这些隐藏文件。</p></li><li><p>linux还有很多神奇的命令…例如：（你说得对，但我选择直接问chatgpt）</p></li></ul><table><thead><tr><th align="center">Command</th><th align="center">Description</th></tr></thead><tbody><tr><td align="center"><strong>目录相关</strong></td><td align="center"></td></tr><tr><td align="center">pwd</td><td align="center">当前目录</td></tr><tr><td align="center">cd</td><td align="center">切换目录</td></tr><tr><td align="center">ls</td><td align="center">查看目录列表</td></tr><tr><td align="center">mkdir</td><td align="center">创建目录</td></tr><tr><td align="center">find</td><td align="center">在层级目录下搜索文件</td></tr><tr><td align="center"><strong>文件相关</strong></td><td align="center"></td></tr><tr><td align="center">touch</td><td align="center">创建</td></tr><tr><td align="center">mv</td><td align="center">移动（可用于重命名）</td></tr><tr><td align="center">cp</td><td align="center">拷贝</td></tr><tr><td align="center">rm</td><td align="center">删除</td></tr><tr><td align="center">chmod</td><td align="center">更改文件权限</td></tr><tr><td align="center">chown</td><td align="center">更改文件所属</td></tr><tr><td align="center">echo</td><td align="center">输出提供的文本</td></tr><tr><td align="center">file</td><td align="center">查看文件类型</td></tr><tr><td align="center">cat</td><td align="center">将文件内容输出到标准输出</td></tr><tr><td align="center"><strong>用户和组相关</strong></td><td align="center"></td></tr><tr><td align="center">useradd</td><td align="center">创建用户</td></tr><tr><td align="center">groupadd</td><td align="center">创建组</td></tr><tr><td align="center">passwd</td><td align="center">更改密码</td></tr><tr><td align="center">chpasswd</td><td align="center">批量更改密码</td></tr><tr><td align="center">su</td><td align="center">一般用于切换用户</td></tr></tbody></table><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>首先给大家推荐一下学习git的网站： <a href="https://learngitbranching.js.org/?locale=zh_CN">https://learngitbranching.js.org/?locale=zh_CN</a> （可能是最好的git教学网站——核心就是git branch其实只是指向版本的指针而已，并不会多占很多内存，多多益善），然后推荐大家在vscode中安装git graph来图形化git分支，体验会良好很多。</p><p>直到现在我才明白分离分支究竟是什么意思：大致来说，正常操作下我们的HEAD指针都是指向某个分支的（例如master），我们的commit 或者reset操作都会使该分支一同前进&#x2F;回退。但假如强行切换到一个“野”版本（例如git checkout a4d2），那么现在就不会指向任何指针了。另外要说明的是，以后最好用git switch而不是git checkout（据说后者有可能在未来的版本被废除）、并且上文的a4d2指的是某一个版本的哈希值（一般取前四位即可定位）。</p><p>这次暑培还让我学到了一些新的实用命令，比如：</p><ul><li><code>git blame</code>：可以检查每一行代码究竟是谁最后一次提交的，这样出了bug就能知道是谁搞的了。</li><li><code>git bisect</code>：如果你的当前版本有bug，而之前有一个很久远的版本没有bug，那么使用该命令吧！该命令可以二分查找究竟是哪次commit导致了bug的出现。一开始需要用<code>git bisect start [终点][起点]</code>来查找起点和终点的中位点（并且还会贴心地直接帮你切换到这个中位点版本）。此时你需要运行当前的版本来肉眼查看该版本是否有bug。如果有，那么运行<code> git bisect bad</code>，git会直接帮你切换到起点和当前版本的中位点版本；如果没有，那么运行<code> git bisect good</code>，git会直接帮你切换到终点和当前版本的中位点版本。</li></ul>]]></content>
     
@@ -34,10 +34,12 @@
     
     
     
-    <category term="git" scheme="https://shuoandy.github.io/categories/git/"/>
+    <category term="coding" scheme="https://shuoandy.github.io/categories/coding/"/>
     
     
     <category term="git" scheme="https://shuoandy.github.io/tags/git/"/>
+    
+    <category term="linux" scheme="https://shuoandy.github.io/tags/linux/"/>
     
   </entry>
   
@@ -46,7 +48,7 @@
     <link href="https://shuoandy.github.io/2023/07/07/github_pages/"/>
     <id>https://shuoandy.github.io/2023/07/07/github_pages/</id>
     <published>2023-07-07T08:10:36.557Z</published>
-    <updated>2023-07-09T01:46:16.942Z</updated>
+    <updated>2023-07-19T00:56:46.568Z</updated>
     
     <content type="html"><![CDATA[<p>今天来浅谈一下我对github.io和CICD的一些理解（不会有人上完软工还不会CICD吧.jpg）。虽然我早已用到了这些东西，但原理一直都没有试图弄懂过。<br>似乎github.io就是git page，它“可以展示你的项目及项目网站的托管工具，可以理解为免费的阿里云等服务器”。</p><h3 id="关于github-pages"><a href="#关于github-pages" class="headerlink" title="关于github pages"></a>关于github pages</h3><p>推荐大家直接去看官方文档：<a href="https://docs.github.com/zh/pages/getting-started-with-github-pages/about-github-pages">https://docs.github.com/zh/pages/getting-started-with-github-pages/about-github-pages</a> （那我还在这说个屁）。</p><p>这里摘要一些我能理解的部分：github pages的站点分为用户站点&#x2F;项目站点&#x2F;组织站点。</p><p>用户站点&#x2F;组织站点每个用户只能有一个，这也是为什么大家都把用户站点当作博客的原因。用户站点的创造方式非常固定：仓库名必须为<code>&lt;username&gt;.github.io</code>（比如我的就是<code>ShuoAndy.github.io</code>）。除非使用的是自定义域（就像我之前买了个九块钱的域名一样），否则用户站点的url都是<code>http(s)://&lt;username&gt;.github.io</code>（比如<code>https://shuoandy.github.io</code>）。购买自定义域名之后可以在settings的git pages里的Custom domain中设定。事实上即便有了自定义域，这个默认的url也可以正确访问站点。</p><p>对于项目站点，每个用户可以有很多个，仓库名也可以随便取（比如我的five_is_worth_two文档就是项目站点）。除非使用的是自定义域，否则项目站点的url都是 <code>http(s)://&lt;username&gt;.github.io/&lt;repository&gt;</code>（比如<code>https://shuoandy.github.io/five_is_worth_two</code>）。【对于mkdocs来说，记得去settings的git pages将分支设置为gh-pages。】</p><br><h3 id="github-workflow（工作流）"><a href="#github-workflow（工作流）" class="headerlink" title="github workflow（工作流）"></a>github workflow（工作流）</h3><p>在github中，actions的配置文件位于<code>.github/workflows/</code>目录下（是的这个目录名是固定的，不要打错字），文件名可以随便取，但后缀名必须为<code>.yml</code>或者<code>.yaml</code>。文件具体的配置字段如下（以Andy的软工文档为例）：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">name: ci </span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - main</span><br><span class="line">permissions:</span><br><span class="line">  contents: write</span><br><span class="line">jobs:</span><br><span class="line">  deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - uses: actions/checkout@v3</span><br><span class="line">      - uses: actions/setup-python@v4</span><br><span class="line">        with:</span><br><span class="line">          python-version: 3.x</span><br><span class="line">      - uses: actions/cache@v2</span><br><span class="line">        with:</span><br><span class="line">          key: $&#123;&#123; github.ref &#125;&#125;</span><br><span class="line">          path: .cache</span><br><span class="line">      - run: pip install mkdocs-material </span><br><span class="line">      - run: mkdocs gh-deploy --force</span><br></pre></td></tr></table></figure><ul><li><p>name指这个工作流的名字，缺省值是这个文件的名字。</p></li><li><p>on是指定触发workflow的条件，例如这里是当git push了main分支之后会触发一系列的工作流。【Andy一开始没注意这个字段，导致push的一直是master分支而这里写的是main分支，结果一直没有触发工作流…】</p></li><li><p>permissions是工作流对本仓库的权限，不再赘述。</p></li><li><p>jobs是工作流的所有任务，其中runs-on指定了镜像的运行系统，相当于github在云端提供了一个虚拟机，这里用到了ubuntu-latest（网上说是ubuntu-18.04或ubuntu-16.04）；steps指定了这个任务的所有步骤，uses都是预定义的工作流程步骤，例如actions&#x2F;checkout@v3是将代码库放置在工作流的工作目录中；run就是具体的命令了，例如安装material主题（因为它不是mkdocs自带的主题）。</p></li></ul><br>]]></content>
     
@@ -58,7 +60,7 @@
     
     
     
-    <category term="git操作" scheme="https://shuoandy.github.io/categories/git%E6%93%8D%E4%BD%9C/"/>
+    <category term="coding" scheme="https://shuoandy.github.io/categories/coding/"/>
     
     
     <category term="git" scheme="https://shuoandy.github.io/tags/git/"/>
