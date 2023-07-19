@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://shuoandy.github.io/2023/05/01/dsa/</loc>
+    <loc>https://shuoandy.github.io/2023/07/19/linux&git/</loc>
     
     <lastmod>2023-07-19</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/2023/07/19/linux&git/</loc>
+    <loc>https://shuoandy.github.io/2023/05/01/dsa/</loc>
     
     <lastmod>2023-07-19</lastmod>
     
@@ -412,14 +412,14 @@
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/tags/linux/</loc>
+    <loc>https://shuoandy.github.io/tags/THU-course/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://shuoandy.github.io/tags/THU-course/</loc>
+    <loc>https://shuoandy.github.io/tags/linux/</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
