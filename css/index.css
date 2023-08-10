@@ -5976,3 +5976,10 @@ blockquote.pullquote.right {
 .read-mode #article-container .note .note-icon {
   color: var(--font-color);
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #000080;
+}

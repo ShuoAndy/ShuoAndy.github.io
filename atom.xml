@@ -6,7 +6,7 @@
   <link href="https://shuoandy.github.io/atom.xml" rel="self"/>
   
   <link href="https://shuoandy.github.io/"/>
-  <updated>2023-07-19T09:10:45.558Z</updated>
+  <updated>2023-08-10T16:16:14.183Z</updated>
   <id>https://shuoandy.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>SAST2023笔记——Linux&amp;&amp;git相关</title>
+    <title>SAST2023笔记——Docker相关</title>
+    <link href="https://shuoandy.github.io/2023/08/10/docker/"/>
+    <id>https://shuoandy.github.io/2023/08/10/docker/</id>
+    <published>2023-08-10T14:43:24.605Z</published>
+    <updated>2023-08-10T16:16:14.183Z</updated>
+    
+    <content type="html"><![CDATA[<p>我对docker是从零入手，就让我从头讲一讲docker大概是个什么东西吧…</p><h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><p>几乎所有码农都有过配环境的痛苦经历…这个包下不了那个包不兼容，可能还会因为操作系统的差别有非常难解决的bug…天下苦配环境久矣，那么有没有什么解决的办法呢？最无脑（先不考虑是否可行）的办法自然是建个虚拟机，把操作系统、运行环境的所有东西全打包给用户。然而显然正常电脑都不会喜欢大几十个GB的虚拟机，于是我们尝试只虚拟<strong>软件环境</strong>，docker这个轻量级的虚拟化技术也就孕育而生：它试图将应用放在容器container上运行。一般来说容器是MB级别的，对运行很友好。</p><h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>Docker有两个重要的概念：容器container和镜像image。镜像是静态定义的，而容器是动态存在的；说人话就是镜像和容器的关系类似于类和实例的关系，我们可以利用镜像创造容器。我们需要先构建一个镜像，再以此构建容器并运行。</p><p>docker hub中有很多我们现成可用的镜像，比如scratch（空镜像），python，gcc等。docker hub可以集中存储并分发镜像，我们称这种服务为<strong>注册服务</strong>。值得一提的是，每个镜像都形如&lt;镜像名&gt;:&lt;标签&gt;，标签指版本（默认值为latest），例如alpine:latest。</p><h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><h3 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h3><p>首先，在linux系统下安装docker的命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export DOWNLOAD_URL=&quot;https://mirrors.tuna.tsinghua.edu.cn/docker-ce&quot; # </span><br><span class="line">curl -fsSL https://get.docker.com/ | sudo -E sh</span><br></pre></td></tr></table></figure><p>请注意，这些命令可能需要root用户的权限。由于我一直使用的就是root所以没有出什么问题；倘若不然，那么你可能需要将你的用户添加到 docker 用户组中。在此之后运行<code>docker service start</code>即可。</p><h3 id="docker-run"><a href="#docker-run" class="headerlink" title="docker run"></a>docker run</h3><p>那么让我们先试试利用现成的镜像：试试运行命令<code>docker run --name test alpine echo &#39;Hello, world!&#39;</code>。该命令意为通过镜像alpine（默认标签为latest，所以其实应该是alpine:latest）构建一个名为test的容器，并运行命令echo ‘Hello, world!’来输出Hello, world!。首先docker会试图在本地寻找alpine镜像，找不到便会去注册服务下载该镜像；然后它会根据参数–name test创造一个名为test的容器并运行命令（如果没有参数–name则会随机赋予一个没什么意义的有趣英文名字，比如laughing_hermann）。请注意，所有参数都应放在镜像名前面（比如–name test应该在alpine前面）。</p><p><strong>ps：初学者可以在vscode中下载拓展包docker，这样可以可视化本地镜像和容器</strong></p><h3 id="docker-build"><a href="#docker-build" class="headerlink" title="docker build"></a>docker build</h3><p>很好！那么让我们来试一试自行构建一个镜像，让我们创造一个名为Dockerfile的文件（跟git中类似，虽然可以修改这个神奇文件的默认名，但大家基本还是会用这个固定的文件名，不要打错），然后将下列代码粘贴进去：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FROM alpine</span><br><span class="line"></span><br><span class="line">CMD [&quot;echo&quot;, &quot;Hello, world!&quot;]</span><br></pre></td></tr></table></figure><p>然后我们运行命令<code>docker build -f &lt;path_to_Dockerfile&gt; -t hello:hello .</code>。该命令意为用给出路径的Dockerfile，也就是基于alpine镜像构建一个名为hello、标签为hello的镜像（如果没有参数-f那么默认在当前目录寻找Dockerfile文件），并且命令最后的’.’代表dockerfile中COPY的文件路径为当前路径（回忆linux中’.’代表当前目录，而’..’代表上一级目录）。我们会发现此时已经成功创建hello:hello镜像。效仿上面的命令，我们再运行<code>docker run --rm hello:hello</code>来输出Hello, world!，其中–rm指的是这个容器运行完毕会立刻删除。</p><h3 id="多阶段构建"><a href="#多阶段构建" class="headerlink" title="多阶段构建"></a>多阶段构建</h3><p>很好！那么让我们来试一下真的配置c++或者python的容器。例如创建一个main.cpp并粘贴下列代码：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using std::cout, std::endl;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    cout &lt;&lt; &quot;Hello, world!&quot; &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>然后在Dockerfile中写到：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM gcc AS build</span><br><span class="line"></span><br><span class="line">COPY main.cpp .</span><br><span class="line"></span><br><span class="line">RUN g++ main.cpp -o main -static</span><br><span class="line"></span><br><span class="line">FROM scratch</span><br><span class="line"></span><br><span class="line">COPY --from=build main .</span><br><span class="line"></span><br><span class="line">CMD [&quot;./main&quot;]</span><br></pre></td></tr></table></figure><p>此时的Dockerfile会令人有些困惑：为什么既基于gcc又基于scratch来创造这个镜像？那不就乱套了吗？事实上这是“多阶段构建”，因为假如直接基于gcc构建新镜像，那么因为gcc实在是太大了，最终我们的镜像会有1个多GB…事实上我们根本不需要gcc的内容，只是想利用它预处理、编译、汇编、链接出可执行文件main而已。所以我们将gcc看作工具人，制作出main就可以丢掉了，再次利用FROM scratch将空镜像作为基础镜像即可。默认将gcc构建过程视为过程0，我们可以用COPY –from&#x3D;0 main .来利用这个过程的文件；我们也可以像这里一样为构建过程命名为build，然后用COPY –from&#x3D;build main .来引用。请注意，多阶段构建的基础镜像永远是最后一个FROM。</p><p>对于python文件，配置过程就肉眼可见的复杂了一些…由于解释型语言的特殊性（你说得对，我选择编译型），我们需要安装一坨东西，这里给出一个示例Dockerfile：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FROM python</span><br><span class="line"></span><br><span class="line">WORKDIR /app</span><br><span class="line"></span><br><span class="line">COPY requirements.txt .</span><br><span class="line"></span><br><span class="line">RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir -r requirements.txt \</span><br><span class="line">    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --no-cache-dir uwsgi &amp;&amp; \</span><br><span class="line">    mkdir -p config</span><br><span class="line"></span><br><span class="line">COPY . .</span><br><span class="line"></span><br><span class="line">EXPOSE 80</span><br><span class="line"></span><br><span class="line">CMD [&quot;/bin/sh&quot;, &quot;start.sh&quot;]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;我对docker是从零入手，就让我从头讲一讲docker大概是个什么东西吧…&lt;/p&gt;
+&lt;h2 id=&quot;Why&quot;&gt;&lt;a href=&quot;#Why&quot; class=&quot;headerlink&quot; title=&quot;Why&quot;&gt;&lt;/a&gt;Why&lt;/h2&gt;&lt;p&gt;几乎所有码农都有过配环境的痛苦经历…这个</summary>
+      
+    
+    
+    
+    <category term="Code" scheme="https://shuoandy.github.io/categories/Code/"/>
+    
+    
+    <category term="docker" scheme="https://shuoandy.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SAST2023笔记——Linux&amp;&amp;Git相关</title>
     <link href="https://shuoandy.github.io/2023/07/19/linux&amp;git/"/>
     <id>https://shuoandy.github.io/2023/07/19/linux&amp;git/</id>
     <published>2023-07-19T00:17:28.026Z</published>
-    <updated>2023-07-19T09:10:45.558Z</updated>
+    <updated>2023-08-10T14:52:08.495Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ul><li><p>在Linux的根目录下有很多文件（并且他们可能需要我们手动修改！）例如etc文件夹：正如其名，这个目录的意思就是一些杂七杂八的配置文件。例如其中的etc&#x2F;passwd是用户数据库，其中的域给出了用户名、真实姓名、家目录、加密的口令和用户的其他信息【例如train:x:1000:1000::&#x2F;home&#x2F;train:&#x2F;usr&#x2F;bin&#x2F;zsh这一行就代表了用户”train”的存在】。</p></li><li><p>如果使用的命令行shell是bash，那么修改代理的时候要用到nano ~.&#x2F;bashrc；如果使用的命令行shell是zsh，那么修改代理的时候要用到nano ~.&#x2F;zshrc，然后在这个文件的最后引入配置的http或者https端口。个人认为nano比vim要更好用一些（没有乱七八糟的神奇操作要求）。</p></li><li><p>命名中以”.”开头的Linux文件（比如”.hidden”）无法用<code>ls</code>命令看到，但是可以用<code>ls -a</code>强制看到这些隐藏文件。</p></li><li><p>linux还有很多神奇的命令…例如：（你说得对，但我选择直接问chatgpt）</p></li></ul><table><thead><tr><th align="center">Command</th><th align="center">Description</th></tr></thead><tbody><tr><td align="center"><strong>目录相关</strong></td><td align="center"></td></tr><tr><td align="center">pwd</td><td align="center">当前目录</td></tr><tr><td align="center">cd</td><td align="center">切换目录</td></tr><tr><td align="center">ls</td><td align="center">查看目录列表</td></tr><tr><td align="center">mkdir</td><td align="center">创建目录</td></tr><tr><td align="center">find</td><td align="center">在层级目录下搜索文件</td></tr><tr><td align="center"><strong>文件相关</strong></td><td align="center"></td></tr><tr><td align="center">touch</td><td align="center">创建</td></tr><tr><td align="center">mv</td><td align="center">移动（可用于重命名）</td></tr><tr><td align="center">cp</td><td align="center">拷贝</td></tr><tr><td align="center">rm</td><td align="center">删除</td></tr><tr><td align="center">chmod</td><td align="center">更改文件权限</td></tr><tr><td align="center">chown</td><td align="center">更改文件所属</td></tr><tr><td align="center">echo</td><td align="center">输出提供的文本</td></tr><tr><td align="center">file</td><td align="center">查看文件类型</td></tr><tr><td align="center">cat</td><td align="center">将文件内容输出到标准输出</td></tr><tr><td align="center"><strong>用户和组相关</strong></td><td align="center"></td></tr><tr><td align="center">useradd</td><td align="center">创建用户</td></tr><tr><td align="center">groupadd</td><td align="center">创建组</td></tr><tr><td align="center">passwd</td><td align="center">更改密码</td></tr><tr><td align="center">chpasswd</td><td align="center">批量更改密码</td></tr><tr><td align="center">su</td><td align="center">一般用于切换用户</td></tr></tbody></table><h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>首先给大家推荐一下学习git的网站： <a href="https://learngitbranching.js.org/?locale=zh_CN">https://learngitbranching.js.org/?locale=zh_CN</a> （可能是最好的git教学网站——核心就是git branch其实只是指向版本的指针而已，并不会多占很多内存，多多益善），然后推荐大家在vscode中安装git graph来图形化git分支，体验会良好很多。</p><p>直到现在我才明白分离分支究竟是什么意思：大致来说，正常操作下我们的HEAD指针都是指向某个分支的（例如master），我们的commit 或者reset操作都会使该分支一同前进&#x2F;回退。但假如强行切换到一个“野”版本（例如git checkout a4d2），那么现在就不会指向任何指针了。另外要说明的是，以后最好用git switch而不是git checkout（据说后者有可能在未来的版本被废除）、并且上文的a4d2指的是某一个版本的哈希值（一般取前四位即可定位）。</p><p>这次暑培还让我学到了一些新的实用命令，比如：</p><ul><li><code>git blame</code>：可以检查每一行代码究竟是谁最后一次提交的，这样出了bug就能知道是谁搞的了。</li><li><code>git bisect</code>：如果你的当前版本有bug，而之前有一个很久远的版本没有bug，那么使用该命令吧！该命令可以二分查找究竟是哪次commit导致了bug的出现。一开始需要用<code>git bisect start [终点][起点]</code>来查找起点和终点的中位点（并且还会贴心地直接帮你切换到这个中位点版本）。此时你需要运行当前的版本来肉眼查看该版本是否有bug。如果有，那么运行<code> git bisect bad</code>，git会直接帮你切换到起点和当前版本的中位点版本；如果没有，那么运行<code> git bisect good</code>，git会直接帮你切换到终点和当前版本的中位点版本。</li></ul>]]></content>
     
@@ -34,7 +59,7 @@
     
     
     
-    <category term="coding" scheme="https://shuoandy.github.io/categories/coding/"/>
+    <category term="Code" scheme="https://shuoandy.github.io/categories/Code/"/>
     
     
     <category term="git" scheme="https://shuoandy.github.io/tags/git/"/>
@@ -48,7 +73,7 @@
     <link href="https://shuoandy.github.io/2023/07/07/github_pages/"/>
     <id>https://shuoandy.github.io/2023/07/07/github_pages/</id>
     <published>2023-07-07T08:10:36.557Z</published>
-    <updated>2023-07-19T00:56:46.568Z</updated>
+    <updated>2023-08-10T14:52:08.496Z</updated>
     
     <content type="html"><![CDATA[<p>今天来浅谈一下我对github.io和CICD的一些理解（不会有人上完软工还不会CICD吧.jpg）。虽然我早已用到了这些东西，但原理一直都没有试图弄懂过。<br>似乎github.io就是git page，它“可以展示你的项目及项目网站的托管工具，可以理解为免费的阿里云等服务器”。</p><h3 id="关于github-pages"><a href="#关于github-pages" class="headerlink" title="关于github pages"></a>关于github pages</h3><p>推荐大家直接去看官方文档：<a href="https://docs.github.com/zh/pages/getting-started-with-github-pages/about-github-pages">https://docs.github.com/zh/pages/getting-started-with-github-pages/about-github-pages</a> （那我还在这说个屁）。</p><p>这里摘要一些我能理解的部分：github pages的站点分为用户站点&#x2F;项目站点&#x2F;组织站点。</p><p>用户站点&#x2F;组织站点每个用户只能有一个，这也是为什么大家都把用户站点当作博客的原因。用户站点的创造方式非常固定：仓库名必须为<code>&lt;username&gt;.github.io</code>（比如我的就是<code>ShuoAndy.github.io</code>）。除非使用的是自定义域（就像我之前买了个九块钱的域名一样），否则用户站点的url都是<code>http(s)://&lt;username&gt;.github.io</code>（比如<code>https://shuoandy.github.io</code>）。购买自定义域名之后可以在settings的git pages里的Custom domain中设定。事实上即便有了自定义域，这个默认的url也可以正确访问站点。</p><p>对于项目站点，每个用户可以有很多个，仓库名也可以随便取（比如我的five_is_worth_two文档就是项目站点）。除非使用的是自定义域，否则项目站点的url都是 <code>http(s)://&lt;username&gt;.github.io/&lt;repository&gt;</code>（比如<code>https://shuoandy.github.io/five_is_worth_two</code>）。【对于mkdocs来说，记得去settings的git pages将分支设置为gh-pages。】</p><br><h3 id="github-workflow（工作流）"><a href="#github-workflow（工作流）" class="headerlink" title="github workflow（工作流）"></a>github workflow（工作流）</h3><p>在github中，actions的配置文件位于<code>.github/workflows/</code>目录下（是的这个目录名是固定的，不要打错字），文件名可以随便取，但后缀名必须为<code>.yml</code>或者<code>.yaml</code>。文件具体的配置字段如下（以Andy的软工文档为例）：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">name: ci </span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches:</span><br><span class="line">      - main</span><br><span class="line">permissions:</span><br><span class="line">  contents: write</span><br><span class="line">jobs:</span><br><span class="line">  deploy:</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line">    steps:</span><br><span class="line">      - uses: actions/checkout@v3</span><br><span class="line">      - uses: actions/setup-python@v4</span><br><span class="line">        with:</span><br><span class="line">          python-version: 3.x</span><br><span class="line">      - uses: actions/cache@v2</span><br><span class="line">        with:</span><br><span class="line">          key: $&#123;&#123; github.ref &#125;&#125;</span><br><span class="line">          path: .cache</span><br><span class="line">      - run: pip install mkdocs-material </span><br><span class="line">      - run: mkdocs gh-deploy --force</span><br></pre></td></tr></table></figure><ul><li><p>name指这个工作流的名字，缺省值是这个文件的名字。</p></li><li><p>on是指定触发workflow的条件，例如这里是当git push了main分支之后会触发一系列的工作流。【Andy一开始没注意这个字段，导致push的一直是master分支而这里写的是main分支，结果一直没有触发工作流…】</p></li><li><p>permissions是工作流对本仓库的权限，不再赘述。</p></li><li><p>jobs是工作流的所有任务，其中runs-on指定了镜像的运行系统，相当于github在云端提供了一个虚拟机，这里用到了ubuntu-latest（网上说是ubuntu-18.04或ubuntu-16.04）；steps指定了这个任务的所有步骤，uses都是预定义的工作流程步骤，例如actions&#x2F;checkout@v3是将代码库放置在工作流的工作目录中；run就是具体的命令了，例如安装material主题（因为它不是mkdocs自带的主题）。</p></li></ul><br>]]></content>
     
@@ -60,7 +85,7 @@
     
     
     
-    <category term="coding" scheme="https://shuoandy.github.io/categories/coding/"/>
+    <category term="Code" scheme="https://shuoandy.github.io/categories/Code/"/>
     
     
     <category term="git" scheme="https://shuoandy.github.io/tags/git/"/>
@@ -72,7 +97,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS32/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS32/</id>
     <published>2023-06-29T15:36:31.640Z</published>
-    <updated>2023-06-29T15:36:31.642Z</updated>
+    <updated>2023-08-10T14:53:29.998Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS32/504.jpg"><br><img src="/2023/06/29/DLS32/505.jpg"><br><img src="/2023/06/29/DLS32/506.jpg"><br><img src="/2023/06/29/DLS32/507.jpg"><br><img src="/2023/06/29/DLS32/508.jpg"><br><img src="/2023/06/29/DLS32/509.jpg"><br><img src="/2023/06/29/DLS32/510.jpg"><br><img src="/2023/06/29/DLS32/511.jpg"><br><img src="/2023/06/29/DLS32/512.jpg"></p>]]></content>
     
@@ -84,7 +109,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -96,7 +121,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS31/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS31/</id>
     <published>2023-06-29T15:36:31.540Z</published>
-    <updated>2023-06-29T15:36:31.540Z</updated>
+    <updated>2023-08-10T14:53:30.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS31/490.jpg"><br><img src="/2023/06/29/DLS31/491.jpg"><br><img src="/2023/06/29/DLS31/492.jpg"><br><img src="/2023/06/29/DLS31/493.jpg"><br><img src="/2023/06/29/DLS31/494.jpg"><br><img src="/2023/06/29/DLS31/495.jpg"><br><img src="/2023/06/29/DLS31/496.jpg"><br><img src="/2023/06/29/DLS31/497.jpg"><br><img src="/2023/06/29/DLS31/498.jpg"><br><img src="/2023/06/29/DLS31/499.jpg"><br><img src="/2023/06/29/DLS31/500.jpg"><br><img src="/2023/06/29/DLS31/501.jpg"><br><img src="/2023/06/29/DLS31/502.jpg"><br><img src="/2023/06/29/DLS31/503.jpg"></p>]]></content>
     
@@ -108,7 +133,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -120,7 +145,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS30/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS30/</id>
     <published>2023-06-29T15:36:31.399Z</published>
-    <updated>2023-06-29T15:36:31.400Z</updated>
+    <updated>2023-08-10T14:53:30.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS30/479.jpg"><br><img src="/2023/06/29/DLS30/480.jpg"><br><img src="/2023/06/29/DLS30/481.jpg"><br><img src="/2023/06/29/DLS30/482.jpg"><br><img src="/2023/06/29/DLS30/483.jpg"><br><img src="/2023/06/29/DLS30/484.jpg"><br><img src="/2023/06/29/DLS30/485.jpg"><br><img src="/2023/06/29/DLS30/486.jpg"><br><img src="/2023/06/29/DLS30/487.jpg"><br><img src="/2023/06/29/DLS30/488.jpg"><br><img src="/2023/06/29/DLS30/489.jpg"></p>]]></content>
     
@@ -132,7 +157,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -144,7 +169,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS29/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS29/</id>
     <published>2023-06-29T15:36:31.282Z</published>
-    <updated>2023-06-29T15:36:31.283Z</updated>
+    <updated>2023-08-10T14:53:30.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS29/465.jpg"><br><img src="/2023/06/29/DLS29/466.jpg"><br><img src="/2023/06/29/DLS29/467.jpg"><br><img src="/2023/06/29/DLS29/468.jpg"><br><img src="/2023/06/29/DLS29/469.jpg"><br><img src="/2023/06/29/DLS29/470.jpg"><br><img src="/2023/06/29/DLS29/471.jpg"><br><img src="/2023/06/29/DLS29/472.jpg"><br><img src="/2023/06/29/DLS29/473.jpg"><br><img src="/2023/06/29/DLS29/474.jpg"><br><img src="/2023/06/29/DLS29/475.jpg"><br><img src="/2023/06/29/DLS29/476.jpg"><br><img src="/2023/06/29/DLS29/477.jpg"><br><img src="/2023/06/29/DLS29/478.jpg"></p>]]></content>
     
@@ -156,7 +181,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -168,7 +193,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS28/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS28/</id>
     <published>2023-06-29T15:36:31.144Z</published>
-    <updated>2023-06-29T15:36:31.144Z</updated>
+    <updated>2023-08-10T14:53:30.004Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS28/443.jpg"><br><img src="/2023/06/29/DLS28/444.jpg"><br><img src="/2023/06/29/DLS28/445.jpg"><br><img src="/2023/06/29/DLS28/446.jpg"><br><img src="/2023/06/29/DLS28/447.jpg"><br><img src="/2023/06/29/DLS28/448.jpg"><br><img src="/2023/06/29/DLS28/449.jpg"><br><img src="/2023/06/29/DLS28/450.jpg"><br><img src="/2023/06/29/DLS28/451.jpg"><br><img src="/2023/06/29/DLS28/452.jpg"><br><img src="/2023/06/29/DLS28/453.jpg"><br><img src="/2023/06/29/DLS28/454.jpg"><br><img src="/2023/06/29/DLS28/455.jpg"><br><img src="/2023/06/29/DLS28/456.jpg"><br><img src="/2023/06/29/DLS28/457.jpg"><br><img src="/2023/06/29/DLS28/458.jpg"><br><img src="/2023/06/29/DLS28/459.jpg"><br><img src="/2023/06/29/DLS28/460.jpg"><br><img src="/2023/06/29/DLS28/461.jpg"><br><img src="/2023/06/29/DLS28/462.jpg"><br><img src="/2023/06/29/DLS28/463.jpg"><br><img src="/2023/06/29/DLS28/464.jpg"></p>]]></content>
     
@@ -180,7 +205,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -192,7 +217,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS27/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS27/</id>
     <published>2023-06-29T15:36:30.966Z</published>
-    <updated>2023-06-29T15:36:30.966Z</updated>
+    <updated>2023-08-10T14:53:30.004Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS27/423.jpg"><br><img src="/2023/06/29/DLS27/424.jpg"><br><img src="/2023/06/29/DLS27/425.jpg"><br><img src="/2023/06/29/DLS27/426.jpg"><br><img src="/2023/06/29/DLS27/427.jpg"><br><img src="/2023/06/29/DLS27/428.jpg"><br><img src="/2023/06/29/DLS27/429.jpg"><br><img src="/2023/06/29/DLS27/430.jpg"><br><img src="/2023/06/29/DLS27/431.jpg"><br><img src="/2023/06/29/DLS27/432.jpg"><br><img src="/2023/06/29/DLS27/433.jpg"><br><img src="/2023/06/29/DLS27/434.jpg"><br><img src="/2023/06/29/DLS27/435.jpg"><br><img src="/2023/06/29/DLS27/436.jpg"><br><img src="/2023/06/29/DLS27/437.jpg"><br><img src="/2023/06/29/DLS27/438.jpg"><br><img src="/2023/06/29/DLS27/439.jpg"><br><img src="/2023/06/29/DLS27/440.jpg"><br><img src="/2023/06/29/DLS27/441.jpg"><br><img src="/2023/06/29/DLS27/442.jpg"></p>]]></content>
     
@@ -204,7 +229,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -216,7 +241,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS26/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS26/</id>
     <published>2023-06-29T15:36:30.798Z</published>
-    <updated>2023-06-29T15:36:30.798Z</updated>
+    <updated>2023-08-10T14:53:30.006Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS26/408.jpg"><br><img src="/2023/06/29/DLS26/409.jpg"><br><img src="/2023/06/29/DLS26/410.jpg"><br><img src="/2023/06/29/DLS26/411.jpg"><br><img src="/2023/06/29/DLS26/412.jpg"><br><img src="/2023/06/29/DLS26/413.jpg"><br><img src="/2023/06/29/DLS26/414.jpg"><br><img src="/2023/06/29/DLS26/415.jpg"><br><img src="/2023/06/29/DLS26/416.jpg"><br><img src="/2023/06/29/DLS26/417.jpg"><br><img src="/2023/06/29/DLS26/418.jpg"><br><img src="/2023/06/29/DLS26/419.jpg"><br><img src="/2023/06/29/DLS26/420.jpg"><br><img src="/2023/06/29/DLS26/421.jpg"><br><img src="/2023/06/29/DLS26/422.jpg"></p>]]></content>
     
@@ -228,7 +253,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -240,7 +265,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS25/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS25/</id>
     <published>2023-06-29T15:36:30.666Z</published>
-    <updated>2023-06-29T15:36:30.668Z</updated>
+    <updated>2023-08-10T14:53:30.007Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS25/389.jpg"><br><img src="/2023/06/29/DLS25/390.jpg"><br><img src="/2023/06/29/DLS25/391.jpg"><br><img src="/2023/06/29/DLS25/392.jpg"><br><img src="/2023/06/29/DLS25/393.jpg"><br><img src="/2023/06/29/DLS25/394.jpg"><br><img src="/2023/06/29/DLS25/395.jpg"><br><img src="/2023/06/29/DLS25/396.jpg"><br><img src="/2023/06/29/DLS25/397.jpg"><br><img src="/2023/06/29/DLS25/398.jpg"><br><img src="/2023/06/29/DLS25/399.jpg"><br><img src="/2023/06/29/DLS25/400.jpg"><br><img src="/2023/06/29/DLS25/401.jpg"><br><img src="/2023/06/29/DLS25/402.jpg"><br><img src="/2023/06/29/DLS25/403.jpg"><br><img src="/2023/06/29/DLS25/404.jpg"><br><img src="/2023/06/29/DLS25/405.jpg"><br><img src="/2023/06/29/DLS25/406.jpg"><br><img src="/2023/06/29/DLS25/407.jpg"></p>]]></content>
     
@@ -252,7 +277,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -264,7 +289,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS24/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS24/</id>
     <published>2023-06-29T15:36:30.476Z</published>
-    <updated>2023-06-29T15:36:30.477Z</updated>
+    <updated>2023-08-10T14:53:30.007Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS24/374.jpg"><br><img src="/2023/06/29/DLS24/375.jpg"><br><img src="/2023/06/29/DLS24/376.jpg"><br><img src="/2023/06/29/DLS24/377.jpg"><br><img src="/2023/06/29/DLS24/378.jpg"><br><img src="/2023/06/29/DLS24/379.jpg"><br><img src="/2023/06/29/DLS24/380.jpg"><br><img src="/2023/06/29/DLS24/381.jpg"><br><img src="/2023/06/29/DLS24/382.jpg"><br><img src="/2023/06/29/DLS24/383.jpg"><br><img src="/2023/06/29/DLS24/384.jpg"><br><img src="/2023/06/29/DLS24/385.jpg"><br><img src="/2023/06/29/DLS24/386.jpg"><br><img src="/2023/06/29/DLS24/387.jpg"><br><img src="/2023/06/29/DLS24/388.jpg"></p>]]></content>
     
@@ -276,7 +301,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -288,7 +313,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS23/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS23/</id>
     <published>2023-06-29T15:36:30.341Z</published>
-    <updated>2023-06-29T15:36:30.342Z</updated>
+    <updated>2023-08-10T14:53:30.012Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS23/361.jpg"><br><img src="/2023/06/29/DLS23/362.jpg"><br><img src="/2023/06/29/DLS23/363.jpg"><br><img src="/2023/06/29/DLS23/364.jpg"><br><img src="/2023/06/29/DLS23/365.jpg"><br><img src="/2023/06/29/DLS23/366.jpg"><br><img src="/2023/06/29/DLS23/367.jpg"><br><img src="/2023/06/29/DLS23/368.jpg"><br><img src="/2023/06/29/DLS23/369.jpg"><br><img src="/2023/06/29/DLS23/370.jpg"><br><img src="/2023/06/29/DLS23/371.jpg"><br><img src="/2023/06/29/DLS23/372.jpg"><br><img src="/2023/06/29/DLS23/373.jpg"></p>]]></content>
     
@@ -300,7 +325,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -312,7 +337,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS22/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS22/</id>
     <published>2023-06-29T15:36:30.222Z</published>
-    <updated>2023-06-29T15:36:30.222Z</updated>
+    <updated>2023-08-10T14:53:30.012Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS22/340.jpg"><br><img src="/2023/06/29/DLS22/341.jpg"><br><img src="/2023/06/29/DLS22/342.jpg"><br><img src="/2023/06/29/DLS22/343.jpg"><br><img src="/2023/06/29/DLS22/344.jpg"><br><img src="/2023/06/29/DLS22/345.jpg"><br><img src="/2023/06/29/DLS22/346.jpg"><br><img src="/2023/06/29/DLS22/347.jpg"><br><img src="/2023/06/29/DLS22/348.jpg"><br><img src="/2023/06/29/DLS22/349.jpg"><br><img src="/2023/06/29/DLS22/350.jpg"><br><img src="/2023/06/29/DLS22/351.jpg"><br><img src="/2023/06/29/DLS22/352.jpg"><br><img src="/2023/06/29/DLS22/353.jpg"><br><img src="/2023/06/29/DLS22/354.jpg"><br><img src="/2023/06/29/DLS22/355.jpg"><br><img src="/2023/06/29/DLS22/356.jpg"><br><img src="/2023/06/29/DLS22/357.jpg"><br><img src="/2023/06/29/DLS22/358.jpg"><br><img src="/2023/06/29/DLS22/359.jpg"><br><img src="/2023/06/29/DLS22/360.jpg"></p>]]></content>
     
@@ -324,7 +349,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -336,7 +361,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS21/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS21/</id>
     <published>2023-06-29T15:36:30.039Z</published>
-    <updated>2023-06-29T15:36:30.039Z</updated>
+    <updated>2023-08-10T14:53:30.013Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS21/325.jpg"><br><img src="/2023/06/29/DLS21/326.jpg"><br><img src="/2023/06/29/DLS21/327.jpg"><br><img src="/2023/06/29/DLS21/328.jpg"><br><img src="/2023/06/29/DLS21/329.jpg"><br><img src="/2023/06/29/DLS21/330.jpg"><br><img src="/2023/06/29/DLS21/331.jpg"><br><img src="/2023/06/29/DLS21/332.jpg"><br><img src="/2023/06/29/DLS21/333.jpg"><br><img src="/2023/06/29/DLS21/334.jpg"><br><img src="/2023/06/29/DLS21/335.jpg"><br><img src="/2023/06/29/DLS21/336.jpg"><br><img src="/2023/06/29/DLS21/337.jpg"><br><img src="/2023/06/29/DLS21/338.jpg"><br><img src="/2023/06/29/DLS21/339.jpg"></p>]]></content>
     
@@ -348,7 +373,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -360,7 +385,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS20/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS20/</id>
     <published>2023-06-29T15:36:29.914Z</published>
-    <updated>2023-06-29T15:36:29.914Z</updated>
+    <updated>2023-08-10T14:53:30.013Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS20/309.jpg"><br><img src="/2023/06/29/DLS20/310.jpg"><br><img src="/2023/06/29/DLS20/311.jpg"><br><img src="/2023/06/29/DLS20/312.jpg"><br><img src="/2023/06/29/DLS20/313.jpg"><br><img src="/2023/06/29/DLS20/314.jpg"><br><img src="/2023/06/29/DLS20/315.jpg"><br><img src="/2023/06/29/DLS20/316.jpg"><br><img src="/2023/06/29/DLS20/317.jpg"><br><img src="/2023/06/29/DLS20/318.jpg"><br><img src="/2023/06/29/DLS20/319.jpg"><br><img src="/2023/06/29/DLS20/320.jpg"><br><img src="/2023/06/29/DLS20/321.jpg"><br><img src="/2023/06/29/DLS20/322.jpg"><br><img src="/2023/06/29/DLS20/323.jpg"><br><img src="/2023/06/29/DLS20/324.jpg"></p>]]></content>
     
@@ -372,7 +397,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -384,7 +409,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS19/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS19/</id>
     <published>2023-06-29T15:36:29.784Z</published>
-    <updated>2023-06-29T15:36:29.785Z</updated>
+    <updated>2023-08-10T14:53:30.013Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS19/290.jpg"><br><img src="/2023/06/29/DLS19/291.jpg"><br><img src="/2023/06/29/DLS19/292.jpg"><br><img src="/2023/06/29/DLS19/293.jpg"><br><img src="/2023/06/29/DLS19/294.jpg"><br><img src="/2023/06/29/DLS19/295.jpg"><br><img src="/2023/06/29/DLS19/296.jpg"><br><img src="/2023/06/29/DLS19/297.jpg"><br><img src="/2023/06/29/DLS19/298.jpg"><br><img src="/2023/06/29/DLS19/299.jpg"><br><img src="/2023/06/29/DLS19/300.jpg"><br><img src="/2023/06/29/DLS19/301.jpg"><br><img src="/2023/06/29/DLS19/302.jpg"><br><img src="/2023/06/29/DLS19/303.jpg"><br><img src="/2023/06/29/DLS19/304.jpg"><br><img src="/2023/06/29/DLS19/305.jpg"><br><img src="/2023/06/29/DLS19/306.jpg"><br><img src="/2023/06/29/DLS19/307.jpg"><br><img src="/2023/06/29/DLS19/308.jpg"></p>]]></content>
     
@@ -396,7 +421,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -408,7 +433,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS18/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS18/</id>
     <published>2023-06-29T15:36:29.583Z</published>
-    <updated>2023-06-29T15:36:29.583Z</updated>
+    <updated>2023-08-10T14:53:30.013Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS18/269.jpg"><br><img src="/2023/06/29/DLS18/270.jpg"><br><img src="/2023/06/29/DLS18/271.jpg"><br><img src="/2023/06/29/DLS18/272.jpg"><br><img src="/2023/06/29/DLS18/273.jpg"><br><img src="/2023/06/29/DLS18/274.jpg"><br><img src="/2023/06/29/DLS18/275.jpg"><br><img src="/2023/06/29/DLS18/276.jpg"><br><img src="/2023/06/29/DLS18/277.jpg"><br><img src="/2023/06/29/DLS18/278.jpg"><br><img src="/2023/06/29/DLS18/279.jpg"><br><img src="/2023/06/29/DLS18/280.jpg"><br><img src="/2023/06/29/DLS18/281.jpg"><br><img src="/2023/06/29/DLS18/282.jpg"><br><img src="/2023/06/29/DLS18/283.jpg"><br><img src="/2023/06/29/DLS18/284.jpg"><br><img src="/2023/06/29/DLS18/285.jpg"><br><img src="/2023/06/29/DLS18/286.jpg"><br><img src="/2023/06/29/DLS18/287.jpg"><br><img src="/2023/06/29/DLS18/288.jpg"><br><img src="/2023/06/29/DLS18/289.jpg"></p>]]></content>
     
@@ -420,7 +445,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -432,7 +457,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS17/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS17/</id>
     <published>2023-06-29T15:36:29.398Z</published>
-    <updated>2023-06-29T15:36:29.398Z</updated>
+    <updated>2023-08-10T14:53:30.013Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS17/253.jpg"><br><img src="/2023/06/29/DLS17/254.jpg"><br><img src="/2023/06/29/DLS17/255.jpg"><br><img src="/2023/06/29/DLS17/256.jpg"><br><img src="/2023/06/29/DLS17/257.jpg"><br><img src="/2023/06/29/DLS17/258.jpg"><br><img src="/2023/06/29/DLS17/259.jpg"><br><img src="/2023/06/29/DLS17/260.jpg"><br><img src="/2023/06/29/DLS17/261.jpg"><br><img src="/2023/06/29/DLS17/262.jpg"><br><img src="/2023/06/29/DLS17/263.jpg"><br><img src="/2023/06/29/DLS17/264.jpg"><br><img src="/2023/06/29/DLS17/265.jpg"><br><img src="/2023/06/29/DLS17/266.jpg"><br><img src="/2023/06/29/DLS17/267.jpg"><br><img src="/2023/06/29/DLS17/268.jpg"></p>]]></content>
     
@@ -444,7 +469,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
@@ -456,7 +481,7 @@
     <link href="https://shuoandy.github.io/2023/06/29/DLS16/"/>
     <id>https://shuoandy.github.io/2023/06/29/DLS16/</id>
     <published>2023-06-29T15:36:29.256Z</published>
-    <updated>2023-06-29T15:36:29.256Z</updated>
+    <updated>2023-08-10T14:52:02.727Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS16/230.jpg"><br><img src="/2023/06/29/DLS16/231.jpg"><br><img src="/2023/06/29/DLS16/232.jpg"><br><img src="/2023/06/29/DLS16/233.jpg"><br><img src="/2023/06/29/DLS16/234.jpg"><br><img src="/2023/06/29/DLS16/235.jpg"><br><img src="/2023/06/29/DLS16/236.jpg"><br><img src="/2023/06/29/DLS16/237.jpg"><br><img src="/2023/06/29/DLS16/238.jpg"><br><img src="/2023/06/29/DLS16/239.jpg"><br><img src="/2023/06/29/DLS16/240.jpg"><br><img src="/2023/06/29/DLS16/241.jpg"><br><img src="/2023/06/29/DLS16/242.jpg"><br><img src="/2023/06/29/DLS16/243.jpg"><br><img src="/2023/06/29/DLS16/244.jpg"><br><img src="/2023/06/29/DLS16/245.jpg"><br><img src="/2023/06/29/DLS16/246.jpg"><br><img src="/2023/06/29/DLS16/247.jpg"><br><img src="/2023/06/29/DLS16/248.jpg"><br><img src="/2023/06/29/DLS16/249.jpg"><br><img src="/2023/06/29/DLS16/250.jpg"><br><img src="/2023/06/29/DLS16/251.jpg"><br><img src="/2023/06/29/DLS16/252.jpg"></p>]]></content>
     
@@ -468,31 +493,7 @@
     
     
     
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笛子的单恋史15--小张【15】</title>
-    <link href="https://shuoandy.github.io/2023/06/29/DLS15/"/>
-    <id>https://shuoandy.github.io/2023/06/29/DLS15/</id>
-    <published>2023-06-29T15:36:29.037Z</published>
-    <updated>2023-06-29T15:36:29.038Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2023/06/29/DLS15/219.jpg"><br><img src="/2023/06/29/DLS15/220.jpg"><br><img src="/2023/06/29/DLS15/221.jpg"><br><img src="/2023/06/29/DLS15/222.jpg"><br><img src="/2023/06/29/DLS15/223.jpg"><br><img src="/2023/06/29/DLS15/224.jpg"><br><img src="/2023/06/29/DLS15/225.jpg"><br><img src="/2023/06/29/DLS15/226.jpg"><br><img src="/2023/06/29/DLS15/227.jpg"><br><img src="/2023/06/29/DLS15/228.jpg"><br><img src="/2023/06/29/DLS15/229.jpg"></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/2023/06/29/DLS15/219.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS15/220.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/2023/06/29/DLS15/221.jpg&quot;&gt;&lt;br&gt;&lt;img src=&quot;/202</summary>
-      
-    
-    
-    
-    <category term="笛子的单恋史" scheme="https://shuoandy.github.io/categories/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
+    <category term="Comics" scheme="https://shuoandy.github.io/categories/Comics/"/>
     
     
     <category term="笛子的单恋史" scheme="https://shuoandy.github.io/tags/%E7%AC%9B%E5%AD%90%E7%9A%84%E5%8D%95%E6%81%8B%E5%8F%B2/"/>
